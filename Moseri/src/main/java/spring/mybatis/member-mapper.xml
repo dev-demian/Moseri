@@ -12,13 +12,12 @@
 	<insert id="register" parameterType="memberDto">
 		insert into users
 		values(
-		#{id},#{pw},#{salt},#{loop}
-		)
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{name},#{phone},#{addr},#{lat},#{longi},1,#{sex},sysdate,profile_seq.nextval,#{distance},'0','0','0')
 	</insert>
 	
 	<select id="login" resultType="MemberDto">
 	
-		select id,pw,salt,loop from users where id=#{id}
+		select id,pwd,salt,loop from users where id=#{id}
 	
 	</select>
 	

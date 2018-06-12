@@ -15,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Service;import ch.qos.logback.core.rolling.helper.IntegerTokenConverter;
 import spring.bean.MemberDto;
 import spring.repository.MemberDao;
 
@@ -59,11 +58,18 @@ public class MemberServiceImpl implements MemberService {
 	public void register(HttpServletRequest request, MemberDto memberDto) throws Exception {
 
 		// [1] 파라미터 받기
-		memberDto.setId(request.getParameter("id"));
+		memberDto.setEmail(request.getParameter("email"));
+		memberDto.setName(request.getParameter("name"));
 		memberDto.setSalt(UUID.randomUUID().toString());
 		memberDto.setLoop((int) (Math.random() * 9) + 1);
-		String encpw = sha256.encrypt(memberDto.getPw(), memberDto.getSalt(), memberDto.getLoop());
-		memberDto.setPw(encpw);
+		String encpw = sha256.encrypt(memberDto.getPwd(), memberDto.getSalt(), memberDto.getLoop());
+		memberDto.setPwd(encpw);
+		memberDto.setPhone(request.getParameter("phone"));
+		memberDto.setSex(request.getParameter("sex"));
+		memberDto.setDistance(request.getParameter("distance"));
+		memberDto.setAddr(request.getParameter("addr"));
+		memberDto.setLat(Float.parseFloat(request.getParameter("lat")));
+		memberDto.setLongi(Float.parseFloat(request.getParameter("longi")));
 
 		// [2] DB처리
 		memberDao.register(memberDto);
@@ -74,26 +80,26 @@ public class MemberServiceImpl implements MemberService {
 	public boolean login(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto)
 			throws Exception {
 
-		memberDto.setId(request.getParameter("id"));
+		memberDto.setEmail(request.getParameter("id"));
 		
 		//DB 아디 존재 여부를 위한 메소드
-		MemberDto id_exist = memberDao.get(memberDto.getId());
+		MemberDto id_exist = memberDao.get(memberDto.getEmail());
 
 		boolean result = false;
 		
 		MemberDto db_mdto = new MemberDto();
 		
 			if(!(id_exist ==null)) {  // 아이디가 null이 아니면 
-			db_mdto = memberDao.login(memberDto.getId());
+			db_mdto = memberDao.login(memberDto.getEmail());
 			
-			String db_id = db_mdto.getId();
-			String db_pw = db_mdto.getPw();
-			String pram_id = memberDto.getId();
-			String encpw = sha256.encrypt(memberDto.getPw(), db_mdto.getSalt(), db_mdto.getLoop());
-			memberDto.setPw(encpw);
-			String pram_pw = memberDto.getPw();
+			String db_id = db_mdto.getEmail();
+			String db_pwd = db_mdto.getEmail();
+			String pram_id = memberDto.getEmail();
+			String encpw = sha256.encrypt(memberDto.getPwd(), db_mdto.getSalt(), db_mdto.getLoop());
+			memberDto.setPwd(encpw);
+			String pram_pw = memberDto.getPwd();
 			
-			if (db_id.equals(pram_id) && db_pw.equals(pram_pw)) {
+			if (db_id.equals(pram_id) && db_pwd.equals(pram_pw)) {
 				result = true;
 				// 추후 세션 추가
 			} else {
