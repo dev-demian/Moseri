@@ -41,13 +41,6 @@ public class MemberDto {
 			this.setEmail(rs.getString("email"));
 			this.setPwd(rs.getString("pwd"));
 			
-			
-			
-			
-			
-			
 		}
-		
-		
 		}
  

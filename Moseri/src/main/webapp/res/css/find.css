@@ -1,0 +1,27 @@
+#find-wrap {
+    
+}
+#find-wrap .left{
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+#find-wrap .left select {
+    width: 100%;
+    height: 40px;
+}
+
+#find-wrap .left input {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+#find-wrap .right button {
+    width: 100%;
+    border: 1px solid blue;
+    margin: 10px 0px;
+}
+#find-wrap .right button>div{
+    padding:10px 0px;
+}

@@ -1,0 +1,23 @@
+/* header */
+header{
+    background-color:skyblue;
+}
+/* visual */
+#visual{
+    background-color:hotpink;
+}
+.swiper-container{
+    max-width:900px;
+    margin:0 auto;
+}
+.swiper-container .swiper-slide>img{
+    width:100%;
+}
+/* container */
+#container{
+    background-color:forestgreen;
+}
+/* footer */
+footer{
+    background-color:dimgrey;
+}

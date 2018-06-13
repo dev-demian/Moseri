@@ -75,9 +75,9 @@ div {
 									<span>Gender</span>
 								</div>
 								<div class="col-md-8">
-									<span>남 : </span><input type="radio" name="sex" value="male"
+									<span>남 : </span><input type="radio" name="sex" value="남자"
 										> / <span>여 : </span><input type="radio"
-										name="sex" value="female">
+										name="sex" value="여자">
 								</div>
 							</div>
 							<div class="row text-left">

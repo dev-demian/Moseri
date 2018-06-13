@@ -14,8 +14,8 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Autowired
-	private JdbcTemplate JdbcTemplate;
+//	@Autowired
+//	private JdbcTemplate JdbcTemplate;
 	
 	@Override
 	public void register(MemberDto memberDto) {
