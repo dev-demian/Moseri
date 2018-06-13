@@ -11,6 +11,7 @@ public class homecontroller {
 	public String home() {
 		return "home";
 	}
+		
 	//마이페이지 포워딩페이지
 	@RequestMapping("/mypage")
 	public String mypage() {
@@ -21,6 +22,7 @@ public class homecontroller {
 	public String request() {
 		return "request";
 	}
+	
 	//마이페이지 - 견적서
 	@RequestMapping("/estimate")
 	public String estimate() {
@@ -46,4 +48,5 @@ public class homecontroller {
 	public String information() {
 		return "information";
 	}
+
 }
