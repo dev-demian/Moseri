@@ -13,7 +13,7 @@ import spring.bean.MemberDto;
 import spring.service.MemberService;
 
 @Controller
-public class HomeController {
+public class homecontroller {
 
 	@Autowired
 	private MemberService memberservice;
