@@ -1,0 +1,19 @@
+#register .inner{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+}
+#register-wrap #map{
+    display: none;
+}
+#register-wrap > div {
+    margin:10px 0px;
+}
+#register-wrap input[type="text"],
+#register-wrap input[type="password"],
+#register-wrap input[type="phone"]{
+    width: 100%;
+}
+#register-wrap input[type="submit"] {
+    width: 100%;
+}
