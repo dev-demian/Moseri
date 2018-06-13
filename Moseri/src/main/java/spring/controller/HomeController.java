@@ -57,16 +57,6 @@ public class HomeController {
 		}
 		
 	}
-	@RequestMapping("/info/mypage")
-	public String mypage() {
-		return "mypage/mypage";
-	}
-	@RequestMapping("/info/request")
-	public String request() {
-		
-		return "mypage/request";
-		
-	}
 	
 	
 }
