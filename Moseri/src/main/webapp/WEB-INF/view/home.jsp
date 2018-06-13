@@ -24,15 +24,10 @@
     
     <script src="${pageContext.request.contextPath}/res/js/slider.js"></script>
 
-
-
-
     <style media="screen">
       @import url(${pageContext.request.contextPath}/res/css/btn.css) ;
       @import url(${pageContext.request.contextPath}/res/css/slider.css);
       @import url(${pageContext.request.contextPath}/res/css/slick-theme.css);
-
-
 
       html,div,body{
         border: 1px solid red;
@@ -41,7 +36,6 @@
       header{
         border: 1px solid red;
       }
-
 
 
       #jumbo{
@@ -68,38 +62,25 @@
         padding: 15px
       }
 
-
-
-
     </style>
   </head>
 
-
-
 <body>
-
-
-
-
 
   <header id="top" style="background-image: url(${pageContext.request.contextPath}/res/img/header_bg.jpg); background-size: 100% 100%; ">
     <div class="container">
-
 
       <nav class="collapse navbar-collapse bs-navbar-collapse" style="padding-bottom: 200px">
         <ul class ="nav navbar-nav">
           <img id="home_icon" src="${pageContext.request.contextPath}/res/img/Icon.png" alt="icon" >
         </ul>
-       
-
+      
         <ul class="nav navbar-nav navbar-right">
           <li><button type="button" class="btn btn-info">Info</button></li>
           <li><button type="button" class="btn btn-primary">로그인</button></li>
           <li><button type="button" class="btn btn-success">회원가입</button></li>
           <li><button type="button" class="btn btn-primary">마이페이지</button></li>
           <li><button type="button" class="btn btn-success">로그아웃</button></li>
-
-
         </ul>
       </nav>
       <nav style="padding-bottom: 100px ;padding-left: 340px; padding-right: 340px;">
@@ -111,22 +92,12 @@
             <button class="btn btn-secondary" type="button">찾기</button>
           </span>
         </div>
-
         <!-- </div> -->
-
       </nav>
-
-
     </div>
-
-
-
   </header>
 
-
-
   <div class="container">
-
 
     <div class="row">
       <div class="col-sm-12">
@@ -294,11 +265,7 @@
           </div>
         </div>
       </div>
-
-
     </div>
-
-
 
     <div class="row">
       <div class="col-sm-12"><h1> 추후 추가 예정 </h1></div><!---->      
@@ -315,7 +282,6 @@
       <div class="col-sm-12">. </div><!---->
     </div>
   </div>
-
 
   <footer class="footer" style="background-color: #F2F2F2;">
     <div class="container">
@@ -424,9 +390,7 @@
             </ul>
           </div>
         </div>
-
       </div>
     </div>
-
   </body>
   </html>
