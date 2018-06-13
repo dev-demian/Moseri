@@ -14,49 +14,91 @@ import spring.service.MemberService;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private MemberService memberservice;
-	//home
+
+	// home
 	@RequestMapping("/home")
 	public String home() {
 		return "home";
 	}
-	
+
 	// 회원가입(get)
 	@RequestMapping("/register")
 	public String register() {
 		return "register";
 	}
-	
+
 	// 회원가입(post)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(HttpServletRequest request, @ModelAttribute MemberDto memberDto) throws Exception {
-		
+
 		memberservice.register(request, memberDto);
-		
+
 		return "redirect:/home";
 	}
-	
+
 	// 로그인(get)
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
+
 	// 로그인(post)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, HttpServletResponse response, @ModelAttribute MemberDto memberDto)
 			throws Exception {
-		
+
 		boolean result = memberservice.login(request, response, memberDto);
 		if (result) {
 			return "redirect:/home";
 		} else {
 			return "redirect:/login";
 		}
-		
+
 	}
-	
-	
+
+	// 마이페이지 포워딩페이지
+	@RequestMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
+
+	// 마이페이지 - 요청
+	@RequestMapping("/request")
+	public String request() {
+		return "request";
+	}
+
+	// 마이페이지 - 견적서
+	@RequestMapping("/estimate")
+	public String estimate() {
+		return "estimate";
+	}
+
+	// 마이페이지 - 견적서 - 견적서작성
+	@RequestMapping("/estimate_write")
+	public String estimate_write() {
+		return "estimate_write";
+	}
+
+	// 마이페이지 - 프로필
+	@RequestMapping("/profile")
+	public String profile() {
+		return "profile";
+	}
+
+	// 마이페이지 - 알림
+	@RequestMapping("/notification")
+	public String notification() {
+		return "notification";
+	}
+
+	// 마이페이지 - 개인정보
+	@RequestMapping("/information")
+	public String information() {
+		return "information";
+	}
+
 }

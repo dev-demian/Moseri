@@ -9,9 +9,9 @@
 
 	<!-- Uncomment and your base-package here: <context:component-scan base-package="org.springframework.samples.web"/> -->
 
-
 	<mvc:annotation-driven />
 	<context:component-scan base-package="spring.controller"></context:component-scan>
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
@@ -21,3 +21,5 @@
 	<mvc:resources location="/res/" mapping="/res/**"></mvc:resources>
 	<!-- <mvc:resources location="/res/images" mapping="D:\upload"></mvc:resources> -->
 	</beans>
+	
+	
