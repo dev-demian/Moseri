@@ -11,7 +11,7 @@
             base-package="org.springframework.samples.web"/>  -->
 
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
     <mvc:resources location="/res/" mapping="/res/**"></mvc:resources>
     
  <context:component-scan base-package="spring.controller"></context:component-scan>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>   
     <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <c:set var="root" value="${pageContext.request.contextPath}"></c:set> --%>
 
@@ -73,19 +75,19 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <button type="button" class="btn btn-info">Info</button>
+                                <a href="${root}/info">info</a>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-primary">로그인</button>
+                                <a href="${root}/login">로그인</a>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-success">회원가입</button>
+                                <a href="${root}/before_regi">회원가입</a>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-primary" onclick="location.href='mypage'">마이페이지</button>
+                                <a href="${root}/mypage">마이페이지</a>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-success">로그아웃</button>
+                                <a href="${root}/home">로그아웃</a>
                             </li>
                         </ul>
                     </nav>

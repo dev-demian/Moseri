@@ -1,35 +1,57 @@
 package spring.controller;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.bean.MemberDto;
 import spring.service.MemberService;
+import spring.bean.CategoryBotDto;
+import spring.bean.CategoryMidDto;
+import spring.service.CategoryService;
 
 @Controller
 public class homecontroller {
 
 	@Autowired
 	private MemberService memberservice;
+	@Autowired
+	private CategoryService categoryService;
 
 	// home
 	@RequestMapping("/home")
 	public String home() {
 		return "home";
 	}
-
-
+	
+	//회원가입 타입(일반, 고수)
+	@RequestMapping("/before_regi")
+	public String regi() {
+		return "before_regi";
+	}
+	
+	
 	// 회원가입(get)
 	@RequestMapping("/register")
 	public String register() {
 		return "register";
 	}
+	
+	// 회원가입_gosu(get)
+		@RequestMapping("/register_gosu")
+		public String register_gosu() {
+			return "register_gosu";
+		}
 
 	// 회원가입(post)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -39,7 +61,18 @@ public class homecontroller {
 
 		return "redirect:/home";
 	}
+	
+	// 회원가입_gosu(post)
+		@RequestMapping(value = "/register_gosu", method = RequestMethod.POST)
+		public String register_gosu(HttpServletRequest request, @ModelAttribute MemberDto memberDto) throws Exception {
 
+			memberservice.register_gosu(request, memberDto);
+
+			return "redirect:/home";
+		}
+	
+	
+	
 	// 로그인(get)
 	@RequestMapping("/login")
 	public String login() {
@@ -58,6 +91,22 @@ public class homecontroller {
 			return "redirect:/login";
 		}
 
+	}
+	
+	@RequestMapping("/find")
+	public String find(HttpServletRequest request) {
+		request.setAttribute("list",categoryService.getList());
+		return "find";
+	}
+	@RequestMapping("/midList")
+	@ResponseBody
+	public List<CategoryMidDto> midList(@RequestParam(value="no") int no){
+		return categoryService.midList(no);
+	}
+	@RequestMapping("/botList")
+	@ResponseBody
+	public List<CategoryBotDto> botList(@RequestParam(value="no") int no){
+		return categoryService.botList(no);
 	}
 		
 	//마이페이지 포워딩페이지

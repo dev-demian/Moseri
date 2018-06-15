@@ -24,6 +24,13 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 	@Override
+	public void register_gosu(MemberDto memberDto) {
+		
+		sqlSession.insert("register_gosu",memberDto);
+		
+	}
+	
+	@Override
 	public MemberDto login(String id) {
 			
 		return sqlSession.selectOne("login",id);

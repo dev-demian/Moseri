@@ -38,7 +38,6 @@ public class DatabaseConfiguration {
 		dataSource.setUrl(env.getProperty("database.url"));
 		dataSource.setUsername(env.getProperty("database.username"));
 		dataSource.setPassword(env.getProperty("database.password"));
-		
 		dataSource.setMaxTotal(Integer.parseInt(env.getProperty("database.maxTotal")));
 		dataSource.setMaxIdle(Integer.parseInt(env.getProperty("database.maxIdle")));
 		dataSource.setMaxWaitMillis(Integer.parseInt(env.getProperty("database.maxWaitMillis")));

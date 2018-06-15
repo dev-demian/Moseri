@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 
 		// [1] 파라미터 받기
 		memberDto.setEmail(request.getParameter("email"));
-		memberDto.setName(request.getParameter("name"));
+		memberDto.setNickname(request.getParameter("nickname"));
 		memberDto.setSalt(UUID.randomUUID().toString());
 		memberDto.setLoop((int) (Math.random() * 9) + 1);
 		String encpw = sha256.encrypt(memberDto.getPwd(), memberDto.getSalt(), memberDto.getLoop());
@@ -70,10 +70,34 @@ public class MemberServiceImpl implements MemberService {
 		memberDto.setAddr(request.getParameter("addr"));
 		memberDto.setLat(Float.parseFloat(request.getParameter("lat")));
 		memberDto.setLongi(Float.parseFloat(request.getParameter("longi")));
-
+		memberDto.setC_bno(Integer.parseInt(request.getParameter("c_bno")));
 		// [2] DB처리
 		memberDao.register(memberDto);
 	}
+	
+
+	@Override
+	public void register_gosu(HttpServletRequest request, MemberDto memberDto) throws Exception {
+		// TODO Auto-generated method stub
+		// [1] 파라미터 받기
+				memberDto.setEmail(request.getParameter("email"));
+				memberDto.setNickname(request.getParameter("nickname"));
+				memberDto.setSalt(UUID.randomUUID().toString());
+				memberDto.setLoop((int) (Math.random() * 9) + 1);
+				String encpw = sha256.encrypt(memberDto.getPwd(), memberDto.getSalt(), memberDto.getLoop());
+				memberDto.setPwd(encpw);
+				memberDto.setPhone(request.getParameter("phone"));
+				memberDto.setSex(request.getParameter("sex"));
+				memberDto.setDistance(request.getParameter("distance"));
+				memberDto.setAddr(request.getParameter("addr"));
+				memberDto.setLat(Float.parseFloat(request.getParameter("lat")));
+				memberDto.setLongi(Float.parseFloat(request.getParameter("longi")));
+				memberDto.setC_bno(Integer.parseInt(request.getParameter("bot")));
+
+				// [2] DB처리
+				memberDao.register_gosu(memberDto);
+	}
+	
 
 	// 로그인
 	@Override
@@ -111,4 +135,5 @@ public class MemberServiceImpl implements MemberService {
 			return result;
 		
 	}
+
 }

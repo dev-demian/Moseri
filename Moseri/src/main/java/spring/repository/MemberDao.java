@@ -10,6 +10,8 @@ public interface MemberDao {
 	
 	void register(MemberDto memberDto);
 
+	void register_gosu(MemberDto memberDto);
+	
 	MemberDto login(String id);
 
 	MemberDto get(String id);
