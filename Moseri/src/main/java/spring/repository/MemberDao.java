@@ -12,9 +12,9 @@ public interface MemberDao {
 
 	void register_gosu(MemberDto memberDto);
 	
-	MemberDto login(String id);
+	MemberDto login(String email);
 
-	MemberDto get(String id);
+	MemberDto get(String email);
 
 	
 

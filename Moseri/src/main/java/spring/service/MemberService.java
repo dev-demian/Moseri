@@ -11,7 +11,6 @@ public interface MemberService {
 
 	void register(HttpServletRequest request, MemberDto memberDto)throws Exception;
 	void register_gosu(HttpServletRequest request, MemberDto memberDto)throws Exception;
-
 	boolean login(HttpServletRequest request, HttpServletResponse response,MemberDto memberDto)throws Exception;
 
 	

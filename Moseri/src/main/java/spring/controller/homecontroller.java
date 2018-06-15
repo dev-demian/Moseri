@@ -1,13 +1,16 @@
 package spring.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,16 +52,21 @@ public class homecontroller {
 	
 	// 회원가입_gosu(get)
 		@RequestMapping("/register_gosu")
-		public String register_gosu() {
-			return "register_gosu";
-		}
+		public String register_gosu(HttpServletRequest request) {
+			request.setAttribute("list",categoryService.getList());
+				return "register_gosu";
+	}
+			
+			
+		
 
 	// 회원가입(post)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(HttpServletRequest request, @ModelAttribute MemberDto memberDto) throws Exception {
 
 		memberservice.register(request, memberDto);
-
+		
+		
 		return "redirect:/home";
 	}
 	
@@ -76,28 +84,50 @@ public class homecontroller {
 	// 로그인(get)
 	@RequestMapping("/login")
 	public String login() {
+		
+		
 		return "login";
 	}
 
 	// 로그인(post)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpServletResponse response, @ModelAttribute MemberDto memberDto)
+	public String login(HttpServletRequest request, HttpServletResponse response,HttpSession session,Model model, @ModelAttribute MemberDto memberDto)
 			throws Exception {
 
 		boolean result = memberservice.login(request, response, memberDto);
+		
 		if (result) {
+			MemberDto db_data = new MemberDto();
+			db_data= (MemberDto)request.getAttribute("db_data");
+			 
+			session.setAttribute("email",db_data.getEmail());
+			session.setAttribute("granted",db_data.getGranted());
+			session.setAttribute("login", "success");
+			session.setMaxInactiveInterval(60*60);	
+			
 			return "redirect:/home";
 		} else {
+	
+			model.addAttribute("msg", "로그인 실패");
+			model.addAttribute("url", "login");
 			return "redirect:/login";
 		}
 
 	}
 	
-	@RequestMapping("/find")
-	public String find(HttpServletRequest request) {
-		request.setAttribute("list",categoryService.getList());
-		return "find";
+	// 로그인(get)
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request,HttpSession session) {
+		
+		//HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환
+		if(request.getSession(false) != null) {
+			session.invalidate();
+		}
+		return "redirect:/home";
 	}
+
+	
+	
 	@RequestMapping("/midList")
 	@ResponseBody
 	public List<CategoryMidDto> midList(@RequestParam(value="no") int no){

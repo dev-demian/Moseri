@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import lombok.Data;
 
 @Data
+
 public class MemberDto {
 
 		String email;
@@ -23,6 +24,7 @@ public class MemberDto {
 		float longi;
 		int c_bno;
 		int loop;
+		int granted;
 		
 		public void convert(HttpServletRequest request) throws UnsupportedEncodingException {
 			request.setCharacterEncoding("UTF-8");
@@ -36,6 +38,7 @@ public class MemberDto {
 			this.setLat(Float.parseFloat(request.getParameter("lat")));
 			this.setLongi(Float.parseFloat(request.getParameter("longi")));
 			this.setC_bno(Integer.parseInt(request.getParameter("c_bno")));
+			this.setGranted(Integer.parseInt(request.getParameter("granted")));
 			
 			
 		}

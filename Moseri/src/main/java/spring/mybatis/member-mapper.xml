@@ -24,13 +24,13 @@
 	
 	<select id="login" resultType="MemberDto">
 	
-		select id,pwd,salt,loop from users where id=#{id}
+		select email,pwd,salt,loop,granted from users where email=#{email}
 	
 	</select>
 	
 	<select id="get" resultType="MemberDto">
 
-		select * from users where id=#{id}
+		select * from users where email=#{email}
 	</select>
 		
 		

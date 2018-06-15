@@ -31,14 +31,14 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public MemberDto login(String id) {
+	public MemberDto login(String email) {
 			
-		return sqlSession.selectOne("login",id);
+		return sqlSession.selectOne("login",email);
 			
 	}
 	@Override
-	public MemberDto get(String id) {
-		return sqlSession.selectOne("get",id);
+	public MemberDto get(String email) {
+		return sqlSession.selectOne("get",email);
 	}
 	
 	

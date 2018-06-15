@@ -21,4 +21,24 @@
            <property name="suffix" value=".jsp"/>
    </bean>
 
+<!-- <mvc:interceptors>
+        <mvc:interceptor>
+           <mvc:mapping path="/admin_main"/>
+           여러개 컨트롤러 추가 가능
+           
+                <mvc:mapping path="/admin_write"/>
+                <mvc:mapping path="/admin_update"/>
+                <mvc:mapping path="/admin_delete"/>
+                .
+                .
+                .
+          
+           로그인체크 인터셉터 클래스
+           <bean class="spring.interceptor.Interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+ -->
+
+
+
 </beans>

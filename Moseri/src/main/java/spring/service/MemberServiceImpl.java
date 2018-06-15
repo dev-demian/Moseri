@@ -104,7 +104,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean login(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto)
 			throws Exception {
 
-		memberDto.setEmail(request.getParameter("id"));
+		memberDto.setEmail(request.getParameter("email"));
 		
 		//DB 아디 존재 여부를 위한 메소드
 		MemberDto id_exist = memberDao.get(memberDto.getEmail());
@@ -115,15 +115,23 @@ public class MemberServiceImpl implements MemberService {
 		
 			if(!(id_exist ==null)) {  // 아이디가 null이 아니면 
 			db_mdto = memberDao.login(memberDto.getEmail());
-			
+			//db에서 추출
 			String db_id = db_mdto.getEmail();
-			String db_pwd = db_mdto.getEmail();
+			String db_pwd = db_mdto.getPwd();
+			//내파라메터를 암호화시킴 
 			String pram_id = memberDto.getEmail();
 			String encpw = sha256.encrypt(memberDto.getPwd(), db_mdto.getSalt(), db_mdto.getLoop());
 			memberDto.setPwd(encpw);
 			String pram_pw = memberDto.getPwd();
 			
+//			System.out.println(db_id);
+//			System.out.println(db_pwd);
+//			System.out.println(pram_id);
+//			System.out.println(pram_pw);
+			
+			
 			if (db_id.equals(pram_id) && db_pwd.equals(pram_pw)) {
+				request.setAttribute("db_data", db_mdto);
 				result = true;
 				// 추후 세션 추가
 			} else {
@@ -132,8 +140,11 @@ public class MemberServiceImpl implements MemberService {
 			}else {
 				result = false;
 			}
+//			System.out.println(result);
 			return result;
-		
-	}
+		}
+	
+	
+	
 
 }

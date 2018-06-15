@@ -73,6 +73,13 @@
         </script>
     </head>
     <body>
+    <script type="text/javascript">
+	var message = '${msg}';
+	var returnUrl = '${url}';
+	alert(mag);
+	document.location.href = returnUrl;
+	</script>
+    
        <div class="container">
            <div class="row">
             <img class="img-circle center-block" src="http://www.cinema4d.co.kr/files/attach/images/119/040/894/001/fb466ee7c233a3fc00eedbe4df84cc6a.jpg" width="150" height="150">
@@ -81,11 +88,11 @@
                 <h2 class="form-signin-heading text-center">로그인</h2>
                 <div class="inputid">
                     <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="text" name="id" class="form-controll" placeholder="아이디(이메일)">
+                    <input type="text" name="email" class="form-controll" placeholder="아이디(이메일)">
                 </div>
                 <div class="inputpw">
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" name="pw" class="form-controll" placeholder="비밀번호" required>
+                <input type="password" name="pwd" class="form-controll" placeholder="비밀번호" required>
                 </div>
                 <div class="checkbox">
                     <label>
