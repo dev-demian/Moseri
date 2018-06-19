@@ -59,19 +59,19 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                          <a href="/info">info</a>
+                          <a href="${root}/Moseri/home">홈으로</a>
                         </li>
                         <li>
                          <a href="${root}/Moseri/login">로그인</a>
                         </li>
                         <li>
-                          <a href="${root}/register">회원가입</a>
+                          <a href="${root}/Moseri/register">회원가입</a>
                         </li>
                         <li>
-                         <a href="${root}/mypage">마이페이지</a>
+                         <a href="${root}/Moseri/mypage">마이페이지</a>
                         </li>
                         <li>
-                         <a href="${root}/home">로그아웃</a>
+                         <a href="${root}/Moseri/logout">로그아웃</a>
                         </li>
                     </ul>
                 </nav>

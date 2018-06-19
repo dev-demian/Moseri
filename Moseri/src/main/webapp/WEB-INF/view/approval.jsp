@@ -1,9 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     <!DOCTYPE html>
     <html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+    // 세션값 가져오기
+    out.println(session.getAttribute("email"));
+    out.println(session.getAttribute("granted"));
+    out.println(session.getAttribute("login"));
+ 	// 세션 전체 무효화(로그아웃시 주로 사용)
+    //session.invalidate();
+ %> 
+ 
+ 
     <head>
         <title>request</title>
         <meta charset="UTF-8">
@@ -61,19 +71,19 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                          <a href="/info">info</a>
+                          <a href="${root}/Moseri/home">홈으로</a>
                         </li>
                         <li>
                          <a href="${root}/Moseri/login">로그인</a>
                         </li>
                         <li>
-                          <a href="${root}/register">회원가입</a>
+                          <a href="${root}/Moseri/register">회원가입</a>
                         </li>
                         <li>
-                         <a href="${root}/mypage">마이페이지</a>
+                         <a href="${root}/Moseri/mypage">마이페이지</a>
                         </li>
                         <li>
-                         <a href="${root}/home">로그아웃</a>
+                         <a href="${root}/Moseri/logout">로그아웃</a>
                         </li>
                     </ul>
                 </nav>

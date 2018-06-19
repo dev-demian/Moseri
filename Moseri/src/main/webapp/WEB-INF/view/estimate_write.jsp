@@ -59,19 +59,19 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <button type="button" class="btn btn-info">Info</button>
+                          <a href="${root}/Moseri/home">홈으로</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary">로그인</button>
+                         <a href="${root}/Moseri/login">로그인</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-success">회원가입</button>
+                          <a href="${root}/Moseri/register">회원가입</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary" onclick="location.href='mypage'">마이페이지</button>
+                         <a href="${root}/Moseri/mypage">마이페이지</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-success">로그아웃</button>
+                         <a href="${root}/Moseri/logout">로그아웃</a>
                         </li>
                     </ul>
                 </nav>

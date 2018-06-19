@@ -85,21 +85,30 @@
                             <img id="home_icon" src="${pageContext.request.contextPath}/res/img/Icon.png" alt="icon">
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            
                             <li>
-                                <a href="${root}/info">info</a>
-                            </li>
+                              	<a href="${root}/home">홈으로</a>
+   							</li>
+                            <%if(!("success".equals(session.getAttribute("login")))){%>
                             <li>
                                 <a href="${root}/login">로그인</a>
                             </li>
+                            <%}%> 
+                            <%if(!("success".equals(session.getAttribute("login")))){%>
                             <li>
                                 <a href="${root}/before_regi">회원가입</a>
                             </li>
+                            <%}%> 
+                            <%if("success".equals(session.getAttribute("login"))){%>
                             <li>
                                 <a href="${root}/mypage">마이페이지</a>
                             </li>
+                            <%}%> 
+                            <%if("success".equals(session.getAttribute("login"))){%>
                             <li>
                                 <a href="${root}/logout">로그아웃</a>
                             </li>
+                            <%}%> 
                         </ul>
                     </nav>
                     <nav style="padding-bottom: 100px ;padding-left: 340px; padding-right: 340px;">

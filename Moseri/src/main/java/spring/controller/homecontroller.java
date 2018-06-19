@@ -156,7 +156,7 @@ public class homecontroller {
 	//마이페이지 포워딩페이지
 
 	@RequestMapping("/mypage")
-	public String mypage() {
+	public String mypage(HttpSession session) {
 		return "mypage";
 	}
 
