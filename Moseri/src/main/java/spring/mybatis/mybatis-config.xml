@@ -8,6 +8,7 @@
 	<settings>
 		<setting name="cacheEnabled" value="true" />
 		<setting name="autoMappingBehavior" value="FULL" />
+		
 	</settings>
 
 	<!-- 별칭 : 마이바티스는 풀 패키지명을 이용해야 하는데 이를 축약할 수 있는 설정 -->
@@ -15,7 +16,11 @@
 		</typeAliases> -->
 		
 	 <typeAliases>
-		<typeAlias type="spring.bean.MemberDto" alias="memberDto" />
+		<typeAlias type="spring.bean.MemberDto" alias="memberDto"/>
+		<typeAlias type="spring.bean.CategoryTopDto" alias="categoryTopDto"/>
+		<typeAlias type="spring.bean.CategoryMidDto" alias="categoryMidDto"/>
+		<typeAlias type="spring.bean.CategoryBotDto" alias="categoryBotDto"/>
+		<typeAlias type="spring.bean.FileDto" alias="fileDto"/>
 	</typeAliases> 
 
 </configuration>

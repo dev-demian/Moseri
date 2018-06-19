@@ -56,10 +56,10 @@ div {
 							</div>
 							<div class="row text-left">
 								<div class="col-md-4">
-									<span>Name</span>
+									<span>Nick</span>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="name" >
+									<input type="text" name="nickname" >
 								</div>
 							</div>
 							<div class="row text-left">
@@ -129,7 +129,7 @@ div {
 							
 							<input id="lat" type="hidden" name="lat">
 							<input id="lng" type="hidden" name="longi">
-							
+							<input type="hidden" name ="c_bno" value="0">
 						</div>
 					</form>
 				</div>

@@ -11,7 +11,7 @@
             base-package="org.springframework.samples.web"/>  -->
 
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
     <mvc:resources location="/res/" mapping="/res/**"></mvc:resources>
     
  <context:component-scan base-package="spring.controller"></context:component-scan>
@@ -21,4 +21,29 @@
            <property name="suffix" value=".jsp"/>
    </bean>
 
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<!-- <property name="maxUploadSize" value="100000000"/> 한 번에 최대 올릴 수 있는 파일 사이즈
+        <property name="maxInMemorySize" value="100000000"/> 해당 경로에 최대로 저장할 수 있는 파일 사이즈-->
+	</bean>
+<!-- 만약 오류면 여기가 문제일수도 -->
+
+
+
+<!-- <mvc:interceptors>
+        <mvc:interceptor>
+           <mvc:mapping path="/admin_main"/>
+           여러개 컨트롤러 추가 가능
+           
+                <mvc:mapping path="/admin_write"/>
+                <mvc:mapping path="/admin_update"/>
+                <mvc:mapping path="/admin_delete"/>
+                .
+                .
+                .
+          
+           로그인체크 인터셉터 클래스
+           <bean class="spring.interceptor.Interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+ -->
 </beans>

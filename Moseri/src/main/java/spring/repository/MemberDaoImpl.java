@@ -24,14 +24,21 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 	@Override
-	public MemberDto login(String id) {
+	public void register_gosu(MemberDto memberDto) {
+		
+		sqlSession.insert("register_gosu",memberDto);
+		
+	}
+	
+	@Override
+	public MemberDto login(String email) {
 			
-		return sqlSession.selectOne("login",id);
+		return sqlSession.selectOne("login",email);
 			
 	}
 	@Override
-	public MemberDto get(String id) {
-		return sqlSession.selectOne("get",id);
+	public MemberDto get(String email) {
+		return sqlSession.selectOne("get",email);
 	}
 	
 	

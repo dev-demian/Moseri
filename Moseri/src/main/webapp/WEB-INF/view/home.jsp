@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+   
+ 	// 세션값 가져오기
+    out.println(session.getAttribute("email"));
+    out.println(session.getAttribute("granted"));
+    out.println(session.getAttribute("login"));
+ 	// 세션 전체 무효화(로그아웃시 주로 사용)
+    //session.invalidate();
+ %> 
+
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>   
     <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <c:set var="root" value="${pageContext.request.contextPath}"></c:set> --%>
 
@@ -72,21 +85,30 @@
                             <img id="home_icon" src="${pageContext.request.contextPath}/res/img/Icon.png" alt="icon">
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            
                             <li>
-                                <button type="button" class="btn btn-info">Info</button>
-                            </li>
+                              	<a href="${root}/home">홈으로</a>
+   							</li>
+                            <%if(!("success".equals(session.getAttribute("login")))){%>
                             <li>
-                                <button type="button" class="btn btn-primary">로그인</button>
+                                <a href="${root}/login">로그인</a>
                             </li>
+                            <%}%> 
+                            <%if(!("success".equals(session.getAttribute("login")))){%>
                             <li>
-                                <button type="button" class="btn btn-success">회원가입</button>
+                                <a href="${root}/before_regi">회원가입</a>
                             </li>
+                            <%}%> 
+                            <%if("success".equals(session.getAttribute("login"))){%>
                             <li>
-                                <button type="button" class="btn btn-primary" onclick="location.href='mypage'">마이페이지</button>
+                                <a href="${root}/mypage">마이페이지</a>
                             </li>
+                            <%}%> 
+                            <%if("success".equals(session.getAttribute("login"))){%>
                             <li>
-                                <button type="button" class="btn btn-success">로그아웃</button>
+                                <a href="${root}/logout">로그아웃</a>
                             </li>
+                            <%}%> 
                         </ul>
                     </nav>
                     <nav style="padding-bottom: 100px ;padding-left: 340px; padding-right: 340px;">

@@ -12,18 +12,27 @@
 	<insert id="register" parameterType="memberDto">
 		insert into users
 		values(
-		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{name},#{phone},#{addr},#{lat},#{longi},1,#{sex},sysdate,profile_seq.nextval,#{distance},'0','0','0')
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},1,#{sex},sysdate,profile_seq.nextval,#{distance},'0','0','0')
 	</insert>
+	
+	 <insert id="register_gosu" parameterType="memberDto">
+		insert into users
+		values(
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},2,#{sex},sysdate,profile_seq.nextval,#{distance},'0','0','0')
+	</insert> 
+	
 	
 	<select id="login" resultType="MemberDto">
 	
-		select id,pwd,salt,loop from users where id=#{id}
+		select email,pwd,salt,loop,granted from users where email=#{email}
 	
 	</select>
 	
 	<select id="get" resultType="MemberDto">
 
-		select * from users where id=#{id}
+		select * from users where email=#{email}
 	</select>
 		
+		
 </mapper>
+

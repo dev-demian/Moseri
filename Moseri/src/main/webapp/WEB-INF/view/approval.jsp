@@ -1,7 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
     <!DOCTYPE html>
     <html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+    // 세션값 가져오기
+    out.println(session.getAttribute("email"));
+    out.println(session.getAttribute("granted"));
+    out.println(session.getAttribute("login"));
+ 	// 세션 전체 무효화(로그아웃시 주로 사용)
+    //session.invalidate();
+ %> 
+ 
+ 
     <head>
         <title>request</title>
         <meta charset="UTF-8">
@@ -98,55 +110,40 @@
                 <div class="col-sm-2"><a href="approval">고수인증</a></div>
             </div>
             <div class="row text-center mypage-bg">
-            <div class="inner">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6">
-                    <div id="noti">
-                        <h3>알림</h3>
-                        <div class="noti-wrap">
-                            <div>
-                                <span>알림받기</span>
-                                <div>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <span>문자,카카오톡알림</span>
-                                <div>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <span>거리설정</span>
-                                <div>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <span>방해금지시간</span>
-                                <div>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                <div class="inner">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <div id="req">
+                  			<h3>고수 요청</h3>
+                  			<form name ="fr" class="form-horizontal" method="post" action="approval" enctype="multipart/form-data" onsubmit="return check()">
+                  			
+<%--                   			<input type = "hidden" id ="gosu_email" name ="email"value= "${sessionScpoe.email}" >
+ --%>        					<!-- input type="file" 이라고 꼭 저어줘야 함 -->
+        					<input type="file" id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+        					<input type="text" id ="uploadtext" name="text" maxlength="500" style="width:800px; height:100px;">
+        					<button id="btn" type="submit" class="btn btn-default">요청</button>
+        					
+    						</form>
+						</div>
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
-                <div class="col-sm-3"></div>
             </div>
         </div>
-        </div>
+        
+		<script>
+		function check() {
+ 		 if(${sessionScpoe.granted} == 3) {
+		    alert("이미 인증이 완료된 고수입니다.");
+		    
+		    return false;
+		  }
+		  
+		  return true;
+		}
+		</script>
+        
+        
         <footer class="footer" style="background-color: #F2F2F2;">
             <div class="container">
                 <div class="row">

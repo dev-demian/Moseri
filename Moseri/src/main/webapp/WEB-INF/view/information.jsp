@@ -62,19 +62,19 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <button type="button" class="btn btn-info">Info</button>
+                          <a href="${root}/Moseri/home">홈으로</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary">로그인</button>
+                         <a href="${root}/Moseri/login">로그인</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-success">회원가입</button>
+                          <a href="${root}/Moseri/register">회원가입</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary" onclick="location.href='mypage'">마이페이지</button>
+                         <a href="${root}/Moseri/mypage">마이페이지</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-success">로그아웃</button>
+                         <a href="${root}/Moseri/logout">로그아웃</a>
                         </li>
                     </ul>
                 </nav>
@@ -93,13 +93,12 @@
         </header>
         <div class="container-fluid">
             <div class="row text-center menu">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2"><a href="request">요청</a></div>
                 <div class="col-sm-2"><a href="estimate">견적서</a></div>
                 <div class="col-sm-2"><a href="profile">프로필</a></div>
                 <div class="col-sm-2"><a href="notification">알림</a></div>
                 <div class="col-sm-2"><a href="information">개인정보</a></div>
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"><a href="approval">고수인증</a></div>
             </div>
             <div class="row text-center mypage-bg">
             <div class="inner">

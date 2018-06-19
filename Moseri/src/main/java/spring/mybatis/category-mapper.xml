@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.CategoryDao">
+	<select id="getList" resultType="categoryTopDto">
+		select * from category_top order by no asc
+	</select>
+	<select id="midList" resultType="categoryMidDto" parameterType="Integer">
+		select * from category_mid where topNo = #{no} order by no asc
+	</select>
+	<select id="botList" resultType="categoryBotDto" parameterType="Integer">
+		select * from category_bot where midNo = #{no} order by no asc
+	</select>
+</mapper>
+

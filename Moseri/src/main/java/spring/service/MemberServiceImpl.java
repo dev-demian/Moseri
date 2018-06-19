@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 
 		// [1] 파라미터 받기
 		memberDto.setEmail(request.getParameter("email"));
-		memberDto.setName(request.getParameter("name"));
+		memberDto.setNickname(request.getParameter("nickname"));
 		memberDto.setSalt(UUID.randomUUID().toString());
 		memberDto.setLoop((int) (Math.random() * 9) + 1);
 		String encpw = sha256.encrypt(memberDto.getPwd(), memberDto.getSalt(), memberDto.getLoop());
@@ -70,17 +70,41 @@ public class MemberServiceImpl implements MemberService {
 		memberDto.setAddr(request.getParameter("addr"));
 		memberDto.setLat(Float.parseFloat(request.getParameter("lat")));
 		memberDto.setLongi(Float.parseFloat(request.getParameter("longi")));
-
+		memberDto.setC_bno(Integer.parseInt(request.getParameter("c_bno")));
 		// [2] DB처리
 		memberDao.register(memberDto);
 	}
+	
+
+	@Override
+	public void register_gosu(HttpServletRequest request, MemberDto memberDto) throws Exception {
+		// TODO Auto-generated method stub
+		// [1] 파라미터 받기
+				memberDto.setEmail(request.getParameter("email"));
+				memberDto.setNickname(request.getParameter("nickname"));
+				memberDto.setSalt(UUID.randomUUID().toString());
+				memberDto.setLoop((int) (Math.random() * 9) + 1);
+				String encpw = sha256.encrypt(memberDto.getPwd(), memberDto.getSalt(), memberDto.getLoop());
+				memberDto.setPwd(encpw);
+				memberDto.setPhone(request.getParameter("phone"));
+				memberDto.setSex(request.getParameter("sex"));
+				memberDto.setDistance(request.getParameter("distance"));
+				memberDto.setAddr(request.getParameter("addr"));
+				memberDto.setLat(Float.parseFloat(request.getParameter("lat")));
+				memberDto.setLongi(Float.parseFloat(request.getParameter("longi")));
+				memberDto.setC_bno(Integer.parseInt(request.getParameter("bot")));
+
+				// [2] DB처리
+				memberDao.register_gosu(memberDto);
+	}
+	
 
 	// 로그인
 	@Override
 	public boolean login(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto)
 			throws Exception {
 
-		memberDto.setEmail(request.getParameter("id"));
+		memberDto.setEmail(request.getParameter("email"));
 		
 		//DB 아디 존재 여부를 위한 메소드
 		MemberDto id_exist = memberDao.get(memberDto.getEmail());
@@ -91,15 +115,23 @@ public class MemberServiceImpl implements MemberService {
 		
 			if(!(id_exist ==null)) {  // 아이디가 null이 아니면 
 			db_mdto = memberDao.login(memberDto.getEmail());
-			
+			//db에서 추출
 			String db_id = db_mdto.getEmail();
-			String db_pwd = db_mdto.getEmail();
+			String db_pwd = db_mdto.getPwd();
+			//내파라메터를 암호화시킴 
 			String pram_id = memberDto.getEmail();
 			String encpw = sha256.encrypt(memberDto.getPwd(), db_mdto.getSalt(), db_mdto.getLoop());
 			memberDto.setPwd(encpw);
 			String pram_pw = memberDto.getPwd();
 			
+//			System.out.println(db_id);
+//			System.out.println(db_pwd);
+//			System.out.println(pram_id);
+//			System.out.println(pram_pw);
+			
+			
 			if (db_id.equals(pram_id) && db_pwd.equals(pram_pw)) {
+				request.setAttribute("db_data", db_mdto);
 				result = true;
 				// 추후 세션 추가
 			} else {
@@ -108,7 +140,11 @@ public class MemberServiceImpl implements MemberService {
 			}else {
 				result = false;
 			}
+//			System.out.println(result);
 			return result;
-		
-	}
+		}
+	
+	
+	
+
 }
