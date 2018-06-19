@@ -1,7 +1,11 @@
 package spring.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,20 +20,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import spring.bean.MemberDto;
 import spring.service.MemberService;
 import spring.bean.CategoryBotDto;
 import spring.bean.CategoryMidDto;
+import spring.bean.FileDto;
 import spring.service.CategoryService;
+import spring.service.FileService;
 
 @Controller
 public class homecontroller {
+	
+	private static final Logger logger = LoggerFactory.getLogger(homecontroller.class);
 
 	@Autowired
 	private MemberService memberservice;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private FileService fileService;
+	
+	
 
 	// home
 	@RequestMapping("/home")
@@ -187,7 +201,55 @@ public class homecontroller {
 	public String information() {
 		return "information";
 	}
+	
+	//마이페이지 - 고수요청
 
+	@RequestMapping("/approval")
+	public String approval() {
+		return "approval";
+	}
 
+	
+	@RequestMapping(value = "/approval" , method = RequestMethod.POST)
+	public String approval(MultipartHttpServletRequest mRequest ,HttpServletRequest request, HttpServletResponse response,HttpSession session,Model model, @ModelAttribute FileDto fileDto)throws IllegalStateException, IOException{
+		
+		String email = (String)session.getAttribute("email");
+		String text = mRequest.getParameter("text");
+		System.out.println(email+"------"+text);
+		
+		//경로 설정
+		File dir = new File(request.getSession().getServletContext().getRealPath("/res/approval"));
+//		System.out.println(dir.getAbsolutePath());
+		List<MultipartFile> list = mRequest.getFiles("uploadFile");
+		
+		String rname = null;
+		for(MultipartFile file : list) {
+	         //1개의 파일에 대한 작업을 수행
+			 //해당 파일이 이미지파일인지 확인하는 작업 넣어야함
+	         rname = System.currentTimeMillis()+"-"+UUID.randomUUID();
+	         String fname = file.getOriginalFilename();	
+	         long fsize = file.getSize();
+	         String ftype = file.getContentType();
+	         File target = new File(dir, rname+"."+ftype.substring(6));
+	         rname+="."+ftype.substring(6);
+	         
+	         if(ftype.contains("image")) {
+	        	 file.transferTo(target);
+	         }else {
+	        	 
+	        	 System.out.println("이미지를 넣으셔아 합니다");
+	         }
+
+	    
+	    System.out.println(rname+""+fname+""+fsize+""+ftype);
+//	   예시 1529396948328-9401dd89-8d53-445a-9d6b-16b0fdac5d17.pngKakaoTalk_20180511_002632145.png610369image/png
+		}
+		
+		//디비에 저장하기 email, rname, text
+		
+		fileService.registe_file(email, rname, text, fileDto);
+		
+		return "home";
+	}
 
 }

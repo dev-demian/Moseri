@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
     <!DOCTYPE html>
     <html lang="ko">
 
@@ -59,19 +61,19 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <button type="button" class="btn btn-info">Info</button>
+                          <a href="/info">info</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary">로그인</button>
+                         <a href="${root}/Moseri/login">로그인</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-success">회원가입</button>
+                          <a href="${root}/register">회원가입</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary" onclick="location.href='mypage'">마이페이지</button>
+                         <a href="${root}/mypage">마이페이지</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-success">로그아웃</button>
+                         <a href="${root}/home">로그아웃</a>
                         </li>
                     </ul>
                 </nav>
@@ -98,35 +100,40 @@
                 <div class="col-sm-2"><a href="approval">고수인증</a></div>
             </div>
             <div class="row text-center mypage-bg">
-            <div class="inner">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <div id="est">
-                        <h3>견적서</h3>
-                        <div class="col-md-12">
-                            <button class="est-btn" onclick="location.href='http://www.naver.com'">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
+                <div class="inner">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <div id="req">
+                  			<h3>고수 요청</h3>
+                  			<form name ="fr" class="form-horizontal" method="post" action="approval" enctype="multipart/form-data" onsubmit="return check()">
+                  			
+<%--                   			<input type = "hidden" id ="gosu_email" name ="email"value= "${sessionScpoe.email}" >
+ --%>        					<!-- input type="file" 이라고 꼭 저어줘야 함 -->
+        					<input type="file" id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+        					<input type="text" id ="uploadtext" name="text" maxlength="500" style="width:800px; height:100px;">
+        					<button id="btn" type="submit" class="btn btn-default">요청</button>
+        					
+    						</form>
+						</div>
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
-                <div class="col-sm-2"></div>
             </div>
         </div>
-        </div>
+        
+		<script>
+		function check() {
+ 		 if(${sessionScpoe.granted} == 3) {
+		    alert("이미 인증이 완료된 고수입니다.");
+		    
+		    return false;
+		  }
+		  
+		  return true;
+		}
+		</script>
+        
+        
         <footer class="footer" style="background-color: #F2F2F2;">
             <div class="container">
                 <div class="row">

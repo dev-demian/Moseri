@@ -93,13 +93,12 @@
         </header>
         <div class="container-fluid">
             <div class="row text-center menu">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2"><a href="request">요청</a></div>
                 <div class="col-sm-2"><a href="estimate">견적서</a></div>
                 <div class="col-sm-2"><a href="profile">프로필</a></div>
                 <div class="col-sm-2"><a href="notification">알림</a></div>
                 <div class="col-sm-2"><a href="information">개인정보</a></div>
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"><a href="approval">고수인증</a></div>
             </div>
             <div class="row text-center mypage-bg">
             <div class="inner">

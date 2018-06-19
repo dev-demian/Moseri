@@ -21,6 +21,14 @@
            <property name="suffix" value=".jsp"/>
    </bean>
 
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<!-- <property name="maxUploadSize" value="100000000"/> 한 번에 최대 올릴 수 있는 파일 사이즈
+        <property name="maxInMemorySize" value="100000000"/> 해당 경로에 최대로 저장할 수 있는 파일 사이즈-->
+	</bean>
+<!-- 만약 오류면 여기가 문제일수도 -->
+
+
+
 <!-- <mvc:interceptors>
         <mvc:interceptor>
            <mvc:mapping path="/admin_main"/>
@@ -38,7 +46,4 @@
         </mvc:interceptor>
     </mvc:interceptors>
  -->
-
-
-
 </beans>

@@ -20,6 +20,7 @@
 		<typeAlias type="spring.bean.CategoryTopDto" alias="categoryTopDto"/>
 		<typeAlias type="spring.bean.CategoryMidDto" alias="categoryMidDto"/>
 		<typeAlias type="spring.bean.CategoryBotDto" alias="categoryBotDto"/>
+		<typeAlias type="spring.bean.FileDto" alias="fileDto"/>
 	</typeAliases> 
 
 </configuration>
