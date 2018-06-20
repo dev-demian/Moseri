@@ -258,6 +258,16 @@ public class homecontroller {
 	
 	//////////////////////////////////////기태가 한거///////////////////////////////////////////
 	
+	
+	//find페이지를 처음 들어가면 'top'리스트를 보여준다
+		@RequestMapping("/find")
+		public String test_find(HttpServletRequest request) {
+			request.setAttribute("list",categoryService.getList());
+			return "find";
+		}
+	
+	
+	
 	//AJAX로 온데이터를 리스트화하여 'profile'리스트를 보낸다(소분류와 지역에 맞는 고수의 프로필리스트) 
 		@RequestMapping("/profileList")
 		@ResponseBody
