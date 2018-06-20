@@ -75,6 +75,8 @@ function info_execDaumPostcode() {
         }
     }).open();
 }
+
+
 $(window).resize(function () {
     resizeMap();
     relayout();

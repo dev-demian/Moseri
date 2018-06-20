@@ -27,7 +27,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<ProfileDto> profileList(int bot, String addr) {
 		Map<String,Object> map = new HashMap<>();
 		//주소자르기
-		String subAddr = addr.substring(0,7);
+		String subAddr = addr.substring(0,6);
 		log.info("bot = {}",bot);
 		log.info("addr = {}",addr);
 		log.info("subAddr = {}",subAddr);

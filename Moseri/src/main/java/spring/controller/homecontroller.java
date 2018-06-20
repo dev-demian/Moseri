@@ -187,9 +187,9 @@ public class homecontroller {
 
 	//마이페이지 - 프로필
 
-	@RequestMapping("/profile")
+	@RequestMapping("/myprofile")
 	public String profile() {
-		return "profile";
+		return "myprofile";
 	}
 
 	//마이페이지 - 알림
@@ -255,5 +255,28 @@ public class homecontroller {
 		
 		return "home";
 	}
+	
+	//////////////////////////////////////기태가 한거///////////////////////////////////////////
+	
+	//AJAX로 온데이터를 리스트화하여 'profile'리스트를 보낸다(소분류와 지역에 맞는 고수의 프로필리스트) 
+		@RequestMapping("/profileList")
+		@ResponseBody
+		public List<ProfileDto> profileList(
+				@RequestParam(value="bot") int bot,
+				@RequestParam(value="addr") String addr
+		){
+			return profileService.profileList(bot,addr);
+		}
+		//profile페이지
+		@RequestMapping("/profile")
+		public String profile(
+				HttpServletRequest request,
+				@RequestParam(value="no") int no
+		) {
+			request.setAttribute("pro", profileService.getProfile(no));
+//			request.setAttribute("c_bno", memberService.getBno(no));
+			return "profile";
+		}
+	
 
 }
