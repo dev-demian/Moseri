@@ -51,4 +51,19 @@ public class ProfileServiceImpl implements ProfileService {
 		profileDao.register_profile(profileDto);
 		
 	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public ProfileDto profileGet(int no) {
+		return profileDao.profileGet(no);
+	}
+
+	@Override
+	public void matchingCount(String email) {
+		profileDao.matchingCount(email);
+	}
 }

@@ -28,4 +28,16 @@ public class ProfileDaoImpl implements ProfileDao {
 		
 	}
 	
+	
+	
+	@Override
+	public ProfileDto profileGet(int no) {
+		return sqlSession.selectOne("profileGet", no);
+	}
+
+	@Override
+	public void matchingCount(String email) {
+		sqlSession.update("matchingCount", email);
+	}
+	
 }

@@ -13,5 +13,9 @@ public interface CategoryService {
 	List<CategoryTopDto> getList();
 	List<CategoryMidDto> midList(int no);
 	List<CategoryBotDto> botList(int no);
+	
+	//
+	public List<CategoryMidDto> selectMid();
+	public List<CategoryBotDto> selectBot();
 
 }

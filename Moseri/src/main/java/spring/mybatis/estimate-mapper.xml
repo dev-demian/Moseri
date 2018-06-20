@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.EstimateDao">
+
+<!-- 	Database 명령 작성 -->
+<!-- 	<select id="getList" resultType="spring.bean.MenuDto"> -->
+	<insert id="estimateWrite" parameterType="estimateDto">
+		insert into estimate values(
+			estimate_seq.nextval,
+			#{cno},
+			#{email},
+			#{pno},
+			#{time_pay},
+			#{total_pay},
+			#{anser1},
+			sysdate
+		)
+	</insert>
+	
+	<select id="estimateNoGet" resultType="int" parameterType="String">
+		select max(no) from estimate where email=#{email}
+	</select>
+	
+	<select id="estimateGet" resultType="estimateDto" parameterType="int">
+		select * from estimate where no=#{estimate_no}
+	</select>
+
+</mapper>
+

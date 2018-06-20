@@ -26,4 +26,15 @@ public class CategoryDaoImpl implements CategoryDao {
 	public List<CategoryBotDto> botList(int no) {
 		return sqlSession.selectList("botList",no);
 	}
+	
+	
+	//
+	@Override
+	public List<CategoryMidDto> getCmid() {
+		return sqlSession.selectList("getMid");
+	}
+	@Override
+	public List<CategoryBotDto> getCbot() {
+		return sqlSession.selectList("getBot");
+	}
 }

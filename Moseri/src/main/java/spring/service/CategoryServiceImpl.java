@@ -26,4 +26,16 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<CategoryBotDto> botList(int no) {
 		return categoryDao.botList(no);
 	}
+	
+	
+	
+	
+	@Override
+	public List<CategoryMidDto> selectMid() {
+		return categoryDao.getCmid();
+	}
+	@Override
+	public List<CategoryBotDto> selectBot() {
+		return categoryDao.getCbot();
+	}
 }

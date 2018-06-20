@@ -13,4 +13,8 @@ public interface CategoryDao {
 	List<CategoryTopDto> getList();
 	List<CategoryMidDto> midList(int no);
 	List<CategoryBotDto> botList(int no);
+	
+	//
+	List<CategoryMidDto> getCmid();
+	List<CategoryBotDto> getCbot();
 }

@@ -110,7 +110,7 @@ div {
 							<div class="load">
 								<p>
 									<img
-										src="${pageContext.request.contextPath}/res/images/loading.gif"
+										src="${pageContext.request.contextPath}/res/img/loading.gif"
 										alt="loading image">
 								</p>
 							</div>

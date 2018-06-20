@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <!DOCTYPE html>
     <html lang="ko">
 
@@ -102,38 +103,15 @@
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10">
                         <div id="req">
-                            <h3>요청</h3>
-                            <div class="col-sm-6 col-md-4">
-	                        	<button class="req-btn" onclick="location.href='estimate_write'">
-	                            	<div class="title">기타 레슨</div>
-	                                <div class="count">받은 견적서 ?개</div>
-	                            </button>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-	                        	<button class="req-btn">
-	                            	<div class="title">기타 레슨</div>
-	                                <div class="count">받은 견적서 ?개</div>
-	                            </button>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-	                        	<button class="req-btn">
-	                            	<div class="title">기타 레슨</div>
-	                                <div class="count">받은 견적서 ?개</div>
-	                            </button>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-	                        	<button class="req-btn">
-	                            	<div class="title">기타 레슨</div>
-	                                <div class="count">받은 견적서 ?개</div>
-	                            </button>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-	                        	<button class="req-btn">
-	                            	<div class="title">기타 레슨</div>
-	                                <div class="count">받은 견적서 ?개</div>
-	                            </button>
-                            </div>
-                        </div>
+                        <h2>받은 요청서</h2>
+                        <c:forEach items="${list}" var="list">
+						<div class="col-sm-12">
+						<c:set var="e" value="${list.estimate_no}"/>
+						<h4><a href="estimateWrite?no=${list.no}">${list.nomal_email}님 요청서 
+						<c:if test="${e ne 0}"> (견적서 작성 완료)</c:if></a></h4>
+						</div>
+						</c:forEach>
+                    </div>
                     </div>
                     <div class="col-sm-1"></div>
                 </div>

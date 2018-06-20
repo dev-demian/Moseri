@@ -12,5 +12,14 @@
 	<select id="botList" resultType="categoryBotDto" parameterType="Integer">
 		select * from category_bot where midNo = #{no} order by no asc
 	</select>
+	
+	<!-- 두산형꺼 -->
+	<select id="getMid" resultType="categoryMidDto" >
+		select * from category_mid
+	</select>
+	<select id="getBot" resultType="categoryBotDto" >
+		select * from category_bot
+	</select>
+	
 </mapper>
 

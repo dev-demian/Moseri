@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    
     <html lang="ko">
 
     <head>
@@ -102,25 +105,14 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
                     <div id="est">
-                        <h3>견적서</h3>
-                        <div class="col-md-12">
-                            <button class="est-btn" onclick="location.href='http://www.naver.com'">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="est-btn">???님 견적서</button>
-                        </div>
+                    	<h2>받은 견적서</h2>
+                        <c:forEach items="${list2}" var="list2">
+						<div class="col-sm-12">
+						<c:set var="e" value="${list2.m_result}"/>
+						<h4><a href="estimateRead?matchingno=${list2.no}">${list2.gosu_email}님 견적서 
+						<c:if test="${e eq 1}"> (최종 매칭 완료)</c:if></a></h4>
+						</div>
+						</c:forEach>
                     </div>
                 </div>
                 <div class="col-sm-2"></div>

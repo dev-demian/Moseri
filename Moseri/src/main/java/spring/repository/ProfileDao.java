@@ -13,4 +13,8 @@ public interface ProfileDao {
 	List<ProfileDto> profileList(Map<String, Object> map);
 	List<ProfileDto> getProfile(int no);
 	void register_profile(ProfileDto profileDto);
+	
+	
+	public ProfileDto profileGet(int no);
+	public void matchingCount(String email);
 }

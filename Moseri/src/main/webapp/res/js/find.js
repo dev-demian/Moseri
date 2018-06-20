@@ -26,7 +26,7 @@ $(document).ready(function () {
                 $.each(json, function (i) {
                     //닉네임주입
                     var data = "";
-                    data += json[i].nick;
+                    data += json[i].nickname;
 
                     //누르면 이동할 프로필의 url
                     var url = "profile?no=" + json[i].no;
