@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.ProfileDao">
+	<select id="profileList" resultType="profileDto" parameterType="map">
+		select p.no,p.nick,p.star,p.pro_img,p.self,p.resume,p.img,p.m_cnt from users u,profile p
+		where u.pno = p.no and u.granted = 3 and u.c_bno = #{bot} and u.addr like '%'||#{addr}||'%'
+	</select>
+	<select id="getProfile" resultType="profileDto" parameterType="Integer">
+		select * from profile where no = #{no}
+	</select>
+	
+	<insert id="register_profile" parameterType="profileDto">
+		insert into profile
+		values(
+		profile_seq.nextval,#{email},#{nickname},0,null,null,null,null,0)
+	</insert>
+</mapper>
+

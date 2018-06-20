@@ -5,8 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-   
- 	// 세션값 가져오기
+    // 세션값 가져오기
     out.println(session.getAttribute("email"));
     out.println(session.getAttribute("granted"));
     out.println(session.getAttribute("login"));
@@ -79,7 +78,7 @@
 
         <body>
             <header id="top" style="background-image: url(${pageContext.request.contextPath}/res/img/header_bg.jpg); background-size: 100% 100%; ">
-                <div class="container">
+                <!-- <div class="container"> -->
                     <nav class="collapse navbar-collapse bs-navbar-collapse" style="padding-bottom: 200px">
                         <ul class="nav navbar-nav">
                             <img id="home_icon" src="${pageContext.request.contextPath}/res/img/Icon.png" alt="icon">
@@ -122,7 +121,7 @@
                         </div>
                         <!-- </div> -->
                     </nav>
-                </div>
+               <!--  </div> -->
             </header>
             <div class="container">
                 <div class="row">

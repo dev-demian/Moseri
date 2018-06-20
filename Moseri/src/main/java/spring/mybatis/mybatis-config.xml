@@ -21,6 +21,7 @@
 		<typeAlias type="spring.bean.CategoryMidDto" alias="categoryMidDto"/>
 		<typeAlias type="spring.bean.CategoryBotDto" alias="categoryBotDto"/>
 		<typeAlias type="spring.bean.FileDto" alias="fileDto"/>
+		<typeAlias type="spring.bean.ProfileDto" alias="profileDto"/>
 	</typeAliases> 
 
 </configuration>

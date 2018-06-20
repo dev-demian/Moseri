@@ -24,7 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import spring.bean.MemberDto;
+import spring.bean.ProfileDto;
 import spring.service.MemberService;
+import spring.service.ProfileService;
 import spring.bean.CategoryBotDto;
 import spring.bean.CategoryMidDto;
 import spring.bean.FileDto;
@@ -42,6 +44,8 @@ public class homecontroller {
 	private CategoryService categoryService;
 	@Autowired
 	private FileService fileService;
+	@Autowired
+	private ProfileService profileService;
 	
 	
 
@@ -76,20 +80,20 @@ public class homecontroller {
 
 	// 회원가입(post)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(HttpServletRequest request, @ModelAttribute MemberDto memberDto) throws Exception {
+	public String register(HttpServletRequest request, @ModelAttribute MemberDto memberDto,@ModelAttribute ProfileDto profileDto) throws Exception {
 
 		memberservice.register(request, memberDto);
-		
+		profileService.register_profile(request, profileDto);
 		
 		return "redirect:/home";
 	}
 	
 	// 회원가입_gosu(post)
 		@RequestMapping(value = "/register_gosu", method = RequestMethod.POST)
-		public String register_gosu(HttpServletRequest request, @ModelAttribute MemberDto memberDto) throws Exception {
+		public String register_gosu(HttpServletRequest request, @ModelAttribute MemberDto memberDto,@ModelAttribute ProfileDto profileDto) throws Exception {
 
 			memberservice.register_gosu(request, memberDto);
-
+			profileService.register_profile(request, profileDto);
 			return "redirect:/home";
 		}
 	

@@ -12,13 +12,13 @@
 	<insert id="register" parameterType="memberDto">
 		insert into users
 		values(
-		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},1,#{sex},sysdate,profile_seq.nextval,#{distance},'0','0','0')
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},1,#{sex},sysdate,uprofile_seq.nextval,#{distance},'0','0','0')
 	</insert>
 	
 	 <insert id="register_gosu" parameterType="memberDto">
 		insert into users
 		values(
-		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},2,#{sex},sysdate,profile_seq.nextval,#{distance},'0','0','0')
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},2,#{sex},sysdate,uprofile_seq.nextval,#{distance},'0','0','0')
 	</insert> 
 	
 	
