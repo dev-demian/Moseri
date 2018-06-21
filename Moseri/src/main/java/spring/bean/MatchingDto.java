@@ -9,5 +9,7 @@ public class MatchingDto {
 	private int request_no;
 	private String nomal_email;
 	private int estimate_no;
+	private int gosu_end;
+	private int nomal_end;
 	private int m_result;
 }

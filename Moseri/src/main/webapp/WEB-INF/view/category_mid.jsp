@@ -8,7 +8,7 @@
 
         <div class="text-center">
             <div class="row">
-         <c:forEach items="${categoryMidDto}" var="midDto">
+         <c:forEach items="${categoryMidDto}" var="categoryMidDto">
                    <div class="col-md-4">
                        <div class="card">
                            <div class="imgrounded">

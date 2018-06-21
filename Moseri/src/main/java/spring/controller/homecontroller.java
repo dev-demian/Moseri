@@ -319,8 +319,9 @@ public class homecontroller {
 					midDto.add(mdto);
 				}
 			}
+			System.out.println(midDto.size());
 			//골라낸 중분류(midDto)만 담겨있음. 
-			model.addAttribute("midDto",midDto);
+			model.addAttribute("categoryMidDto",midDto);
 //			
 		}
 		
@@ -349,12 +350,14 @@ public class homecontroller {
 			int pagenum = 1;
 			log.info("{}",pagenum);
 			convert_mid(model, pagenum, request);
+			
 			return "category_mid";
 		}
 		@RequestMapping("/living")
 		public String living(Model model,  HttpServletRequest request) {
 			
 			int pagenum = 2;
+			log.info("{}",pagenum);
 			convert_mid(model, pagenum, request);
 			return "category_mid";
 		}
@@ -363,6 +366,7 @@ public class homecontroller {
 		public String construction(Model model,  HttpServletRequest request) {
 
 			int pagenum =3;
+			log.info("{}",pagenum);
 			convert_mid(model, pagenum, request);
 			return "category_mid";
 		}
@@ -371,6 +375,7 @@ public class homecontroller {
 		public String it(Model model,  HttpServletRequest request ) {
 			
 			int pagenum = 4;
+			log.info("{}",pagenum);
 			convert_mid(model, pagenum, request);
 			return "category_mid";
 		}
@@ -378,6 +383,7 @@ public class homecontroller {
 		public String health(Model model,  HttpServletRequest request ) {
 			
 			int pagenum = 5;
+			log.info("{}",pagenum);
 			convert_mid(model, pagenum, request);
 			return "category_mid";
 		}
@@ -386,6 +392,7 @@ public class homecontroller {
 		public String event(Model model,  HttpServletRequest request ) {
 			
 			int pagenum = 6;
+			log.info("{}",pagenum);
 			convert_mid(model, pagenum, request);
 			return "category_mid";
 		}
@@ -395,6 +402,8 @@ public class homecontroller {
 ////			//중분류의 no를 불러옴
 			log.info("{}",request.getParameter("midNo"));
 			int no = Integer.parseInt(request.getParameter("midNo"));
+			
+			System.out.println(no);
 			//전체 소분류를 불러와서 리스트에 저장
 			List<CategoryBotDto> bDto = categoryService.selectBot();
 			//조건에 맞게 찾은 소분류를 저장할 리스트
@@ -405,8 +414,9 @@ public class homecontroller {
 					botDto.add(bdto);
 				}
 			}
+			System.out.println(botDto.size());
 			//골라낸 중분류(midDto)만 담겨있음. 
-			model.addAttribute("botDto",botDto);
+			model.addAttribute("categoryBotDto",botDto);
 			
 			return "category_bot";
 		}
@@ -416,7 +426,7 @@ public class homecontroller {
 			int categoryno = Integer.parseInt(request.getParameter("categoryno"));
 			session.setAttribute("categoryno", categoryno);
 			String fileName = request.getParameter("categoryno");
-			String path =  session.getServletContext().getRealPath("/resources/detailRequests/"+fileName);
+			String path =  session.getServletContext().getRealPath("/res/detailRequests/"+fileName);
 			File file = new File(path);
 			
 			String[] q = new String[6];
@@ -469,8 +479,11 @@ public class homecontroller {
 			String gosu_addr;
 			
 			List<UsersDto> userList = usersService.list(); //granted가 3인 인증고수 튜플들 가져오기
+			System.out.println(userList.size() + "유저리스트 사이즈");
 			for(UsersDto user : userList) {
 				gosu_addr = user.getAddr().substring(0,6); //고수 주소(구or시까지) 주소매칭은 추후 논의 필요
+				
+				System.out.println(requestDto.getCno()==user.getC_bno()&&requestDto.getSex().equals(user.getSex())&&nomal_addr.equals(gosu_addr));
 				
 				if(requestDto.getCno()==user.getC_bno()&&
 				   requestDto.getSex().equals(user.getSex())&&
@@ -481,6 +494,7 @@ public class homecontroller {
 					matchingDto.setGosu_email(user.getEmail());
 					matchingDto.setNomal_email(requestDto.getEmail());
 					matchingService.matching1(matchingDto);
+					
 				}
 				
 			}
@@ -524,7 +538,7 @@ public class homecontroller {
 			
 			// <<해당 세부요청서 파일에서 질문 텍스트 가져오기
 			String fileName = Integer.toString(requestDto.getCno());
-			String path =  session.getServletContext().getRealPath("/resources/detailRequests/"+fileName);
+			String path =  session.getServletContext().getRealPath("/res/detailRequests/"+fileName);
 			File file = new File(path);
 			
 			String[] q = new String[6];
@@ -539,6 +553,7 @@ public class homecontroller {
 //			    	System.out.println(q[count]);
 			    	count++;
 			    }
+			    inFile.close();
 			}
 			request.setAttribute("q", q);
 			// 해당 세부요청서 파일에서 질문 텍스트 가져오기>>
@@ -557,7 +572,7 @@ public class homecontroller {
 				request.setAttribute("estimateDto", estimateDto);
 			}
 			
-			return "estimateWrite";
+			return "estimate_write";
 		}
 		
 		@RequestMapping("/estimateInsert")
@@ -596,7 +611,7 @@ public class homecontroller {
 			
 			// <<해당 세부요청서 파일에서 질문 텍스트 가져오기
 			String fileName = Integer.toString(requestDto.getCno());
-			String path =  session.getServletContext().getRealPath("/resources/detailRequests/"+fileName);
+			String path =  session.getServletContext().getRealPath("/res/detailRequests/"+fileName);
 			File file = new File(path);
 					
 			String[] q = new String[6];
@@ -640,5 +655,8 @@ public class homecontroller {
 			
 			return "result";
 		}
+		
+		
+		
 		
 }

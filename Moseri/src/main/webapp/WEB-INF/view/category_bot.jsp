@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
 
 <html>
@@ -28,7 +30,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<c:forEach items="${categoryBotDto}" var="botDto">
+			<c:forEach items="${categoryBotDto}" var="categoryBotDto">
 				<div class="col-md-3">
 					<h3>
 						<a href="writeRequest?categoryno=${categoryBotDto.no}">${categoryBotDto.name}</a>

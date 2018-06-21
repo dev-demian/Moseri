@@ -73,11 +73,56 @@
                 #people {
                     padding: 15px;
                 }
+                
+                .card {
+            /*border: 1px solid gray;*/
+            width: 350px;
+            height: 230px;
+            /*border-radius: 8px;
+            overflow: hidden;*/
+        		}
+
+        		.empty-row {
+           		 margin-top: 10px;
+            		margin-bottom: 40px;
+        		}
+
+        		.font {
+            		font-weight: bold;
+            		font-size: 18px;
+            		padding-top: 13px;
+        		}
+
+        		.imgrounded {
+            		border: 1.5px solid grey;
+            		border-radius: 8px;
+            		overflow: hidden;
+        		}
+
+        		.categoryfont {
+            		font-weight: bold;
+            		font-size: 30px;
+        		}
+
+        		a {
+            		color: #2c2c2c;
+        		}
+
+        		.li {
+            		padding-left: 15px;
+            		padding-right: 15px;
+           		 font-size: 18px;
+        		}
+
+        		.ul {
+            		padding-top: 9px;
+            		padding-left: 220px;
+        		}
             </style>
         </head>
 
-<body>
-   	<header id="top" style="background-image: url(${pageContext.request.contextPath}/res/img/header_bg.jpg); background-size: 100% 100%; ">
+        <body>
+            <header id="top" style="background-image: url(${pageContext.request.contextPath}/res/img/header_bg.jpg); background-size: 100% 100%; ">
                 <!-- <div class="container"> -->
                     <nav class="collapse navbar-collapse bs-navbar-collapse" style="padding-bottom: 200px">
                         <ul class="nav navbar-nav">

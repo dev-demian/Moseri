@@ -13,6 +13,8 @@
 			#{request_no},
 			#{nomal_email},
 			null,
+			null,
+			null,
 			null
 		)
 	</insert>
