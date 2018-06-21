@@ -16,5 +16,8 @@
 		approval_seq.nextval,#{email},#{path},#{text},sysdate)
 		</insert>
 		
+		
+		
+		
 </mapper>
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import spring.bean.FileDto;
 import spring.bean.MemberDto;
 import spring.bean.ProfileDto;
 
@@ -17,4 +18,10 @@ public interface ProfileDao {
 	
 	public ProfileDto profileGet(int no);
 	public void matchingCount(String email);
+	
+	
+	//프로필 업데이트 
+	void update_profile(ProfileDto profileDto);
+	void update_profile_pro(ProfileDto profileDto);
+	void update_profile_img(ProfileDto profileDto);
 }

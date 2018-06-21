@@ -1,15 +1,23 @@
 package spring.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import spring.bean.MemberDto;
 import spring.bean.ProfileDto;
@@ -65,5 +73,81 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void matchingCount(String email) {
 		profileDao.matchingCount(email);
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public void update_profile(MultipartHttpServletRequest mRequest,
+			HttpServletResponse response, HttpSession session, Model model, ProfileDto profileDto) throws IllegalStateException, IOException {
+		// TODO Auto-generated method stub
+		
+		profileDto.setEmail((String)session.getAttribute("email"));
+		profileDto.setSelf(mRequest.getParameter("self"));
+		profileDto.setResume(mRequest.getParameter("resume"));
+		
+		
+		//파일 업로드
+		File dir = new File(mRequest.getSession().getServletContext().getRealPath("/res/pro_img"));
+		System.out.println(dir);
+		//프로필 이미지
+		List<MultipartFile> plist = mRequest.getFiles("profileimg");
+		if(!(plist.isEmpty())) {
+			String rname = null;
+			for(MultipartFile file : plist) {
+		         //1개의 파일에 대한 작업을 수행
+				 //해당 파일이 이미지파일인지 확인하는 작업 넣어야함
+		         rname = System.currentTimeMillis()+"-"+UUID.randomUUID();
+		         String fname = file.getOriginalFilename();	
+		         long fsize = file.getSize();
+		         String ftype = file.getContentType();
+		         File target = new File(dir, rname+"."+ftype.substring(6));
+		         rname+="."+ftype.substring(6);
+		         
+		         if(ftype.contains("image")) {
+		        	 file.transferTo(target);
+		         }else {
+		        	 
+		        	 System.out.println("이미지를 넣으셔아 합니다");
+		         }
+		         profileDto.setProImg(rname);
+		    
+		    System.out.println(rname+""+fname+""+fsize+""+ftype);
+			}
+			profileDao.update_profile_pro(profileDto);//email, self , resume, proimg 
+		}else {profileDao.update_profile(profileDto);}//email, self , resume, 
+		//일반 업로드 이미지
+		List<MultipartFile> slist = mRequest.getFiles("swiperimg");
+		if(!(slist.isEmpty())) {
+			String rname = null;
+			for(MultipartFile file : slist) {
+		         //1개의 파일에 대한 작업을 수행
+				 //해당 파일이 이미지파일인지 확인하는 작업 넣어야함
+		         rname = System.currentTimeMillis()+"-"+UUID.randomUUID();
+		         String fname = file.getOriginalFilename();	
+		         long fsize = file.getSize();
+		         String ftype = file.getContentType();
+		         File target = new File(dir, rname+"."+ftype.substring(6));
+		         rname+="."+ftype.substring(6);
+		         
+		         if(ftype.contains("image")) {
+		        	 file.transferTo(target);
+		         }else {
+		        	 
+		        	 System.out.println("이미지를 넣으셔아 합니다");
+		         }
+		         profileDto.setImg(rname);
+		    
+		    System.out.println(rname+""+fname+""+fsize+""+ftype);
+			}
+			
+			profileDao.update_profile_img(profileDto);//email, self , resume, proimg ,img
+		}else {profileDao.update_profile(profileDto);}//email, self , resume, 
+		
+		
+		
 	}
 }

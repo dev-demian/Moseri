@@ -656,7 +656,16 @@ public class homecontroller {
 			return "result";
 		}
 		
+		//////////////////////////////////////////////////////////////////////
 		
 		
-		
+		@RequestMapping(value = "/profile_update" , method = RequestMethod.POST)
+		public String profile_update(MultipartHttpServletRequest mRequest , HttpServletResponse response,HttpSession session,Model model, @ModelAttribute ProfileDto profileDto)throws IllegalStateException, IOException{
+			
+	
+			profileService.update_profile(mRequest,  response, session, model, profileDto);
+			
+			
+			return "myprofile";
+		}
 }

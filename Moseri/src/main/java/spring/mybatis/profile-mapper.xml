@@ -25,10 +25,20 @@
 	</select>
 	
 	<update id="matchingCount" parameterType="String">
-		update profile set m_cnt=m_cnt+1 where nick=#{email}
+		update profile set m_cnt=m_cnt+1 where email=#{email}   <!-- 여기 이상함 where nick으로 되있어서 email로 바꿈-->
 	</update>
 	
 	
+	
+	<update id="update_profile" parameterType="profileDto">
+		update profile set self=#{self},resume=#{resume} where email=#{email}
+	</update>
+	<update id="update_profile_pro" parameterType="profileDto">
+		update profile set self=#{self},resume=#{resume},pro_img=#{proImg} where email=#{email}
+	</update>
+	<update id="update_profile_img" parameterType="profileDto">
+		update profile set self=#{self},resume=#{resume},img=#{img} where email=#{email}
+	</update>
 	
 </mapper>
 

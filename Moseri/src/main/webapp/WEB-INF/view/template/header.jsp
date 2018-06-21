@@ -25,7 +25,10 @@
 
             <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+			
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/swiper.min.css">
+        	<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/common.css">
+        	<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/mypage.css">
 
             <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/slider.css">
 
