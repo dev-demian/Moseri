@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.MatchingDao">
+
+<!-- 	Database 명령 작성 -->
+<!-- 	<select id="getList" resultType="spring.bean.MenuDto"> -->
+	<insert id="matching1" parameterType="matchingDto">
+		insert into matching values(
+			matching_seq.nextval,
+			#{gosu_email},
+			#{request_no},
+			#{nomal_email},
+			null,
+			null,
+			null,
+			null,
+			sysdate,
+			#{ttl}
+			
+		)
+	</insert>
+	
+	<update id="matchingResult" parameterType="int">
+		update matching set m_result=1 where no=#{matching_no}
+	</update>
+	
+	<update id="matching2" parameterType="map">
+		update matching set estimate_no=#{estimate_no} where no=#{matching_no}
+	</update>
+	
+	<select id="matchingRequestList" resultType="matchingDto" parameterType="String">
+		select * from matching where gosu_email=#{email}
+	</select>
+	
+	<select id="matchingEstimateList" resultType="matchingDto" parameterType="String">
+		select * from matching where nomal_email=#{email}
+	</select>
+	
+	<select id="matchingGet" resultType="matchingDto" parameterType="int">
+		select * from matching where no=#{no}
+	</select>
+	
+	<select id="matchingTtl" resultType="matchingDto">
+		select * from matching where m_result is null
+	</select>
+	
+	<delete id="matchingDelete" parameterType="int">
+		delete matching where no=#{matching_no}
+	</delete>
+	
+</mapper>
+

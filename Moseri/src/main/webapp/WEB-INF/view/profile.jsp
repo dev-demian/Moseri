@@ -1,272 +1,185 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
-    <html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
+ 
+ 
+<body>
+	<h2>profile</h2>
+	<c:forEach var="pro" items="${pro}">
+		<div>번호 : ${pro.no}</div>
+		<div>닉네임 : ${pro.nickname}</div>
+		<div>email : ${pro.email}</div>
+		<div>별점 : ${pro.star}</div>
+		<div>프로필 이미지 : ${pro.proImg}</div>
+		<div>self : ${pro.self}</div>
+		<div>resume : ${pro.resume}</div>
+		<div>img : ${pro.img}</div>
+		<div>m_cnt : ${pro.mcnt}</div>
+	</c:forEach>
+	<div>소분류번호 : ${getBno}</div>
+	<div>소분류이름 : ${getBotName}</div>
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				Modal content
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Some text in the modal.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="row" style="text-align: center; margin: 10px">
+		<form action="requestInsert" method="get">
+			<!-- 모달 팝업 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							</button>
+							<h1 class="modal-title" id="myModalLabel">요청서 작성</h1>
+						</div>
+						<div class="modal-body">
+							<label style="font-size: 35px">${sessionScope.q0}</label> <br>
+							<label>원하는 고수 성별 선택&nbsp&nbsp</label> <label>남</label><input
+								type="radio" name="sex" value="남자"> <label>/</label> <label>여</label><input
+								type="radio" name="sex" value="여자"> <label>/</label> <label>무관</label><input
+								type="radio" name="sex" value="무관" checked="checked">
+							<br> <label>${sessionScope.q1}</label> <br>
+							<textarea name="a1"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q2}</label> <br>
+							<textarea name="a2"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q3}</label> <br>
+							<textarea name="a3"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q4}</label> <br>
+							<textarea name="a4"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q5}</label> <br>
+							<textarea name="a5"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button>
+							<button type="submit" class="btn btn-primary">작성 완료</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<button type="button" data-toggle="modal" data-target="#myModal">견적
+		받아보기</button>
+	<div class="container-fluid">
+		<div class="row text-center mypage-bg">
+			<div class="inner">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div id="pro">
+						<h3>프로필</h3>
+						<div class="pro-wrap">
+							<div>
+								<h4>${getBotName}</h4>
+							</div>
+							<div class="pro-img">
+								
+								<div class="profileImage">
+									<img
+										src="${pageContext.request.contextPath}/res/img/test.jpg"
+										alt="test이미지">
+								</div>
+							</div>
+							<c:forEach var="pro" items="${pro}">
+							<div>
+								<span>별점 : ${pro.star}</span>
+							</div>
+							<div>
+								<span>닉네임 : ${pro.nickname}</span>
+							</div>
+							<div class="text1">
+								<textarea name="" placeholder="자기소개">${pro.self}</textarea>
+							</div>
+							<div class="text-right modify">
+								
+							</div>
+							<div class="text2">
+								<textarea name="" placeholder="경력소개">${pro.resume}</textarea>
+							</div>
+							<div class="text-right modify">
+								
+							</div>
+							<div class="swiper-container">
+								<!-- 이미지 영역 -->
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<img
+											src="${pageContext.request.contextPath}/res/img/test1.jpg">
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="${pageContext.request.contextPath}/res/img/test2.jpg">
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="${pageContext.request.contextPath}/res/img/test3.jpg">
+									</div>
+								</div>
 
-    <head>
-        <title>request</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <!-- bootstrap css -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/swiper.min.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/common.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/mypage.css">
-        <style>
-            div {
-/*                 border: 1px dotted #000; */
-            }
-            #jumbo {
-                    margin-bottom: 0px;
-                }
-                
-                #icon {
-                    width: 200px;
-                }
-                
-                #pop_list {
-                    padding-top: 9px;
-                }
-                
-                #home_icon {
-                    width: 100px;
-                }
-                
-                #gosu {
-                    margin: auto;
-                }
-                
-                #people {
-                    padding: 15px;
-                }
-        </style>
-        <!-- bootstrap js -->
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/res/js/swiper.min.js"></script>
-        <script src="${pageContext.request.contextPath}/res/js/mypage.js"></script>
-    </head>
-
-    <body>
-        <!--     <header class="container-fluid"> -->
-        <!--         <div class="row text-center"> -->
-        <!--             <h2>Mypage</h2> -->
-        <!--         </div> -->
-        <!--     </header> -->
-        <div class="container">
-	        <div class="modal fade" id="myModal" role="dialog">
-	            <div class="modal-dialog">
-	                <div class="modal-content">
-	                    <div class="modal-header">
-	                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    </div>
-	                    <div>
-	                        <div class="map">
-	                           	 지도
-	                            <div class="profile"></div>
-	                        </div>
-	                        <div class="content">내용</div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-        <header id="top" style="background-image: url(${pageContext.request.contextPath}/res/img/header_bg.jpg); background-size: 100% 100%; ">
-            <div class="container">
-                <nav class="collapse navbar-collapse bs-navbar-collapse" style="padding-bottom: 200px">
-                    <ul class="nav navbar-nav">
-                        <img id="home_icon" src="${pageContext.request.contextPath}/res/img/Icon.png" alt="icon">
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                          <a href="${root}/Moseri/home">홈으로</a>
-                        </li>
-                        <li>
-                         <a href="${root}/Moseri/login">로그인</a>
-                        </li>
-                        <li>
-                          <a href="${root}/Moseri/register">회원가입</a>
-                        </li>
-                        <li>
-                         <a href="${root}/Moseri/mypage">마이페이지</a>
-                        </li>
-                        <li>
-                         <a href="${root}/Moseri/logout">로그아웃</a>
-                        </li>
-                    </ul>
-                </nav>
-                <nav style="padding-bottom: 100px ;padding-left: 340px; padding-right: 340px;">
-                    <!--  <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" id="jumbo"> -->
-                    <!-- <img id="icon" src="./zzalicon.png" alt="icon"> -->
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
-                        <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button">찾기</button>
-                            </span>
-                    </div>
-                    <!-- </div> -->
-                </nav>
-            </div>
-        </header>
-        <div class="container-fluid">
-            <div class="row text-center menu">
-                <div class="col-sm-2"><a href="request">요청</a></div>
-                <div class="col-sm-2"><a href="estimate">견적서</a></div>
-                <div class="col-sm-2"><a href="profile">프로필</a></div>
-                <div class="col-sm-2"><a href="notification">알림</a></div>
-                <div class="col-sm-2"><a href="information">개인정보</a></div>
-                <div class="col-sm-2"><a href="approval">고수인증</a></div>
-            </div>
-            <div class="row text-center mypage-bg">
-	            <div class="inner">
-	                <div class="col-sm-2"></div>
-	                <div class="col-sm-8">
-	                    <div id="pro">
-	                        <h3>프로필</h3>
-	                        <div class="pro-wrap">
-	                            <div class="pro-img">
-	                                <div class="cameraImage" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><img src="${pageContext.request.contextPath}/res/img/camera.png" alt="cameraImage"></div>
-	                                <div class="profileImage"><img src="${pageContext.request.contextPath}/res/img/test.jpg" alt="test이미지"></div>
-	                            </div>
-	                            <div>
-	                                <span>아이디 /</span>
-	                                <span>이름</span>
-	                            </div>
-	                            <div class="text1">
-	                                <textarea name="" placeholder="자기소개"></textarea>
-	                            </div>
-	                            <div class="text-right modify">
-	                                <button class="text-right">수정</button>
-	                            </div>
-	                            <div class="text2">
-	                                <textarea name="" placeholder="경력소개"></textarea>
-	                            </div>
-	                            <div class="text-right modify">
-	                                <button class="text-right">수정</button>
-	                            </div>
-	                            <div class="swiper-container">
-	                                <!-- 이미지 영역 -->
-	                                <div class="swiper-wrapper">
-	                                    <div class="swiper-slide"><img src="${pageContext.request.contextPath}/res/img/test1.jpg"></div>
-	                                    <div class="swiper-slide"><img src="${pageContext.request.contextPath}/res/img/test2.jpg"></div>
-	                                    <div class="swiper-slide"><img src="${pageContext.request.contextPath}/res/img/test3.jpg"></div>
-	                                </div>
-	
-	                                <!-- 이동 버튼 -->
-	                                <div class="swiper-button-prev"></div>
-	                                <div class="swiper-button-next"></div>
-	                                <!-- 페이징 버튼 -->
-	                                <div class="swiper-pagination"></div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-sm-2"></div>
-	            </div>
-	        </div>
-        </div>
-        <footer class="footer" style="background-color: #F2F2F2;">
-            <div class="container">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-sm-5 col-md-5 about">
-                            <div>
-                                <a href="https://www.facebook.com/" target="_blank" wrc_done="true">
-                                    <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_facebook1.png" class="social-ico">
-                                </a>
-                                <span class="wrc1 wrc_icon wrc_injected"></span>
-                                <a href="http://www.naver.com/" target="_blank" wrc_done="true">
-                                    <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_blog1.png" class="social-ico">
-                                </a>
-                                <span class="wrc1 wrc_icon wrc_injected"></span>
-                                <a href="http://post.soomgo.com" target="_blank" wrc_done="true">
-                                    <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_post.png" class="social-ico">
-                                </a>
-                                <span class="wrc1 wrc_icon wrc_injected"></span>
-                                <a href="http://news.soomgo.com" target="_blank" wrc_done="true">
-                                    <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_tistory.png" class="social-ico">
-                                </a>
-                                <span class="wrc1 wrc_icon wrc_injected"></span>
-                            </div>
-                            <p>(개발1팀)모서리컴퍼니</p>
-                            <p>사업자등록번호: 000-00-00000 홈페이지 UI관리자: 곽재훈, 장준혁</p>
-                            <p>서울시 구로구 구일로 8길 79, 영화아파트 1303호</p>
-
-                            <p><a href="/terms/privacy">개인정보 처리방침</a> · <a href="/terms/usage">이용약관</a> · <a href="/terms/membership">멤버십 약관</a> · 고객센터: 0000-0000</p>
-                            <p class="copy">© Moseri</p>
-                        </div>
-                        <div class="col-sm-3 col-md-2">
-                            <h4 class="app-download">앱 다운로드</h4>
-                            <ul class="menu">
-                                <div class="app-download-wrap">
-                                    <div class="app-download-btn">
-                                        <a href="https://soomgo.app.link/SZeaREjJcE" target="_blank" wrc_done="true">
-                                            <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_googleplay_btn.png" class="footer-app-btn">
-                                        </a>
-                                        <span class="wrc0 wrc_icon wrc_injected"></span>
-                                    </div>
-                                    <div class="app-download-btn">
-                                        <a href="https://soomgo.app.link/SZeaREjJcE" wrc_done="true">
-                                            <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_appstore_btn.png" class="footer-app-btn">
-                                        </a>
-                                        <span class="wrc0 wrc_icon wrc_injected"></span>
+								<!-- 이동 버튼 -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<!-- 페이징 버튼 -->
+								<div class="swiper-pagination"></div>
+							</div>
+							</c:forEach>
+							<div class="review">
+                                <h5>리뷰</h5>
+                                <!-- S : 반복 -->
+                                <div class="review-write">
+                                    <div class="col-md-12">
+                                        <div class="row" style="padding:20px 0px;">
+                                            <div class="col-md-12 text-right">
+                                            	<div><a href="#">신고</a></div>
+												<div>2018-06-21</div>		                                            
+                                            </div>
+                                            <div class="col-md-8 text-left">
+                                                <div class="col-md-3" style="width:80px;height:80px;background-color:aqua;border-radius:50%;text-align:center;line-height:80px;">프로필</div>
+                                                <div class="col-md-4">
+                                                    <div style="margin-top:18px;">배기태</div>
+                                                    <div style="margin-top:4px;">★★★★★</div>
+                                                </div>
+                                                <div class="col-md-6"></div>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <div class="col-md-2">댓글 :</div>
+                                                <div class="col-md-10">안녕하세요 저는 배기태입니다. 반갑습니다.</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <li>
-                                    <a href="/" target="_blank">
-                                        <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_mobile_ico.png">모바일 앱 안내
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4 col-md-3">
-                            <div class="col-sm-4 col-md-4 footer-list">
-                                <h4>모서리<div class="switch"></div></h4>
-                                <ul class="menu hide">
-                                    <li>
-                                        <a href="/about">프로젝트 소개</a>
-                                    </li>
-
-                                </ul>
+                                <!-- E : 반복 -->
                             </div>
-                            <div class="col-sm-4 col-md-4 footer-list">
-                                <h4>요청자<div class="switch"></div></h4>
-                                <ul class="menu hide">
-                                    <li><a href="/how-it-works">1.</a></li>
-                                    <li><a href="/safety">2.</a></li>
-                                    <li><a href="/prices">3.</a></li>
-                                    <li><a href="/search/pro">4.</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4 col-md-4 footer-list">
-                                <h4>고수<div class="switch"></div></h4>
-                                <ul class="menu hide">
-                                    <li>
-                                        <a href="/how-soomgo-works">1.</a></li>
-                                    <li><a href="/subscriptions/info">2.</a></li>
-                                    <li><a href="/pro">3.</a></li>
-                                    <li><a href="/pro-center">4.</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-md-2 footer-list-help">
-                            <h4 class="app-download">도움이 필요하신가요?</h4>
-                            <ul class="menu">
-                                <li>
-                                    <a href="https://soomgohelp.zendesk.com/hc/ko" target="_blank" wrc_done="true">
-                                        <button class="btn footer-list-help-btn">
-                                            <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_help_ico.png">
-                                            <span>도움요청하기</span>
-                                        </button>
-                                    </a>
-                                    <span class="wrc0 wrc_icon wrc_injected"></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
-
-    </html>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		</div>
+	</div>
+ <jsp:include page="/WEB-INF/view/template/footer.jsp"></jsp:include>

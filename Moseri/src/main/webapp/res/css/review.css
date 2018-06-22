@@ -1,0 +1,43 @@
+@charset "UTF-8";
+#review{
+    padding-top:100px;
+    padding-bottom:100px;
+}
+#review .inner{
+    width:100%;
+    max-width:600px;
+    margin:0 auto;
+    border:1px solid #d3d3d3;
+    background-color:#fff;
+    overflow:hidden;
+    border-radius:14px;
+    padding:20px;
+}
+#review .inner select{
+    width:100%;
+}
+#review .inner .row{
+    margin:20px 0px;
+}
+#review .inner .row textarea{
+    resize:none;
+    width:100%;
+    height:100px;
+}
+#review .inner button,
+#review .inner input[type="submit"]{
+    width:100%;
+    border-radius:5px;
+    padding:15px 0px;
+    font-weight:border;
+}
+#review .inner input[type="submit"]{
+    background-color:#5986f9;
+    border:0px;
+    color:#fff;
+}
+#review .inner button{
+    border:1px solid #5986f9;
+    background-color:#fff;
+    color:#5986f9;
+}

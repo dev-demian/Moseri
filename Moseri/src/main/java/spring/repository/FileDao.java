@@ -8,4 +8,6 @@ import spring.bean.FileDto;
 public interface FileDao {
 
 	void register_file(FileDto fileDto);
+	
+	
 }

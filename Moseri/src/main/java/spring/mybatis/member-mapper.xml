@@ -12,13 +12,13 @@
 	<insert id="register" parameterType="memberDto">
 		insert into users
 		values(
-		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},1,#{sex},sysdate,uprofile_seq.nextval,#{distance},'0','0','0')
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},1,#{sex},to_date(sysdate,'YYYY-MM-DD'),uprofile_seq.nextval,#{distance},'0','0','0')
 	</insert>
 	
 	 <insert id="register_gosu" parameterType="memberDto">
 		insert into users
 		values(
-		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},2,#{sex},sysdate,uprofile_seq.nextval,#{distance},'0','0','0')
+		users_seq.nextval,#{email},#{pwd},#{salt},#{loop},#{nickname},#{phone},#{addr},#{lat},#{longi},#{c_bno},2,#{sex},to_date(sysdate,'YYYY-MM-DD'),uprofile_seq.nextval,#{distance},'0','0','0')
 	</insert> 
 	
 	
@@ -31,6 +31,11 @@
 	<select id="get" resultType="MemberDto">
 
 		select * from users where email=#{email}
+	</select>
+	
+	<!-- 			/////////////////////////////////소분류 번호를 가져온다///////////////////////////////////// -->
+	<select id="getBno" resultType="Integer" parameterType="Integer">
+		select c_bno from users where pno = #{no}
 	</select>
 		
 		

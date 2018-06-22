@@ -28,4 +28,35 @@ public class ProfileDaoImpl implements ProfileDao {
 		
 	}
 	
+	
+	
+	@Override
+	public ProfileDto profileGet(int no) {
+		return sqlSession.selectOne("profileGet", no);
+	}
+
+	@Override
+	public void matchingCount(String email) {
+		sqlSession.update("matchingCount", email);
+	}
+	
+	
+	
+	
+	@Override
+	public void update_profile(ProfileDto profileDto) {
+		// TODO Auto-generated method stub
+		sqlSession.update("update_profile", profileDto);
+	}
+	@Override
+	public void update_profile_pro(ProfileDto profileDto) {
+		// TODO Auto-generated method stub
+		sqlSession.update("update_profile_pro", profileDto);
+	}
+	@Override
+	public void update_profile_img(ProfileDto profileDto) {
+		// TODO Auto-generated method stub
+		sqlSession.update("update_profile_img", profileDto);
+	}
+	
 }

@@ -1,221 +1,269 @@
 @charset "UTF-8";
-.modal .map{
-    height:300px;
-    background-color:hotpink;
-    position:relative;
+.modal .map {
+    height: 300px;
+    background-color: hotpink;
+    position: relative;
 }
-.modal .map>.profile{
-    width:120px;
-    height:120px;
-    background-color:#fff;
-    position:absolute;
-    border-radius:50%;
-    left:50%;
-    bottom:0px;
-    margin-left:-60px;
-    margin-bottom:-60px;
+
+.modal .map > .profile {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    bottom: 0px;
+    margin-left: -60px;
+    margin-bottom: -60px;
 }
-.modal .content{
-    height:700px;
-    background-color:aquamarine;
-    padding-top:80px;
+
+.modal .content {
+    height: 700px;
+    background-color: aquamarine;
+    padding-top: 80px;
 }
-.menu>div{
-    height:50px;
-    line-height:50px;
+
+.menu > div {
+    height: 50px;
+    line-height: 50px;
 }
-.inner{
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
+
+/* �슂泥� */
+
+.inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.mypage-bg {
+    background-color: #f9f9f9;
+}
+
+#req .req-btn {
+    padding-top: 20px;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+#req .req-btn .title {
+    padding: 20px 0px;
+    font-size: 24px;
+}
+
+#req .req-btn .count {
+    padding: 40px 0px;
+}
+
+/* 寃ъ쟻�꽌 */
+
+#est .est-btn {
+    padding: 20px 0px;
+    border: 1px solid #d3d3d3;
+    background-color: #fff;
+    cursor: pointer;
+    margin: 20px 0px;
+}
+
+/* 寃ъ쟻�꽌 �옉�꽦 */
+
+#est-write .write-wrap h4 {
+    padding: 40px 0px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#est-write .write-wrap > div {
+    border: 1px solid #d3d3d3;
+}
+
+/* 寃ъ쟻�꽌 �옉�꽦 �쇊履� */
+
+#est-write .write-wrap .left-box .map {
+    height: 300px;
+    background-color: hotpink;
+    position: relative;
+}
+
+#est-write .write-wrap .left-box .map > .profile {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    bottom: 0px;
+    margin-left: -60px;
+    margin-bottom: -60px;
+}
+
+#est-write .write-wrap .left-box .content {
+    height: 700px;
+    background-color: aquamarine;
+    padding-top: 80px;
+}
+
+/* 寃ъ쟻�꽌 �옉�꽦 �삤瑜몄そ */
+
+#est-write .write-wrap .right-box input[type="number"] {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#est-write .write-wrap .right-box span {
+    font-size: 20px;
+}
+
+#est-write .write-wrap .right-box input[type="submit"] {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #5986f9;
+    border: 0px;
+    border-radius: 8px;
+    padding: 10px;
+    color: #fff;
+    font-size: 24px;
+}
+
+#est-write .write-wrap .right-box textarea {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+}
+
+/*�봽濡쒗븘*/
+
+#pro .pro-wrap > .pro-img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#pro .pro-wrap > .modify {
+    margin-top: 10px;
+}
+
+#pro .pro-wrap > .pro-img > .cameraImage {
+    width: 30px;
+    height: 30px;
+    line-height: 26px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid #b3b3b3;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+#pro .pro-wrap > .pro-img > .cameraImage > img {
+    width: 65%;
+    vertical-align: middle;
+}
+
+#pro .pro-wrap > .pro-img > .profileImage > img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+#pro .pro-wrap > .text1 {
+    width: 100%;
+    height: 100px;
+}
+
+#pro .pro-wrap > .text2 {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+}
+
+#pro .pro-wrap > .text1 > textarea,
+#pro .pro-wrap > .text2 > textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border-style: solid;
+}
+
+/* pro - review */
+
+#pro .pro-wrap .review {
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    margin: 40px 0px;
+    padding: 20px;
     overflow:hidden;
-    padding:100px 0px;
 }
-.mypage-bg{
-    background-color:#f9f9f9;
-}
-/* 요청 */
-#req .req-btn{
-	width:100%;
-    padding-top:20px;
-    background-color:#fff;
-    border:1px solid #d3d3d3;
-    margin:20px 0px;
-}
-#req .req-btn .title{
-    padding:20px 0px;
-    font-size:24px;
-}
-#req .req-btn .count{
-    padding:40px 0px;
+#pro .pro-wrap .review>h5{
+	font-size:25px;
+	font-weight:bolder;
 }
 
-/* 견적서 */
-#est .est-btn{
-	width:100%;
-    padding:20px 0px;
-    border:1px solid #d3d3d3;
-    background-color:#fff;
-    cursor:pointer;
-    margin:20px 0px;
-}
-/* 견적서 작성 */
-#est-write .write-wrap h4{
-    padding:40px 0px;
-    font-size:30px;
-    font-weight:bolder;
-}
-#est-write .write-wrap>div{
-    border:1px solid #d3d3d3;
+#pro .pro-wrap .review .review-write {
+    padding: 20px 0px;
+    border-bottom: 1px dotted #d3d3d3;
+    overflow:hidden;
 }
 
-/* 견적서 작성 왼쪽 */
-#est-write .write-wrap .left-box .map{
-    height:300px;
-    background-color:hotpink;
-    position:relative;
-}
-#est-write .write-wrap .left-box .map>.profile{
-    width:120px;
-    height:120px;
-    background-color:#fff;
-    position:absolute;
-    border-radius:50%;
-    left:50%;
-    bottom:0px;
-    margin-left:-60px;
-    margin-bottom:-60px;
-}
-#est-write .write-wrap .left-box .content{
-    height:700px;
-    background-color:aquamarine;
-    padding-top:80px;
+/* �븣由� */
+
+#noti > .noti-wrap {
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    padding: 20px 0px;
 }
 
-/* 견적서 작성 오른쪽 */
-#est-write .write-wrap .right-box input[type="number"]{
-    width:80%;
-    font-size:30px;
-    text-align:center;
-    margin-bottom:20px;
-}
-#est-write .write-wrap .right-box span{
-    width:20%;
-    font-size:20px;
-}
-#est-write .write-wrap .right-box select{
-    width:100px;
-    height:40px;
-    font-size:16px;
-    text-align:center;
-    margin-bottom:20px;
-}
-#est-write .write-wrap .right-box input[type="submit"]{
-    width:100%;
-    margin-top:20px;
-    background-color:#5986f9;
-    border:0px;
-    border-radius:8px;
-    padding:10px;
-    color:#fff;
-    font-size:24px;
-}
-#est-write .write-wrap .right-box textarea{
-    width:100%;
-    height:300px;
-    padding:20px;
-}
-/*프로필*/
-#pro .pro-wrap>.pro-img{
-    width:120px;
-    height:120px;
-    margin:0 auto;
-    position:relative;
-}
-#pro .pro-wrap>.modify{
-    margin-top:10px;
-}
-#pro .pro-wrap>.pro-img>.cameraImage{
-    width:30px;
-    height:30px;
-    line-height:26px;
-    position:absolute;
-    right:5px;
-    bottom:5px;
-    border:1px solid #b3b3b3;
-    border-radius:50%;
-    background-color:#fff;
-    cursor:pointer;
-}
-#pro .pro-wrap>.pro-img>.cameraImage>img{
-    width:65%;
-    vertical-align:middle;
-}
-#pro .pro-wrap>.pro-img>.profileImage>img{
-    width:100%;
-    border-radius:50%;
-}
-#pro .pro-wrap>.text1{
-    width:100%;
-    height:100px;
-}
-#pro .pro-wrap>.text2{
-    width:100%;
-    height:400px;
-    margin-top:20px;
-}
-#pro .pro-wrap>.text1>textarea,
-#pro .pro-wrap>.text2>textarea{
-    width:100%;
-    height:100%;
-    resize:none;
-    border-style:solid;
-}
-/* 알림 */
-#noti >.noti-wrap{
-    background-color:#fff;
-    border:1px solid #d3d3d3;
-    padding:20px 0px;
-}
-#noti>.noti-wrap > div > span {
+#noti > .noti-wrap > div > span {
     width: 75%;
 }
 
-#noti>.noti-wrap > div > div{
+#noti > .noti-wrap > div > div {
     width: 25%;
 }
-#noti>.noti-wrap>div{
-    overflow:hidden;
-    width:100%;
-}
-#noti>.noti-wrap>div>span,
-#noti>.noti-wrap>div>div{
-    float:left;
+
+#noti > .noti-wrap > div {
+    overflow: hidden;
+    width: 100%;
 }
 
-/* 개인정보 */
+#noti > .noti-wrap > div > span,
+#noti > .noti-wrap > div > div {
+    float: left;
+}
 
-#info{
-/*    padding:10px;*/
+/* 媛쒖씤�젙蹂� */
+
+#info {
+    /*    padding:10px;*/
 }
-#info .info-wrap{
-    background-color:#fff;
-    border:1px solid #d3d3d3;
-    padding:20px;
+
+#info .info-wrap {
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    padding: 20px;
 }
-#info .info-wrap>div{
-    overflow:hidden;
-    margin-bottom:10px;
+
+#info .info-wrap > div {
+    overflow: hidden;
+    margin-bottom: 10px;
 }
-#info .info-wrap>div>span{
-    float:left;
-    height:40px;
-    line-height:40px;
+
+#info .info-wrap > div > span {
+    float: left;
+    height: 40px;
+    line-height: 40px;
 }
-#info .info-wrap>div>div{
-    float:left;
-    height:40px;
+
+#info .info-wrap > div > div {
+    float: left;
+    height: 40px;
 }
+
 #info .info-wrap > input {
     width: 100%;
 }
@@ -227,23 +275,25 @@
 #info .info-wrap > div > div {
     width: 70%;
 }
-#info .info-wrap > div > div > input{
-    width:100%;
-    height:100%;
+
+#info .info-wrap > div > div > input {
+    width: 100%;
+    height: 100%;
 }
 
-#info .info-wrap> #map {
-    width:100%;
-    height:500px;
-    display:none;
-    border:1px solid #d3d3d3;
+#info .info-wrap > #map {
+    width: 100%;
+    height: 500px;
+    display: none;
+    border: 1px solid #d3d3d3;
 }
 
 /*--------------------------------------------------------------------------------*/
 
 /* switch */
 
-/*label의 marign,padding을 초기화*/
+/*label�쓽 marign,padding�쓣 珥덇린�솕*/
+
 label {
     margin: 0px;
     padding: 0px;
@@ -254,7 +304,7 @@ label {
     display: inline-block;
     width: 46px;
     height: 20px;
-    margin-top:3px;
+    margin-top: 3px;
 }
 
 .switch input {
@@ -264,10 +314,10 @@ label {
 .slider {
     position: absolute;
     cursor: pointer;
-    width:100%;
-    height:100%;
-    left:0px;
-    top:0px;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;

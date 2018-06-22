@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.RequestDao">
+
+<!-- 	Database 명령 작성 -->
+<!-- 	<select id="getList" resultType="spring.bean.MenuDto"> -->
+	<insert id="write" parameterType="requestDto">
+		insert into request values(
+			request_seq.nextval,
+			#{cno},
+			#{email},
+			#{addr},
+			#{lat},
+			#{longi},
+			#{sex},
+			#{anser1},
+			#{anser2},
+			#{anser3},
+			#{anser4},
+			#{anser5},
+			sysdate
+		)
+	</insert>
+	
+	<select id="requestGet" resultType="requestDto" parameterType="int">
+		select * from request where no=#{request_no}
+	</select>
+	
+	<select id="serchNo" resultType="int" parameterType="String">
+		select max(no) from request where email=#{email}
+	</select>
+
+	<delete id="requestDelete" parameterType="int">
+		delete request where no=#{request_no}
+	</delete>
+</mapper>
+

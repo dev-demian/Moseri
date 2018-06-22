@@ -3,6 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spring.repository.CategoryDao">
+	
 	<select id="getList" resultType="categoryTopDto">
 		select * from category_top order by no asc
 	</select>
@@ -12,5 +13,23 @@
 	<select id="botList" resultType="categoryBotDto" parameterType="Integer">
 		select * from category_bot where midNo = #{no} order by no asc
 	</select>
+	
+	<!-- 두산형꺼 -->
+	<select id="getMid" resultType="categoryMidDto" >
+		select * from category_mid
+	</select>
+	<select id="getBot" resultType="categoryBotDto" >
+		select * from category_bot
+	</select>
+	
+	<!-- 	/////////////////////////////////소분류 이름를 가져온다///////////////////////////////////// -->
+	<select id="getBotName" resultType="String" parameterType="Integer">
+		select bot.name from users u,category_bot bot where u.c_bno = bot.no and u.pno = #{no}
+	</select>
+	<!-- 	/////////////////////////////////////검색어리스트미리보기////////////////////////////////// -->
+	<select id="botListText" resultType="categoryBotDto" parameterType="String">
+		select no,name from category_bot where name like '%'||#{text}||'%'
+	</select>
+	
 </mapper>
 

@@ -22,6 +22,10 @@
 		<typeAlias type="spring.bean.CategoryBotDto" alias="categoryBotDto"/>
 		<typeAlias type="spring.bean.FileDto" alias="fileDto"/>
 		<typeAlias type="spring.bean.ProfileDto" alias="profileDto"/>
+		<typeAlias type="spring.bean.EstimateDto" alias="estimateDto"/>
+		<typeAlias type="spring.bean.MatchingDto" alias="matchingDto"/>
+		<typeAlias type="spring.bean.RequestDto" alias="requestDto"/>
+		<typeAlias type="spring.bean.UsersDto" alias="usersDto"/>
 	</typeAliases> 
 
 </configuration>

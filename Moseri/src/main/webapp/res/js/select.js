@@ -17,6 +17,7 @@ $(document).ready(function () {
             dataType: "json",
             type: "get",
             success: function (json) {
+            	console.log(json);
                 $.each(json, function (i) {
                     var data = "";
                     data += json[i].name;
@@ -46,9 +47,11 @@ $(document).ready(function () {
             dataType: "json",
             type: "get",
             success: function (json) {
+            	console.log(json);
                 $.each(json, function (i) {
                     var data = "";
-                    data += json[i].name;
+                    data += json[i].name+"/";
+                    data += json[i].no;
                     var option = $("<option/>").text(data).val(json[i].no).attr("data-midno", json[i].midNo)
                         .attr("data-no", json[i].no);
                     $("#bot").append(option);
