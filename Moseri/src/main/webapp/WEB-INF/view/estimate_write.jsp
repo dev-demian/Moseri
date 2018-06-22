@@ -15,17 +15,19 @@
 								<div class="left-box">
 									<div class="map">지도</div>
 									<div class="content">
-										<h2>${q[0]}</h2><br>
-										<h4>${q[1]}</h4><br>
+									<!-- 3.수정(두산) -->
+										<h4>${q[0]}</h4><br>
+										<h5>${q[1]}</h5><br>
 										${requestDto.anser1}<br><br>
-										<h4>${q[2]}</h4><br>
+										<h5>${q[2]}</h5><br>
 										${requestDto.anser2}<br><br>
-										<h4>${q[3]}</h4><br>
+										<h5>${q[3]}</h5><br>
 										${requestDto.anser3}<br><br>
-										<h4>${q[4]}</h4><br>
+										<h5>${q[4]}</h5><br>
 										${requestDto.anser4}<br><br>
-										<h4>${q[5]}</h4><br>
+										<h5>${q[5]}</h5><br>
 										${requestDto.anser5}<br><br>
+									<!-- 3.수정(두산) -->
 									</div>
 								</div>
 							</div>
@@ -54,6 +56,10 @@
 											name="anser1" placeholder="메시지 입력"><c:if test="${estimateDto ne 'null'}">${estimateDto.anser1}</c:if></textarea>
 									</div>
 									<c:if test="${estimateDto eq 'null'}"><input type="submit" value="견적서 보내기"></c:if>
+									<!-- 14.추가(두산) -->
+									<c:set var="m" value="${matchingDto.m_result}"/>
+									<c:if test="${m eq 1}"><input type="button" onclick="location.href='chat2'" value="채팅내용보기"></c:if>
+									<!-- 14.추가(두산) -->
 								</div>
 							</div>
 						</div>

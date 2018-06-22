@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .modal .map {
     height: 300px;
     background-color: hotpink;
@@ -27,7 +28,7 @@
     line-height: 50px;
 }
 
-/* 요청 */
+/* �슂泥� */
 
 .inner {
     width: 100%;
@@ -57,7 +58,7 @@
     padding: 40px 0px;
 }
 
-/* 견적서 */
+/* 寃ъ쟻�꽌 */
 
 #est .est-btn {
     padding: 20px 0px;
@@ -67,7 +68,7 @@
     margin: 20px 0px;
 }
 
-/* 견적서 작성 */
+/* 寃ъ쟻�꽌 �옉�꽦 */
 
 #est-write .write-wrap h4 {
     padding: 40px 0px;
@@ -79,7 +80,7 @@
     border: 1px solid #d3d3d3;
 }
 
-/* 견적서 작성 왼쪽 */
+/* 寃ъ쟻�꽌 �옉�꽦 �쇊履� */
 
 #est-write .write-wrap .left-box .map {
     height: 300px;
@@ -105,7 +106,7 @@
     padding-top: 80px;
 }
 
-/* 견적서 작성 오른쪽 */
+/* 寃ъ쟻�꽌 �옉�꽦 �삤瑜몄そ */
 
 #est-write .write-wrap .right-box input[type="number"] {
     font-size: 30px;
@@ -134,7 +135,7 @@
     padding: 20px;
 }
 
-/*프로필*/
+/*�봽濡쒗븘*/
 
 #pro .pro-wrap > .pro-img {
     width: 120px;
@@ -142,40 +143,7 @@
     margin: 0 auto;
     position: relative;
 }
-#pro .pro-wrap > .review{
-    position:relative;
-    background-color: #fff;
-    border: 1px solid rgb(169, 169, 169);
-    margin:40px 0px;
-    padding:20px;
-}
-#pro .pro-wrap > .review>.review-content{
-    overflow: hidden;
-    border-bottom:1px solid #d3d3d3;
-    margin:20px 0px;
-    padding:40px 0px;
-}
-#pro .pro-wrap > .review .review-img{
-    width:80px;
-    height:80px;
-    line-height:80px;
-    background-color:skyblue;
-    border-radius:50%;
-    margin:0 auto;
-}
-#pro .pro-wrap > .review textarea{
-    width:100%;
-    resize:none;
-    margin:20px 0px;
-}
-#pro .pro-wrap > .review>div>button{
-    position:absolute;
-    right:10px;
-    top:10px;
-    border:0px;
-    background-color:#e9e9e9;
-    padding:3px 6px;
-}
+
 #pro .pro-wrap > .modify {
     margin-top: 10px;
 }
@@ -222,7 +190,27 @@
     border-style: solid;
 }
 
-/* 알림 */
+/* pro - review */
+
+#pro .pro-wrap .review {
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    margin: 40px 0px;
+    padding: 20px;
+    overflow:hidden;
+}
+#pro .pro-wrap .review>h5{
+	font-size:25px;
+	font-weight:bolder;
+}
+
+#pro .pro-wrap .review .review-write {
+    padding: 20px 0px;
+    border-bottom: 1px dotted #d3d3d3;
+    overflow:hidden;
+}
+
+/* �븣由� */
 
 #noti > .noti-wrap {
     background-color: #fff;
@@ -248,7 +236,7 @@
     float: left;
 }
 
-/* 개인정보 */
+/* 媛쒖씤�젙蹂� */
 
 #info {
     /*    padding:10px;*/
@@ -304,7 +292,7 @@
 
 /* switch */
 
-/*label의 marign,padding을 초기화*/
+/*label�쓽 marign,padding�쓣 珥덇린�솕*/
 
 label {
     margin: 0px;

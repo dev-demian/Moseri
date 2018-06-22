@@ -3,10 +3,18 @@
 
 	<jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
             
+            
+            
+            
             <div class="container">
                 
                 <div class="row">
                     <div class="cardsize">
+                    
+                    	<!-- //////////////////////////////////고수찾기//////////////////////////////// -->
+                    	<div><a href="find">고수찾기</a></div>
+                    	<!-- //////////////////////////////////고수찾기//////////////////////////////// -->
+                    	
                         <div class="multi-items container text-center">
                             <div class="outcard">
                                 <div class="innercard">

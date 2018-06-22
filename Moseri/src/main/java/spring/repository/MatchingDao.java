@@ -14,5 +14,7 @@ public interface MatchingDao {
 	public void matching2(int matching_no, int estimate_no);
 	public List<MatchingDto> matchingEstimateList(String email);
 	public void matchingResult(int matching_no);
+	public List<MatchingDto> matchingTtl();
+	public void matchingDelete(int matching_no);
 	
 }

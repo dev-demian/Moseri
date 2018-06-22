@@ -143,6 +143,26 @@ public class MemberServiceImpl implements MemberService {
 //			System.out.println(result);
 			return result;
 		}
+
+
+	@Override
+	public int emailcheck(String useremail) {
+		// TODO Auto-generated method stub
+		
+		MemberDto id_exist=memberDao.get(useremail);
+		if(!(id_exist == null)) {
+			return 1;	
+		}else {return 0;}
+		
+	}
+
+
+	@Override
+	public int getBno(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.getBno(no);
+		
+	}
 	
 	
 	

@@ -47,5 +47,15 @@ public class MatchingDaoImpl implements MatchingDao {
 	public void matchingResult(int matching_no) {
 		sqlSession.update("matchingResult", matching_no);
 	}
+	
+	@Override
+	public List<MatchingDto> matchingTtl() {
+		return sqlSession.selectList("matchingTtl");
+	}
+
+	@Override
+	public void matchingDelete(int matching_no) {
+		sqlSession.delete("matchingDelete", matching_no);
+	}
 
 }

@@ -40,6 +40,11 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDto get(String email) {
 		return sqlSession.selectOne("get",email);
 	}
+	@Override
+	public int getBno(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getBno", no);
+	}
 	
 	
 	

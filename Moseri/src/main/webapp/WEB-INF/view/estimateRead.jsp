@@ -49,17 +49,19 @@ div {
 								<div class="left-box">
 									<div class="map">지도</div>
 									<div class="content">
-										<h2>${q[0]}</h2><br>
-										<h4>${q[1]}</h4><br>
+										<!-- 4.수정(두산) -->
+										<h4>${q[0]}</h4><br>
+										<h5>${q[1]}</h5><br>
 										${requestDto.anser1}<br><br>
-										<h4>${q[2]}</h4><br>
+										<h5>${q[2]}</h5><br>
 										${requestDto.anser2}<br><br>
-										<h4>${q[3]}</h4><br>
+										<h5>${q[3]}</h5><br>
 										${requestDto.anser3}<br><br>
-										<h4>${q[4]}</h4><br>
+										<h5>${q[4]}</h5><br>
 										${requestDto.anser4}<br><br>
-										<h4>${q[5]}</h4><br>
+										<h5>${q[5]}</h5><br>
 										${requestDto.anser5}<br><br>
+									<!-- 4.수정(두산) -->
 									</div>
 								</div>
 							</div>

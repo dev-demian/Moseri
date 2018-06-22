@@ -46,6 +46,7 @@
                 @import url(${pageContext.request.contextPath}/res/css/btn.css);
                 @import url(${pageContext.request.contextPath}/res/css/slider.css);
                 @import url(${pageContext.request.contextPath}/res/css/slick-theme.css);
+                @import url(${pageContext.request.contextPath}/res/css/search.css);
                 /*       html,div,body{ */
                 /*         border: 1px solid red; */
                 /*       } */
@@ -122,6 +123,17 @@
             		padding-left: 220px;
         		}
             </style>
+            <script src="${pageContext.request.contextPath}/res/js/search.js"></script>
+            <script>
+            	$(document).ready(function(){
+            		$("#key-search button").on("click",function(){
+            			 <%if(!("success".equals(session.getAttribute("login")))){%>
+            			 	alert("로그인을 해주세요.");
+            			 	$(this).attr("onclick","location.href='home'");
+            			 <%}%>
+            		});
+            	});
+            </script>
         </head>
 
         <body>
@@ -158,14 +170,17 @@
                             <%}%> 
                         </ul>
                     </nav>
-                    <nav style="padding-bottom: 100px ;padding-left: 340px; padding-right: 340px;">
+                     <nav style="padding-bottom: 100px ;padding-left: 340px; padding-right: 340px;">
                         <!--  <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" id="jumbo"> -->
                         <!-- <img id="icon" src="./zzalicon.png" alt="icon"> -->
-                        <div class="input-group">
+                        <div id="key-search" class="input-group">
                             <input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
                             <span class="input-group-btn">
                                 <button class="btn btn-secondary" type="button">찾기</button>
                             </span>
+                            <div class="key-word">
+                            	<ul></ul>
+                            </div>
                         </div>
                         <!-- </div> -->
                     </nav>

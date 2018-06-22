@@ -25,5 +25,9 @@ public class RequestServiceImpl implements RequestService {
 	public int serchNo(String email) {
 		return requestDao.serchNo(email);
 	}
+	@Override
+	public void requestDelete(int request_no) {
+		requestDao.requestDelete(request_no);
+	}
 	
 }

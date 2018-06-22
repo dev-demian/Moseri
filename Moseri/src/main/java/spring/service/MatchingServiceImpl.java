@@ -42,5 +42,14 @@ public class MatchingServiceImpl implements MatchingService {
 	public void matchingResult(int matching_no) {
 		matchingDao.matchingResult(matching_no);
 	}
+	@Override
+	public List<MatchingDto> matchingTtl() {
+		return matchingDao.matchingTtl();
+	}
+
+	@Override
+	public void matchingDelete(int matching_no) {
+		matchingDao.matchingDelete(matching_no);
+	}
 
 }

@@ -25,5 +25,9 @@ public class EstimateDaoImpl implements EstimateDao {
 	public EstimateDto estimateGet(int estimate_no) {
 		return sqlSession.selectOne("estimateGet", estimate_no);
 	}
+	@Override
+	public void estimateDelete(int estimate_no) {
+		sqlSession.delete("estimateDelete", estimate_no);
+	}
 	
 }

@@ -12,4 +12,8 @@ public class MatchingDto {
 	private int gosu_end;
 	private int nomal_end;
 	private int m_result;
+	//16.추가(두산)
+		private String reg;
+		private String ttl;
+		//16.추가(두산)
 }

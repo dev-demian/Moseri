@@ -13,8 +13,11 @@
                         <c:forEach items="${list}" var="list">
 						<div class="col-sm-12">
 						<c:set var="e" value="${list.estimate_no}"/>
+						<!-- 12.수정(두산) -->
+						<c:set var="ee" value="${list.m_result}"/>
 						<h4><a href="estimateWrite?no=${list.no}">${list.nomal_email}님 요청서 
-						<c:if test="${e ne 0}"> (견적서 작성 완료)</c:if></a></h4>
+						<c:if test="${e ne 0}"> (견적서 작성 완료)<c:if test="${ee eq 1}">_(최종 매칭 완료)</c:if></c:if></a></h4>
+						<!-- 12.수정(두산) -->
 						</div>
 						</c:forEach>
                     </div>

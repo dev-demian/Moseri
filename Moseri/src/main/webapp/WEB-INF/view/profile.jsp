@@ -1,27 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>profile</title>
-<meta charset="UTF-8">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<!-- css -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/swiper.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/mypage.css">
-<!-- js -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/res/js/swiper.min.js"></script>
-<script src="${pageContext.request.contextPath}/res/js/mypage.js"></script>
-</head>
+ <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
+ 
+ 
 <body>
 	<h2>profile</h2>
 	<c:forEach var="pro" items="${pro}">
@@ -35,11 +17,13 @@
 		<div>img : ${pro.img}</div>
 		<div>m_cnt : ${pro.mcnt}</div>
 	</c:forEach>
+	<div>소분류번호 : ${getBno}</div>
+	<div>소분류이름 : ${getBotName}</div>
 	<div class="container">
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
-				<!-- Modal content-->
+				Modal content
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -50,6 +34,52 @@
 				</div>
 			</div>
 		</div>
+	</div> -->
+	<div class="row" style="text-align: center; margin: 10px">
+		<form action="requestInsert" method="get">
+			<!-- 모달 팝업 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							</button>
+							<h1 class="modal-title" id="myModalLabel">요청서 작성</h1>
+						</div>
+						<div class="modal-body">
+							<label style="font-size: 35px">${sessionScope.q0}</label> <br>
+							<label>원하는 고수 성별 선택&nbsp&nbsp</label> <label>남</label><input
+								type="radio" name="sex" value="남자"> <label>/</label> <label>여</label><input
+								type="radio" name="sex" value="여자"> <label>/</label> <label>무관</label><input
+								type="radio" name="sex" value="무관" checked="checked">
+							<br> <label>${sessionScope.q1}</label> <br>
+							<textarea name="a1"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q2}</label> <br>
+							<textarea name="a2"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q3}</label> <br>
+							<textarea name="a3"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q4}</label> <br>
+							<textarea name="a4"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+							<br> <label>${sessionScope.q5}</label> <br>
+							<textarea name="a5"
+								style="height: 100px; width: 500px; resize: none;"></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button>
+							<button type="submit" class="btn btn-primary">작성 완료</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 	<button type="button" data-toggle="modal" data-target="#myModal">견적
 		받아보기</button>
@@ -62,52 +92,49 @@
 						<h3>프로필</h3>
 						<div class="pro-wrap">
 							<div>
-								<h4>축구레슨(소항목)</h4>
+								<h4>${getBotName}</h4>
 							</div>
 							<div class="pro-img">
-								<div class="cameraImage">
-									<img
-										src="${pageContext.request.contextPath}/res/images/camera.png"
-										alt="cameraImage">
-								</div>
+								
 								<div class="profileImage">
 									<img
-										src="${pageContext.request.contextPath}/res/images/test.jpg"
+										src="${pageContext.request.contextPath}/res/img/test.jpg"
 										alt="test이미지">
 								</div>
 							</div>
+							<c:forEach var="pro" items="${pro}">
 							<div>
-								<span>★★★★★</span>
+								<span>별점 : ${pro.star}</span>
 							</div>
 							<div>
-								<span>닉네임 : O O O O O O O O O</span>
+								<span>닉네임 : ${pro.nickname}</span>
 							</div>
 							<div class="text1">
-								<textarea name="" placeholder="자기소개"></textarea>
+								<textarea name="" placeholder="자기소개">${pro.self}</textarea>
 							</div>
 							<div class="text-right modify">
-								<button class="text-right">수정</button>
+								
 							</div>
 							<div class="text2">
-								<textarea name="" placeholder="경력소개"></textarea>
+								<textarea name="" placeholder="경력소개">${pro.resume}</textarea>
 							</div>
 							<div class="text-right modify">
-								<button class="text-right">수정</button>
+								
 							</div>
 							<div class="swiper-container">
 								<!-- 이미지 영역 -->
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
 										<img
-											src="${pageContext.request.contextPath}/res/images/test1.jpg">
+											src="${pageContext.request.contextPath}/res/img/test1.jpg">
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="${pageContext.request.contextPath}/res/images/test2.jpg">
+											src="${pageContext.request.contextPath}/res/img/test2.jpg">
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="${pageContext.request.contextPath}/res/images/test3.jpg">
+											src="${pageContext.request.contextPath}/res/img/test3.jpg">
 									</div>
 								</div>
 
@@ -117,97 +144,37 @@
 								<!-- 페이징 버튼 -->
 								<div class="swiper-pagination"></div>
 							</div>
+							</c:forEach>
 							<div class="review">
-								<h4 class="text-center">리뷰</h4>
-								<div class="review-content">
-									<div class="col-sm-12">
-										<div class="col-sm-2">
-											<div class="review-img">이미지</div>
-										</div>
-										<div class="col-sm-2" style="margin-top: 20px;">
-											<div>배기태</div>
-											<div>★★★★★</div>
-										</div>
-										<div class="col-sm-5"></div>
-										<div class="col-sm-3 text-right">
-											<span>2018-06-14</span>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<div class="col-sm-1"></div>
-										<div class="col-sm-10 text-left" style="margin: 10px 0px;">
-											안녕하세요 배기태입니다 잘부탁 드립니다.안녕하세요 배기태입니다 잘부탁 드립니다.</div>
-										<div class="col-sm-1"></div>
-									</div>
-									<button>수정</button>
-									<div class="col-sm-12 reply">
-										<div>작성자 : 배기태 / 날짜 : 2018-06-20</div>
-										<div class="text-left">댓글작성 :</div>
-										<div>
-											<textarea name="" id="" cols="30" rows="10"></textarea>
-										</div>
-										<div class="text-right">
-											<input type="submit" value="확인">
-										</div>
-									</div>
-								</div>
-								<div class="review-content">
-									<div class="col-sm-12">
-										<div class="col-sm-2">
-											<div class="review-img">이미지</div>
-										</div>
-										<div class="col-sm-2" style="margin-top: 20px;">
-											<div>배기태</div>
-											<div>★★★★★</div>
-										</div>
-										<div class="col-sm-5"></div>
-										<div class="col-sm-3 text-right">
-											<span>2018-06-14</span>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<div class="col-sm-1"></div>
-										<div class="col-sm-10 text-left" style="margin: 10px 0px;">
-											안녕하세요 배기태입니다 잘부탁 드립니다.안녕하세요 배기태입니다 잘부탁 드립니다.</div>
-										<div class="col-sm-1"></div>
-									</div>
-									<button>수정</button>
-									<div class="col-sm-12 reply">
-										<div class="text-left">댓글작성 :</div>
-										<div>
-											<textarea name="" id="" cols="30" rows="10"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="review-content">
-									<div class="col-sm-12">
-										<div class="col-sm-2">
-											<div class="review-img">이미지</div>
-										</div>
-										<div class="col-sm-2" style="margin-top: 20px;">
-											<div>배기태</div>
-											<div>★★★★★</div>
-										</div>
-										<div class="col-sm-5"></div>
-										<div class="col-sm-3 text-right">
-											<span>2018-06-14</span>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<div class="col-sm-1"></div>
-										<div class="col-sm-10 text-left" style="margin: 10px 0px;">
-											안녕하세요 배기태입니다 잘부탁 드립니다.안녕하세요 배기태입니다 잘부탁 드립니다.</div>
-										<div class="col-sm-1"></div>
-									</div>
-									<button>수정</button>
-									<div class="col-sm-12 reply">
-										<div class="text-left">댓글작성 :</div>
-										<div>
-											<textarea name="" id="" cols="30" rows="10"></textarea>
-										</div>
-									</div>
-								</div>
-							</div>
+                                <h5>리뷰</h5>
+                                <!-- S : 반복 -->
+                                <div class="review-write">
+                                    <div class="col-md-12">
+                                        <div class="row" style="padding:20px 0px;">
+                                            <div class="col-md-12 text-right">
+                                            	<div><a href="#">신고</a></div>
+												<div>2018-06-21</div>		                                            
+                                            </div>
+                                            <div class="col-md-8 text-left">
+                                                <div class="col-md-3" style="width:80px;height:80px;background-color:aqua;border-radius:50%;text-align:center;line-height:80px;">프로필</div>
+                                                <div class="col-md-4">
+                                                    <div style="margin-top:18px;">배기태</div>
+                                                    <div style="margin-top:4px;">★★★★★</div>
+                                                </div>
+                                                <div class="col-md-6"></div>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <div class="col-md-2">댓글 :</div>
+                                                <div class="col-md-10">안녕하세요 저는 배기태입니다. 반갑습니다.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- E : 반복 -->
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -215,5 +182,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+ <jsp:include page="/WEB-INF/view/template/footer.jsp"></jsp:include>

@@ -16,6 +16,6 @@
     <c:if test="${granted eq 2}">
 		<div class="col-sm-2"><a href="approval">고수인증</a></div>
 	</c:if> 
-		
+		<!-- <div class="col-sm-2"><a href="home">홈으로</a></div> -->
 	
 </div>

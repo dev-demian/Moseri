@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
     
 <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
+<jsp:include page="template/mypageHeader.jsp"></jsp:include> <!-- 7.수정(두산) -->
         <div class="container-fluid">
+        
+        
             <jsp:include page="/WEB-INF/view/template/mypageHeader.jsp"></jsp:include>
             <div class="row text-center mypage-bg">
             <div class="inner">

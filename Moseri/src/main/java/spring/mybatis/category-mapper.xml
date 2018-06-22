@@ -22,5 +22,14 @@
 		select * from category_bot
 	</select>
 	
+	<!-- 	/////////////////////////////////소분류 이름를 가져온다///////////////////////////////////// -->
+	<select id="getBotName" resultType="String" parameterType="Integer">
+		select bot.name from users u,category_bot bot where u.c_bno = bot.no and u.pno = #{no}
+	</select>
+	<!-- 	/////////////////////////////////////검색어리스트미리보기////////////////////////////////// -->
+	<select id="botListText" resultType="categoryBotDto" parameterType="String">
+		select no,name from category_bot where name like '%'||#{text}||'%'
+	</select>
+	
 </mapper>
 

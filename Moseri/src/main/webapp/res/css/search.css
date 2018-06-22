@@ -1,0 +1,34 @@
+@charset "UTF-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+li{
+	list-style:none;
+}
+#key-search {
+	position: relative;
+	height: 30px;
+}
+
+#key-search input, #key-search button {
+	height: 100%;
+	padding:10px;
+}
+
+#key-search .key-word {
+	position: absolute;
+	left: 0px;
+	top: 40px;
+	background-color:#fff;
+	border:1px solid #ccc;
+	z-index:99999;
+	width:100%;
+	padding:6px 12px;
+	height:160px;
+	overflow-y:scroll;
+	display:none;
+}
+#key-search .key-word .search-item a{
+	color:#2c2c2c;
+}

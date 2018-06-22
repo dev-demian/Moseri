@@ -15,7 +15,10 @@
 			null,
 			null,
 			null,
-			null
+			null,
+			sysdate,
+			#{ttl}
+			
 		)
 	</insert>
 	
@@ -38,6 +41,14 @@
 	<select id="matchingGet" resultType="matchingDto" parameterType="int">
 		select * from matching where no=#{no}
 	</select>
+	
+	<select id="matchingTtl" resultType="matchingDto">
+		select * from matching where m_result is null
+	</select>
+	
+	<delete id="matchingDelete" parameterType="int">
+		delete matching where no=#{matching_no}
+	</delete>
 	
 </mapper>
 

@@ -25,5 +25,8 @@ public class EstimateServiceImpl implements EstimateService {
 	public EstimateDto estimateGet(int estimate_no) {
 		return estimateDao.estimateGet(estimate_no);
 	}
-	
+	@Override
+	public void estimateDelete(int estimate_no) {
+		estimateDao.estimateDelete(estimate_no);
+	}
 }

@@ -6,8 +6,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -114,6 +121,20 @@ public class homecontroller {
 			profileService.register_profile(request, profileDto);
 			return "redirect:/home";
 		}
+		
+		
+		// 회원가입 체크(post)
+		@RequestMapping("/register_check")
+		 @ResponseBody
+		public Map<Object, Object> register_check(@RequestBody String useremail) {
+			 int count = 0;
+		        Map<Object, Object> map = new HashMap<Object, Object>();
+		        count = memberservice.emailcheck(useremail);
+		        map.put("cnt", count);
+			
+			return map;
+		}
+		
 	
 	
 	
@@ -173,6 +194,12 @@ public class homecontroller {
 	@ResponseBody
 	public List<CategoryBotDto> botList(@RequestParam(value="no") int no){
 		return categoryService.botList(no);
+	}
+	
+	@RequestMapping("/botListText")
+	@ResponseBody
+	public List<CategoryBotDto> botListText(@RequestParam(value="text") String text){
+		return categoryService.botListText(text);
 	}
 		
 	//마이페이지 포워딩페이지
@@ -296,15 +323,19 @@ public class homecontroller {
 			return profileService.profileList(bot,addr);
 		}
 		//profile페이지
-		@RequestMapping("/profile")
-		public String profile(
-				HttpServletRequest request,
-				@RequestParam(value="no") int no
-		) {
-			request.setAttribute("pro", profileService.getProfile(no));
-//			request.setAttribute("c_bno", memberService.getBno(no));
-			return "profile";
-		}
+				@RequestMapping("/profile")
+				public String profile(
+						HttpServletRequest request,
+						@RequestParam(value="no") int no
+				) {
+					request.setAttribute("pro", profileService.getProfile(no));
+					/////////////////////////////////소분류 번호를 가져온다/////////////////////////////////////
+					int cbno = memberservice.getBno(no);
+					request.setAttribute("getBno", cbno);
+					/////////////////////////////////소분류 이름를 가져온다/////////////////////////////////////
+					request.setAttribute("getBotName", categoryService.getBotName(no));
+					return "profile";
+				}
 	
 /////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -493,6 +524,15 @@ public class homecontroller {
 					matchingDto.setRequest_no(request_no); 
 					matchingDto.setGosu_email(user.getEmail());
 					matchingDto.setNomal_email(requestDto.getEmail());
+					///17.추가(두산)
+					Calendar cal = Calendar.getInstance();
+				    cal.setTime(new Date());
+				    cal.add(Calendar.DATE, 6);
+				    DateFormat df = new SimpleDateFormat("yyyyMMdd");
+				    String strDate = df.format(cal.getTime());
+				    matchingDto.setTtl(strDate);
+				    ///17.추가(두산)
+					
 					matchingService.matching1(matchingDto);
 					
 				}
@@ -570,6 +610,7 @@ public class homecontroller {
 			} else {
 				EstimateDto estimateDto = estimateService.estimateGet(estimate_no);
 				request.setAttribute("estimateDto", estimateDto);
+				request.setAttribute("matchingDto", matchingDto); ///13.추가(두산)
 			}
 			
 			return "estimate_write";
@@ -656,6 +697,13 @@ public class homecontroller {
 			return "result";
 		}
 		
+		///15.추가(두산)
+				@RequestMapping("/chat2")
+				public String chat2(HttpServletRequest request, HttpSession session) {
+					return "result";
+				}
+		///15.추가(두산)
+		
 		//////////////////////////////////////////////////////////////////////
 		
 		
@@ -667,5 +715,11 @@ public class homecontroller {
 			
 			
 			return "myprofile";
+		}
+		
+		////////////////////////////////리뷰/////////////////////////////////////////
+		@RequestMapping("/review")
+		public String review() {
+			return "review";
 		}
 }

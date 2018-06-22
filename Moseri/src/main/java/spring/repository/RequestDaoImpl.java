@@ -27,6 +27,11 @@ public class RequestDaoImpl implements RequestDao{
 	public int serchNo(String email) {
 		return sqlSession.selectOne("serchNo", email);
 	}
+
+	@Override
+	public void requestDelete(int request_no) {
+		sqlSession.delete("requestDelete", request_no);
+	}
 	
 }
 

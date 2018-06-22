@@ -32,5 +32,8 @@
 		select max(no) from request where email=#{email}
 	</select>
 
+	<delete id="requestDelete" parameterType="int">
+		delete request where no=#{request_no}
+	</delete>
 </mapper>
 

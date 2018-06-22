@@ -23,7 +23,62 @@ div {
 <script src="${pageContext.request.contextPath}/res/js/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+var idck = 0;
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#email_check").click(function() {
+        
+        //userid 를 param.
+        var useremail =  $("#useremail").val(); 
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : useremail,
+            url : "register_check",
+            dataType : "json",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data.cnt > 0) {
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                   /*  $("#divInputId").addClass("has-error")
+                    $("#divInputId").removeClass("has-success") */
+                    $("#useremail").focus();
+                    
+                
+                } else {
+                    alert("사용가능한 아이디입니다.");
+                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                    /* $("#divInputId").addClass("has-success")
+                    $("#divInputId").removeClass("has-error") */
+                    $("#useremail").focus();
+                    //아이디가 중복하지 않으면  idck = 1 
+                    idck = 1;
+                    
+                }
+            },
+            error : function(error) {
+                
+                alert("아이디 값을 입력하세요");
+                idck = 0;
+            }
+        });
+    });
+    
+});
+function check() {
+	if(idck==0){
+		alert("올바르지 않은 아이디를 입력하셨습니다");
+		return false;
+	}else
+		return true;
+}
+ 
+</script>
 </head>
 
 <body>
@@ -35,7 +90,7 @@ div {
 			<div class="inner">
 				<div class="col-md-3 col-sm-2"></div>
 				<div class="col-md-6 col-sm-8">
-					<form action="register" method="post">
+					<form action="register" method="post" onsubmit="return check()">
 						<div id="register-wrap">
 							<h2 class="text-center">회원가입</h2>
 							<div class="row text-left">
@@ -43,7 +98,8 @@ div {
 									<span>Email</span>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="email" >
+									<input id="useremail" type="text" name="email" >
+									<input id="email_check" type ="button" value="중복확인">
 								</div>
 							</div>
 							<div class="row text-left">
@@ -121,7 +177,7 @@ div {
 							<div class="row">
 								<div class="col-md-4"></div>
 								<div class="col-md-4">
-									<input type="submit" value="Sign-up">
+									<input id="submit_btn" type="submit" value="Sign-up">
 								</div>
 								<div class="col-md-4"></div>
 							</div>
@@ -240,6 +296,8 @@ $( window ).resize(function() {
   
   resizeMap();
   relayout();
+  
+  
   
 
 });

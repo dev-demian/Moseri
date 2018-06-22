@@ -26,6 +26,10 @@
 	<select id="estimateGet" resultType="estimateDto" parameterType="int">
 		select * from estimate where no=#{estimate_no}
 	</select>
+	
+	<delete id="estimateDelete" parameterType="int">
+		delete matching where no=#{estimate_no}
+	</delete>
 
 </mapper>
 
