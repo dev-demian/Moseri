@@ -1,3 +1,3 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<jsp:forward page="/request"></jsp:forward>
+<jsp:forward page="/estimate"></jsp:forward>

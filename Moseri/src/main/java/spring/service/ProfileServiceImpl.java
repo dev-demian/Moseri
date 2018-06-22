@@ -94,7 +94,10 @@ public class ProfileServiceImpl implements ProfileService {
 		File dir = new File(mRequest.getSession().getServletContext().getRealPath("/res/pro_img"));
 		System.out.println(dir);
 		//프로필 이미지
-		List<MultipartFile> plist = mRequest.getFiles("profileimg");
+		List<MultipartFile> plist = mRequest.getFiles("profileimg");//여기서 다 들어가 있다고 뜸 그래서 이상한 쓰래기값이 들어가는거임;;
+		System.out.println(plist.isEmpty());
+		System.out.println(plist.size());
+		
 		if(!(plist.isEmpty())) {
 			String rname = null;
 			for(MultipartFile file : plist) {
@@ -106,19 +109,22 @@ public class ProfileServiceImpl implements ProfileService {
 		         String ftype = file.getContentType();
 		         File target = new File(dir, rname+"."+ftype.substring(6));
 		         rname+="."+ftype.substring(6);
+		         profileDto.setProImg(rname);
 		         
 		         if(ftype.contains("image")) {
 		        	 file.transferTo(target);
+		        	 profileDao.update_profile_pro(profileDto);//email, self , resume, proimg 
 		         }else {
 		        	 
 		        	 System.out.println("이미지를 넣으셔아 합니다");
 		         }
-		         profileDto.setProImg(rname);
+		         
 		    
 		    System.out.println(rname+""+fname+""+fsize+""+ftype);
 			}
-			profileDao.update_profile_pro(profileDto);//email, self , resume, proimg 
-		}else {profileDao.update_profile(profileDto);}//email, self , resume, 
+			
+		}
+		
 		//일반 업로드 이미지
 		List<MultipartFile> slist = mRequest.getFiles("swiperimg");
 		if(!(slist.isEmpty())) {
@@ -132,22 +138,22 @@ public class ProfileServiceImpl implements ProfileService {
 		         String ftype = file.getContentType();
 		         File target = new File(dir, rname+"."+ftype.substring(6));
 		         rname+="."+ftype.substring(6);
+		         profileDto.setImg(rname);
 		         
 		         if(ftype.contains("image")) {
 		        	 file.transferTo(target);
+		        	 profileDao.update_profile_img(profileDto);//email, self , resume, proimg ,img
 		         }else {
 		        	 
 		        	 System.out.println("이미지를 넣으셔아 합니다");
 		         }
-		         profileDto.setImg(rname);
 		    
 		    System.out.println(rname+""+fname+""+fsize+""+ftype);
 			}
 			
-			profileDao.update_profile_img(profileDto);//email, self , resume, proimg ,img
-		}else {profileDao.update_profile(profileDto);}//email, self , resume, 
+		}//email, self , resume, 
 		
-		
+		profileDao.update_profile(profileDto);
 		
 	}
 }
