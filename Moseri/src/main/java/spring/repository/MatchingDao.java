@@ -16,5 +16,8 @@ public interface MatchingDao {
 	public void matchingResult(int matching_no);
 	public List<MatchingDto> matchingTtl();
 	public void matchingDelete(int matching_no);
+	public void nomal_emailUpdate(int matching_no);
+	public void gosu_emailUpdate(int matching_no);
+	
 	
 }

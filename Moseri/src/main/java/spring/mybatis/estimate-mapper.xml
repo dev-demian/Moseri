@@ -28,8 +28,9 @@
 	</select>
 	
 	<delete id="estimateDelete" parameterType="int">
-		delete matching where no=#{estimate_no}
+		delete estimate where no=#{estimate_no} <!-- 37.수정(두산) -->
 	</delete>
+	
 
 </mapper>
 

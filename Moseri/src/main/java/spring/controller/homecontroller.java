@@ -43,10 +43,12 @@ import spring.service.RequestService;
 import spring.service.UsersService;
 import spring.bean.CategoryBotDto;
 import spring.bean.CategoryMidDto;
+import spring.bean.ChatDto;
 import spring.bean.EstimateDto;
 import spring.bean.FileDto;
 import spring.bean.MatchingDto;
 import spring.service.CategoryService;
+import spring.service.ChatService;
 import spring.service.EstimateService;
 import spring.service.FileService;
 import spring.service.MatchingService;
@@ -72,7 +74,8 @@ public class homecontroller {
 	private ProfileService profileService;
 	@Autowired
 	EstimateService estimateService;
-	
+	@Autowired
+	ChatService chatService;
 
 	// home
 	@RequestMapping("/home")
@@ -159,6 +162,7 @@ public class homecontroller {
 			 
 			session.setAttribute("email",db_data.getEmail());
 			session.setAttribute("granted",db_data.getGranted());
+			session.setAttribute("addr", db_data.getAddr());
 			session.setAttribute("login", "success");
 			session.setMaxInactiveInterval(60*60);	
 			
@@ -247,7 +251,7 @@ public class homecontroller {
 	//마이페이지 - 개인정보
 
 	@RequestMapping("/information")
-	public String information() {
+	public String information(HttpSession session) {
 		return "information";
 	}
 	
@@ -361,9 +365,9 @@ public class homecontroller {
 //			app.setAttribute("start", "ture");
 //			System.out.println(app.getAttribute("start"));
 			
-			session.setAttribute("login", "success"); /*임시로그인을위함*/
-			session.setAttribute("email", "twosan2@naver.com"); /*일반 사용자 임시 로그인을 위함*/
-			session.setAttribute("granted", 1); /*일반 사용자 임시 로그인을 위함*/
+//			session.setAttribute("login", "success"); /*임시로그인을위함*/
+//			session.setAttribute("email", "twosan2@naver.com"); /*일반 사용자 임시 로그인을 위함*/
+//			session.setAttribute("granted", 1); /*일반 사용자 임시 로그인을 위함*/
 //			session.setAttribute("email", "gosu1@naver.com"); /*인증 고수 임시 로그인을 위함*/
 //			session.setAttribute("granted", 3); /*인증 고수 임시 로그인을 위함*/
 			
@@ -562,6 +566,8 @@ public class homecontroller {
 				}
 			}
 			request.setAttribute("list2", list2);
+			System.out.println(list2.isEmpty());
+			
 			
 			return "estimate";
 		}
@@ -569,12 +575,24 @@ public class homecontroller {
 		@RequestMapping("/estimateWrite")
 		public String estimateWrite(HttpServletRequest request, HttpSession session) throws IOException {
 			int no = Integer.parseInt(request.getParameter("no"));
-			session.setAttribute("matching_no", no); //견적서 작성 완료 후에 matching테이블에서 해당 튜플을 찾기 위한 값
+			System.out.println("넘버가 잘들어가나 확인"+no);
 			
+			session.setAttribute("matching_no", no); //견적서 작성 완료 후에 matching테이블에서 해당 튜플을 찾기 위한 값
+			session.setAttribute("matchingno", no);
 			MatchingDto matchingDto = matchingService.matchingGet(no); //matching테이블에서 request_no가져오기
+			System.out.println("매칭테이블"+matchingDto.getRequest_no());
 			int request_no = matchingDto.getRequest_no(); //matching테이블에서 request_no가져오기
+			System.out.println("리퀘스트 번호 :" +request_no);
 			RequestDto requestDto = requestService.requestGet(request_no); //request테이블에서 reqeust_no에 해당하는 튜플가져오기
+			System.out.println("리퀘스트 DTO호출성공"+requestDto.getCno());
 			request.setAttribute("requestDto", requestDto);
+			System.out.println("리퀘스트 DTO저장성공"+request.getAttribute("cno"));
+			System.out.println("리퀘스트 DTO저장성공"+request.getAttribute("email"));
+			System.out.println("리퀘스트 DTO저장성공"+request.getAttribute("addr"));
+			System.out.println("리퀘스트 DTO저장성공"+request.getAttribute("sex"));
+			
+			
+			
 			
 			// <<해당 세부요청서 파일에서 질문 텍스트 가져오기
 			String fileName = Integer.toString(requestDto.getCno());
@@ -675,26 +693,220 @@ public class homecontroller {
 			request.setAttribute("estimateDto", estimateDto);
 			request.setAttribute("profileDto", profileDto);
 			request.setAttribute("matchingDto", matchingDto);
-			
+			session.setAttribute("matchingno", matchingno);
 			return "estimateRead";
 		}
 		
 		@RequestMapping("/chat")
-		public String chat(HttpServletRequest request, HttpSession session) {
-//			matchingService.matchingResult();
-			int matching_no = Integer.parseInt(request.getParameter("matchingno"));
-			matchingService.matchingResult(matching_no);
-			MatchingDto matchingDto = matchingService.matchingGet(matching_no);
-			int m_result = Integer.parseInt(request.getParameter("m_result"));
+		public String chat(HttpServletRequest request, HttpSession session, HttpServletResponse response)throws IOException  {
+
+//			int matching_no = Integer.parseInt(request.getParameter("matchingno"));
+//			matchingService.matchingResult(matching_no);
+//			MatchingDto matchingDto = matchingService.matchingGet(matching_no);
+//			int m_result = Integer.parseInt(request.getParameter("m_result"));
+//			
+//			if(m_result == 0) {
+//				String gosu_email = matchingDto.getGosu_email();
+//				String nomal_email = matchingDto.getNomal_email();
+//				profileService.matchingCount(gosu_email);
+//				profileService.matchingCount(nomal_email);
+//			}
 			
-			if(m_result == 0) {
-				String gosu_email = matchingDto.getGosu_email();
-				String nomal_email = matchingDto.getNomal_email();
-				profileService.matchingCount(gosu_email);
-				profileService.matchingCount(nomal_email);
+			//request.setAttribute("matchingDto", matchingDto); ///30.추가(두산)
+			if((int)session.getAttribute("granted")>1) {
+				int matching_no = Integer.parseInt(request.getParameter("matchingno"));
+				MatchingDto matchingDto = matchingService.matchingGet(matching_no);
+				request.setAttribute("participant", "gosu");
+				request.setAttribute("matchingDto", matchingDto);
+			}else {
+				int matching_no = Integer.parseInt(request.getParameter("matchingno"));
+				matchingService.matchingResult(matching_no);
+				MatchingDto matchingDto = matchingService.matchingGet(matching_no);
+				int m_result = Integer.parseInt(request.getParameter("m_result"));
+				
+				if(m_result == 0) {
+					String gosu_email = matchingDto.getGosu_email();
+					String nomal_email = matchingDto.getNomal_email();
+					profileService.matchingCount(gosu_email);
+					profileService.matchingCount(nomal_email);
+				}
+				
+				request.setAttribute("matchingDto", matchingDto); ///30.추가(두산)
+				request.setAttribute("participant", "requester"); ///28.추가(두산)
 			}
 			
-			return "result";
+			//각종 chat작업 수행을 위해서 ID 편집해서  Session에 다시 저장함
+			
+			//로그인 시 세션에 저장한 이메일 주소를 가져와서 자름 
+			String emailID = (String)session.getAttribute("email");
+			//메일주소 자르기
+			int index = emailID.indexOf("@");
+			String ID =emailID.substring(0,index);
+			
+			//메일주소를 자른 ID값을 다시 세션에 저장
+			session.setAttribute("ID", ID);
+//			log.info("ID={}",ID);
+			
+			System.out.println(emailID + ID +"email:"+(String)session.getAttribute("email"));
+			System.out.println("participant :"+ request.getAttribute("participant"));
+			return "chat";
+		}
+		
+		public int submit(String fromID, String toID, String chatContent, int matchno) {
+			ChatDto chatDto = new ChatDto();
+			chatDto.setFromID(fromID);
+			chatDto.setToID(toID);
+			chatDto.setChatContent(chatContent);
+			chatDto.setMatchNo(matchno);
+			Date d = new Date();
+			SimpleDateFormat date = new SimpleDateFormat("YYYY년 MM월 dd일 aa hh:mm");
+			String time = date.format(d);
+			chatDto.setChatTime(time);
+			chatService.chatWrite(chatDto);
+			
+			//성공하면 1
+			return 1;
+		}
+		
+		
+		@RequestMapping(value="/chatwrite")
+		@ResponseBody
+		public int chatWrite(@RequestParam(value="fromID") String fromID, 
+										@RequestParam(value="chatContent") String chatContent, 	HttpServletResponse response, 
+											HttpServletRequest request,HttpSession session) throws Exception {
+				int matchingno = (int) session.getAttribute("matchingno");
+				MatchingDto matchingDto = matchingService.matchingGet(matchingno);
+				//아이디 저장
+				//발신자 수신자 구분
+				String toID = null;
+				if(fromID.equals(matchingDto.getGosu_email())) {
+					//고수가 접속한 상태 : 일반사용자가 받는 사람(toID)
+					toID = matchingDto.getNomal_email();
+				}
+				else if(fromID.equals(matchingDto.getNomal_email())) {
+					//일반사용자 접속 상태 : 고수가 받는 사람(toID)
+					toID = matchingDto.getGosu_email();
+				}
+				else
+					log.info("{}","오류발생");
+				
+				//보낸시각 구하기
+				Date d = new Date();
+				SimpleDateFormat date = new SimpleDateFormat("YYYY년 MM월 dd일 aa hh:mm");
+				String time = date.format(d);
+				
+				//발신자메일주소 자르기
+				int index = fromID.indexOf("@");
+				String noEmailFromID =fromID.substring(0,index);
+				
+				//수신자메일주소 자르기
+				int index2 = toID.indexOf("@");
+				String noEmailToID =toID.substring(0,index2);
+				
+					 
+//				log.info("{}",fromID);
+//				log.info("{}",toID);
+				
+				//보낸사람, 받은사람, 내용, 매치넘버, 발신시각 DB저장
+				if(noEmailFromID == null || noEmailFromID.equals(" ") || noEmailToID == null || noEmailToID.equals(" ") || chatContent == null || chatContent.equals(" ")
+						|| matchingno == 0 || time == null || time.equals(" ")) {
+					return 0;
+				}else {
+					return submit(noEmailFromID, noEmailToID, chatContent, matchingno);
+				}
+		} 
+		
+		private List<ChatDto> getChat(int matchingno) {
+			return chatService.getChat(matchingno);
+		}
+		private List<ChatDto> getChatList(int matchgno, int no) {
+			return chatService.getChatList(matchgno, no);
+		}
+		
+		@RequestMapping("/getlist")
+		@ResponseBody
+		public Map<String,Object> getlist(@RequestParam(value="fromID") String fromID, @RequestParam(value="listType")String listType, 
+													HttpServletRequest request, HttpSession session) throws Exception {
+			
+			//matchingno 받아오기
+			int matchingno = (int) session.getAttribute("matchingno");
+			log.info("matchno={}",matchingno);
+			//해당하는 매치정보 가져옴
+			MatchingDto matchingDto = matchingService.matchingGet(matchingno);
+			//발신자 수신자 구분
+			String toID = null;
+			//로그인->세션저장을 통해서 페이지를 거쳐온 아이디를 ajax를 통해서 받음
+			//로그인 아이디로 매칭된 상대 아이디를 구함
+			// 고수가 fromID(발신자)라면 
+			if(fromID.equals(matchingDto.getGosu_email())) {
+				//고수가 접속한 상태 : 일반사용자가 받는 사람(toID)
+				toID = matchingDto.getNomal_email();
+			}
+			else if(fromID.equals(matchingDto.getNomal_email())) {
+				//일반사용자 접속 상태 : 고수가 받는 사람(toID)
+				toID = matchingDto.getGosu_email();
+			}
+			else
+				log.info("{}","오류발생");
+			
+			//보낸 시각 구하기
+			Date d = new Date();
+			SimpleDateFormat date = new SimpleDateFormat("YYYY년 MM월 dd일 aa hh:mm");
+			String time = date.format(d);
+			
+//			//발신자메일주소 자르기
+			int index = fromID.indexOf("@");
+			String noEmailFromID =fromID.substring(0,index);
+			log.info("fromID={}",fromID);
+			
+			//수신자메일주소 자르기
+			int index2 = toID.indexOf("@");
+			String noEmailToID =toID.substring(0,index2);
+			
+			//페이지로 보냄 : 마지막 no
+			
+			log.info("gosuID={}",noEmailFromID);
+			log.info("요청자ID={}",noEmailToID);
+			log.info("listType={}",listType);
+			log.info("matchingno={}",matchingno);
+			log.info("time={}",time);
+			
+			
+			
+			//매칭번호로 검색해서, 그 튜플에 해당하는 모든 정보를 가져오는 부분
+			List<ChatDto> cdto =  getChat(matchingno);
+			log.info("cdto.size()={}",cdto.size());
+//			log.info("cdto={}",cdto);
+			
+			//해당 매칭번호로 주고받은 튜플의 마지막 번호 구함.  마지막 번호는 나중에 마지막 메시지만 가져오기 위해서 사용함 
+			
+			Integer lastNo = cdto.get(cdto.size()-1).getNo();
+			
+			//ajax로 보낼  map에다가 마지막 번호를 저장
+			Map<String,Object> map = new HashMap<>();
+			map.put("lastNo", lastNo);
+			
+			//아무것도  null이 없다면
+			if(fromID == null || fromID.equals(" ") || toID == null || toID.equals(" ") || listType == null || listType.equals(" ")
+					|| matchingno == 0 || time == null || time.equals(" "))
+			{
+				return null;
+			}
+			//클라이언트가 ten을 입력하면 그 매칭에 해당하는 자료를 모두 저장하여 보내준다. 
+			//위에서 이미 만들어서 모든 정보 저장해둔 cdto를 그대로 전송한다.
+			else if(listType.equals("ten")) {
+				map.put("getchat", cdto);
+				return map;
+			}
+			else {
+				//클라이언트에게 마지막 메시지만 골라서 가져다주는 부분
+//				log.info("matchingno={}",matchingno);
+				int number = Integer.parseInt(listType);
+				List<ChatDto> cdto2 = getChatList(matchingno, number);
+				log.info("lastNofinal={}",lastNo);
+				map.put("getchat", cdto2);
+				return map;
+			}
 		}
 		
 		///15.추가(두산)
@@ -722,4 +934,56 @@ public class homecontroller {
 		public String review() {
 			return "review";
 		}
+		///22.수정(두산)
+				@RequestMapping("/reviewInsert")
+				public String reviewWrite() {
+					return "home";
+		}
+				
+				///32.추가(두산)
+				@RequestMapping("/chatEnd")
+				public String chatEnd(HttpServletRequest request, HttpSession session) {
+					int matching_no = Integer.parseInt(request.getParameter("matchingno"));
+					System.out.println(matching_no);
+					String participant = (String) request.getParameter("participant"); //채팅 종료 버튼을 누른 사람을 구별(요청자/고수)
+					System.out.println(participant);
+					if(participant.equals("requester")) {
+						matchingService.nomal_emailUpdate(matching_no); ///33.추가(두산)
+						
+						MatchingDto matchingDto = matchingService.matchingGet(matching_no);
+						int estimate_no = matchingDto.getEstimate_no();
+						int request_no = matchingDto.getRequest_no();
+						
+						UsersDto nomalUsersDto = usersService.serch(matchingDto.getNomal_email());
+						UsersDto gosuUsersDto = usersService.serch(matchingDto.getGosu_email());
+						String nomalNickName = nomalUsersDto.getNickname(); //review페이지로 전달할 데이터
+						int gosuPno = gosuUsersDto.getPno(); //review페이지로 전달할 데이터
+						
+						int gosu_end = matchingDto.getGosu_end();
+						int nomal_end = matchingDto.getNomal_end();
+						if(gosu_end == 1 && nomal_end == 1) {
+							estimateService.estimateDelete(estimate_no); //견적서 삭제
+							requestService.requestDelete(request_no); //요청서 삭제
+							matchingService.matchingDelete(matching_no); //매칭 삭제
+						}
+						
+						request.setAttribute("nickname", nomalNickName);
+						request.setAttribute("pno", gosuPno);
+						
+						return "review";
+					} else if(participant.equals("gosu")) {
+						matchingService.gosu_emailUpdate(matching_no); ///34.추가(두산)
+					}
+					return "home";
+				}
+				///32.추가(두산)
+				//36.추가(두산)
+				@RequestMapping("/matchingGet")
+				@ResponseBody
+				public MatchingDto matchingGet(@RequestParam(value="no") int no){
+					return matchingService.matchingGet(no);
+				}
+				///36.추가(두산)
+		
+		
 }

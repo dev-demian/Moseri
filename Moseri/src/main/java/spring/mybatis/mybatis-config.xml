@@ -26,6 +26,7 @@
 		<typeAlias type="spring.bean.MatchingDto" alias="matchingDto"/>
 		<typeAlias type="spring.bean.RequestDto" alias="requestDto"/>
 		<typeAlias type="spring.bean.UsersDto" alias="usersDto"/>
+		<typeAlias type="spring.bean.ChatDto" alias="chatDto"/>
 	</typeAliases> 
 
 </configuration>

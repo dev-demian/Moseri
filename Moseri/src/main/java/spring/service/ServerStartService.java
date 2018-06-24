@@ -19,7 +19,7 @@ public class ServerStartService {
 	@Autowired
 	EstimateService estimateService;
 	
-	@Scheduled(fixedDelay=9000L)
+	@Scheduled(fixedDelay=1000L*60*60) ///25.수정(두산)
 	public void work() {
 		System.out.println("스케쥴러 실행");
 		
@@ -28,7 +28,7 @@ public class ServerStartService {
 		String nowTime = dayTime.format(new Date(time));
 		int nowHour = Integer.parseInt(nowTime); //현재 시간
 		
-		if(nowHour == 21) {
+		if(nowHour == 0) { ///26.수정(두산)
 			long time2 = System.currentTimeMillis();
 			SimpleDateFormat dayTime2 = new SimpleDateFormat("yyyyMMdd");
 			String nowTime2 = dayTime2.format(new Date(time2));
@@ -49,11 +49,10 @@ public class ServerStartService {
 					matchingService.matchingDelete(matching_no); //해당 matching테이블 삭제
 					
 					deleteCount++;
-					System.out.println(deleteCount+"개의 matching관련 삭제");
 				}
 				
-				
 			}
+			System.out.println(deleteCount+"개의 matching관련 삭제"); ///27.수정(두산)
 			
 		}
 		

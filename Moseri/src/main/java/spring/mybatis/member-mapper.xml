@@ -24,7 +24,7 @@
 	
 	<select id="login" resultType="MemberDto">
 	
-		select email,pwd,salt,loop,granted from users where email=#{email}
+		select email,pwd,salt,loop,granted,addr from users where email=#{email}
 	
 	</select>
 	

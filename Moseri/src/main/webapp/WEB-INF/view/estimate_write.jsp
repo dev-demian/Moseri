@@ -58,7 +58,8 @@
 									<c:if test="${estimateDto eq 'null'}"><input type="submit" value="견적서 보내기"></c:if>
 									<!-- 14.추가(두산) -->
 									<c:set var="m" value="${matchingDto.m_result}"/>
-									<c:if test="${m eq 1}"><input type="button" onclick="location.href='chat2'" value="채팅내용보기"></c:if>
+									<c:set var="gosu_end" value="${matchingDto.gosu_end}"/>
+									<c:if test="${gosu_end eq 0}"><c:if test="${m eq 1}"><input type="button" onclick="location.href='chat?matchingno=${matchingDto.no}&m_result=${matchingDto.m_result}'" value="채팅내용보기"></c:if></c:if>    
 									<!-- 14.추가(두산) -->
 								</div>
 							</div>
