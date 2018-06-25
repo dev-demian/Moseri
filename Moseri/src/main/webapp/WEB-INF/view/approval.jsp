@@ -6,6 +6,7 @@
 <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
 
 <jsp:include page="/WEB-INF/view/template/mypageHeader.jsp"></jsp:include>
+<script src="${pageContext.request.contextPath}/res/js/register.js"></script>        
         <!-- <div class="container-fluid">
             <div class="row text-center menu">
             	
@@ -22,12 +23,12 @@
                     <div class="col-sm-10">
                         <div id="req">
                   			<h3>고수 요청</h3>
-                  			<form name ="fr" class="form-horizontal" method="post" action="approval" enctype="multipart/form-data"  onsubmit="return check()">
+                  			<form name ="fr" class="form-horizontal commonForm" method="post" action="approval" enctype="multipart/form-data"  onsubmit="return check()">
                   			
 <%--                   			<input type = "hidden" id ="gosu_email" name ="email"value= "${sessionScpoe.email}" >
  --%>        					<!-- input type="file" 이라고 꼭 저어줘야 함 -->
-        					<input type="file" id="uploadFile" name="uploadFile" accept=".jpg,.jpeg,.png,.gif,.bmp" style="border:0px solid black;"/>
-        					<input type="text" id ="uploadtext" name="text" maxlength="500" style="width:800px; height:100px;">
+        					<input type="file" id="uploadFile" name="uploadFile" accept=".jpg,.jpeg,.png,.gif,.bmp" style="border:0px solid black;" title="파일을 넣어주세요"/>
+        					<input type="text" id ="uploadtext" name="text" maxlength="500" style="width:800px; height:100px;" title="설명글을 입력해주세요">
         					<button id="btn" type="submit" class="btn btn-default">요청</button>
         					
     						</form>
