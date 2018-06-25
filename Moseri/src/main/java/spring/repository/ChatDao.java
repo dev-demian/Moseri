@@ -8,6 +8,6 @@ public interface ChatDao {
 	void chatWrite(ChatDto chatDto);
 	List<ChatDto> getChat(int matchno);
 	List<ChatDto> getChatList(int matchno, int no);
-	
+	public void chatDelete(int matching_no);
 
 }

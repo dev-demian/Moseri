@@ -8,9 +8,9 @@ public class ProfileDto {
 	private String email;
 	private String nickname;
 	private int star;
-	private String proImg;
+	private String pro_img;
 	private String self;
 	private String resume;
 	private String img;
-	private int mcnt;
+	private int m_cnt;
 }

@@ -36,11 +36,11 @@
 								<div class="profile">
 								email - ${profile.nickname}<br>
 								star - ${profile.star}<br>
-								pro_img - ${profile.proImg}<br>
+								pro_img - ${profile.pro_img}<br>
 								self - ${profile.self}<br>
 								resume - ${profile.resume}<br>
 								img - ${profile.img}<br>
-								m_cnt - ${profile.mcnt}
+								m_cnt - ${profile.m_cnt}
 								</div>
 								<h4>견적서 작성</h4>
 								<div class="right-box">

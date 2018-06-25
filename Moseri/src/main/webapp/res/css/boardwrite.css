@@ -1,0 +1,56 @@
+        div {
+            /*    border: 1px dotted #000;*/
+        }
+
+        .empty-row {
+            margin-top: 15%;
+
+        }
+
+        .context-row {
+
+            width: 100%;
+            padding: 6px;
+            border: 1px solid;
+
+        }
+
+        /*
+        .body {
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+*/
+
+			.smempty-row{
+				height: 10px;
+			}
+			.smempty-bot{
+				margin-bottom: 4px;
+			}
+			
+        .write {
+            margin-top: 10px;
+
+            border: 1px solid;
+            height: 450;
+        }
+
+        .title {
+            padding: 7px;
+            /*  border: 1px solid;*/
+            width: 100%;
+        }
+
+        #write .inner {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid lightgray;
+        }
+
+        .margin>div {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }

@@ -154,24 +154,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h1> 추후 추가 예정 </h1></div>
-                    <!---->
+              <div class="row">
+              	<div class="introimg">
+                	<div class="col-sm-12" >
+                   		<img src ="${pageContext.request.contextPath}/res/img/home_img1.png" style="max-width: 100%; height: auto;">
+                    </div>
+                </div> 
+                <div class="intorimg"> 
+                    <div class="col-sm-12"> 
+                    <img src ="${pageContext.request.contextPath}/res/img/home_img2.png" style="max-width: 100%; height: auto;">
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">. </div>
-                    <!---->
+                    <div class="col-sm-12"> 
+                    
+                		<div class="signupnow">
+                		<h4>고수로 가입하면 무료로 고객들의 요청서를 받아볼 수 있습니다</h4> 
+                		<a href="/register_gosu"><button class="btn btn-primary btn-lg">고수로 가입하기</button></a>
+                		</div>
+                    </div>
+                    
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">. </div>
-                    <!---->
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">. </div>
-                    <!---->
-                </div>
+            	
+            
             </div>
-      
+                    
+       </div>
       
       <jsp:include page="/WEB-INF/view/template/footer.jsp"></jsp:include>

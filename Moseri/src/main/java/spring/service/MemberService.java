@@ -16,7 +16,7 @@ public interface MemberService {
 	boolean login(HttpServletRequest request, HttpServletResponse response,MemberDto memberDto)throws Exception;
 	
 	int emailcheck(String userid);
-	
+	int nickcheck(String usernick);
 	//소분류의 번호를 가져온다
 	int getBno(int no);
 

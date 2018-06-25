@@ -39,4 +39,8 @@ public class ChatDaoImpl implements ChatDao{
 //		map.put("no", no);
 //		return sqlSession.selectList("getChatListByRecent",map);
 //	}
+	@Override
+	public void chatDelete(int matching_no) {
+		sqlSession.delete("chatDelete", matching_no);
+	}
 }

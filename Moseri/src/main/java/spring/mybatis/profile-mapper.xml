@@ -34,11 +34,21 @@
 		update profile set self=#{self},resume=#{resume} where email=#{email}
 	</update>
 	<update id="update_profile_pro" parameterType="profileDto">
-		update profile set self=#{self},resume=#{resume},pro_img=#{proImg} where email=#{email}
+		update profile set self=#{self},resume=#{resume},pro_img=#{proimg} where email=#{email}
 	</update>
 	<update id="update_profile_img" parameterType="profileDto">
 		update profile set self=#{self},resume=#{resume},img=#{img} where email=#{email}
 	</update>
+	
+	
+	<!-- 			/////////////////////////////////20180625추가///////////////////////////////////// -->
+	<select id="getMyProfile" resultType="profileDto" parameterType="String">
+		select * from profile where email = #{email}
+	</select>
+	<select id="getNickname" resultType="String" parameterType="Integer">
+		select nickname from profile where no = #{pro_no}
+	</select>
+	
 	
 </mapper>
 

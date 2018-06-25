@@ -22,6 +22,17 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/chat.css">
 		<title>chat</title>
+		<!-- js -->
+		<script
+			src="${pageContext.request.contextPath}/res/js/jquery-1.12.1.min.js"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript"
+			src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e52ea54ccfc578d2022fba92956f687e&libraries=services"></script>
+		<script src="${pageContext.request.contextPath}/res/js/search2.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript">
 		   $(document).ready(function() {
@@ -225,10 +236,10 @@
 	                            </div>
 	                        </div>
 							<div>
-	                        	<c:set var="participant" value="${participant}"/>
-	        					<c:if test="${participant eq 'requester'}"><input id="requester" style="font-size: 30px" type="button" onclick="location.href='chatEnd?participant=requester&matchingno=${matchingDto.no}'" value="요청자 채팅 종료"></c:if>
-	        					<c:if test="${participant eq 'gosu'}"><input style="font-size: 30px" type="button" onclick="location.href='chatEnd?participant=gosu&matchingno=${matchingDto.no}'" value="고수 채팅 종료"></c:if>
-	                        
+		                        <c:set var="participant" value="${participant}"/>
+		                        <c:if test="${participant eq 'requester'}"><input id="requester" style="font-size: 30px" type="button" onclick="location.href='chatEnd?participant=requester&matchingno=${matchingDto.no}'" value="요청자 채팅 종료"></c:if>
+		        				<c:if test="${participant eq 'gosu'}"><input style="font-size: 30px" type="button" onclick="location.href='chatEnd?participant=gosu&matchingno=${matchingDto.no}'" value="고수 채팅 종료"></c:if> 
+		        				<input style="font-size: 30px" type="button" onclick="location.href='home'" value="홈으로">
 	                        </div>
 
                    </div>

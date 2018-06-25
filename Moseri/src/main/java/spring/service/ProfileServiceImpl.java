@@ -109,7 +109,7 @@ public class ProfileServiceImpl implements ProfileService {
 		         String ftype = file.getContentType();
 		         File target = new File(dir, rname+"."+ftype.substring(6));
 		         rname+="."+ftype.substring(6);
-		         profileDto.setProImg(rname);
+		         profileDto.setPro_img(rname);
 		         
 		         if(ftype.contains("image")) {
 		        	 file.transferTo(target);
@@ -156,4 +156,15 @@ public class ProfileServiceImpl implements ProfileService {
 		profileDao.update_profile(profileDto);
 		
 	}
+	
+	/////////////////////////////////20180625추가/////////////////////////////////////
+	@Override
+	public List<ProfileDto> getMyProfile(String email) {
+	return profileDao.getMyProfile(email);
+	}
+	@Override
+	public String getNickname(int pro_no) {
+	return profileDao.getNickname(pro_no);
+	}
+	
 }

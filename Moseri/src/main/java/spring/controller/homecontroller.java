@@ -24,7 +24,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,10 +38,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import spring.bean.MemberDto;
 import spring.bean.ProfileDto;
 import spring.bean.RequestDto;
+import spring.bean.ReviewDto;
 import spring.bean.UsersDto;
 import spring.service.MemberService;
 import spring.service.ProfileService;
 import spring.service.RequestService;
+import spring.service.ReviewService;
 import spring.service.UsersService;
 import spring.bean.CategoryBotDto;
 import spring.bean.CategoryMidDto;
@@ -76,6 +80,8 @@ public class homecontroller {
 	EstimateService estimateService;
 	@Autowired
 	ChatService chatService;
+	@Autowired
+	ReviewService reviewService;
 
 	// home
 	@RequestMapping("/home")
@@ -126,7 +132,7 @@ public class homecontroller {
 		}
 		
 		
-		// 회원가입 체크(post)
+		// 회원가입 id 체크(post)
 		@RequestMapping("/register_check")
 		 @ResponseBody
 		public Map<Object, Object> register_check(@RequestBody String useremail) {
@@ -138,7 +144,17 @@ public class homecontroller {
 			return map;
 		}
 		
-	
+		// 회원가입 닉네임 체크(post)
+				@RequestMapping("/register_ncikcheck")
+				 @ResponseBody
+				public Map<Object, Object> register_ncikcheck(@RequestBody String usernick) {
+					 int count = 0;
+				        Map<Object, Object> map = new HashMap<Object, Object>();
+				        count = memberservice.nickcheck(usernick);
+				        map.put("cnt", count);
+					
+					return map;
+				}
 	
 	
 	// 로그인(get)
@@ -237,7 +253,11 @@ public class homecontroller {
 	//마이페이지 - 프로필
 
 	@RequestMapping("/myprofile")
-	public String profile() {
+	public String profile(HttpServletRequest request,HttpSession session) {
+		/////////////////////////////////20180625추가/////////////////////////////////////
+		String email = (String) session.getAttribute("email");
+		request.setAttribute("getMyReview", reviewService.getMyReview(email));
+		request.setAttribute("getMyProfile", profileService.getMyProfile(email));
 		return "myprofile";
 	}
 
@@ -272,7 +292,7 @@ public class homecontroller {
 		
 		//경로 설정
 		File dir = new File(request.getSession().getServletContext().getRealPath("/res/approval"));
-//		System.out.println(dir.getAbsolutePath());
+		System.out.println(dir.getAbsolutePath());
 		List<MultipartFile> list = mRequest.getFiles("uploadFile");
 		
 		String rname = null;
@@ -338,6 +358,8 @@ public class homecontroller {
 					request.setAttribute("getBno", cbno);
 					/////////////////////////////////소분류 이름를 가져온다/////////////////////////////////////
 					request.setAttribute("getBotName", categoryService.getBotName(no));
+					//
+					request.setAttribute("getReview", reviewService.getReview(no));
 					return "profile";
 				}
 	
@@ -521,8 +543,9 @@ public class homecontroller {
 				System.out.println(requestDto.getCno()==user.getC_bno()&&requestDto.getSex().equals(user.getSex())&&nomal_addr.equals(gosu_addr));
 				
 				if(requestDto.getCno()==user.getC_bno()&&
-				   requestDto.getSex().equals(user.getSex())&&
-				   nomal_addr.equals(gosu_addr)) {
+						   requestDto.getSex().equals(user.getSex())||requestDto.getSex().equals("무관")&& ///37.수정(두산)
+						   nomal_addr.equals(gosu_addr)&&
+						   !email.equals(user.getEmail())) { ///38,추가(두산)
 					
 					MatchingDto matchingDto = new MatchingDto();
 					matchingDto.setRequest_no(request_no); 
@@ -700,30 +723,19 @@ public class homecontroller {
 		@RequestMapping("/chat")
 		public String chat(HttpServletRequest request, HttpSession session, HttpServletResponse response)throws IOException  {
 
-//			int matching_no = Integer.parseInt(request.getParameter("matchingno"));
-//			matchingService.matchingResult(matching_no);
-//			MatchingDto matchingDto = matchingService.matchingGet(matching_no);
-//			int m_result = Integer.parseInt(request.getParameter("m_result"));
-//			
-//			if(m_result == 0) {
-//				String gosu_email = matchingDto.getGosu_email();
-//				String nomal_email = matchingDto.getNomal_email();
-//				profileService.matchingCount(gosu_email);
-//				profileService.matchingCount(nomal_email);
-//			}
+
+			///39.수정(두산)
+			int matching_no = Integer.parseInt(request.getParameter("matchingno"));
+			MatchingDto matchingDto = matchingService.matchingGet(matching_no);
+			String myEmail = (String) session.getAttribute("email");
+			String gosuEmail = matchingDto.getGosu_email();
 			
-			//request.setAttribute("matchingDto", matchingDto); ///30.추가(두산)
-			if((int)session.getAttribute("granted")>1) {
-				int matching_no = Integer.parseInt(request.getParameter("matchingno"));
-				MatchingDto matchingDto = matchingService.matchingGet(matching_no);
+			if(myEmail.equals(gosuEmail)) { //고수로 채팅창에 접근할 때
 				request.setAttribute("participant", "gosu");
 				request.setAttribute("matchingDto", matchingDto);
-			}else {
-				int matching_no = Integer.parseInt(request.getParameter("matchingno"));
+			}else { //요청자로 채팅창에 접근할 때
 				matchingService.matchingResult(matching_no);
-				MatchingDto matchingDto = matchingService.matchingGet(matching_no);
 				int m_result = Integer.parseInt(request.getParameter("m_result"));
-				
 				if(m_result == 0) {
 					String gosu_email = matchingDto.getGosu_email();
 					String nomal_email = matchingDto.getNomal_email();
@@ -734,6 +746,7 @@ public class homecontroller {
 				request.setAttribute("matchingDto", matchingDto); ///30.추가(두산)
 				request.setAttribute("participant", "requester"); ///28.추가(두산)
 			}
+			///39.수정(두산)
 			
 			//각종 chat작업 수행을 위해서 ID 편집해서  Session에 다시 저장함
 			
@@ -747,8 +760,8 @@ public class homecontroller {
 			session.setAttribute("ID", ID);
 //			log.info("ID={}",ID);
 			
-			System.out.println(emailID + ID +"email:"+(String)session.getAttribute("email"));
-			System.out.println("participant :"+ request.getAttribute("participant"));
+//			System.out.println(emailID + ID +"email:"+(String)session.getAttribute("email"));
+//			System.out.println("participant :"+ request.getAttribute("participant"));
 			return "chat";
 		}
 		
@@ -909,12 +922,12 @@ public class homecontroller {
 			}
 		}
 		
-		///15.추가(두산)
-				@RequestMapping("/chat2")
-				public String chat2(HttpServletRequest request, HttpSession session) {
-					return "result";
-				}
-		///15.추가(두산)
+//		///15.추가(두산)
+//				@RequestMapping("/chat2")
+//				public String chat2(HttpServletRequest request, HttpSession session) {
+//					return "result";
+//				}
+//		///15.추가(두산)
 		
 		//////////////////////////////////////////////////////////////////////
 		
@@ -926,27 +939,42 @@ public class homecontroller {
 			profileService.update_profile(mRequest,  response, session, model, profileDto);
 			
 			
-			return "myprofile";
+			return "redirect:myprofile";
 		}
 		
 		////////////////////////////////리뷰/////////////////////////////////////////
-		@RequestMapping("/review")
-		public String review() {
+		////////////////////////////////리뷰/////////////////////////////////////////
+		/*@GetMapping("/review")
+		public String review(HttpServletRequest request) {
+			/////////////////////////////////20180625추가/////////////////////////////////////
+			int pro_no = 3;
+			request.setAttribute("getNickname", profileService.getNickname(pro_no));
 			return "review";
+		}*/
+		/////////////////////////////////20180625추가/////////////////////////////////////
+		@RequestMapping("/review")
+		public String review(HttpServletRequest request, HttpSession session,@ModelAttribute ReviewDto reviewDto) {
+			String nick = (String)request.getParameter("nickname");
+			System.out.println("리뷰로 넘어왔고 본인 닉네임 찍어놓기: "+nick);
+			int pro_no = Integer.parseInt(request.getParameter("pno"));
+			System.out.println("고수의 프로필 넘버: "+pro_no);
+			reviewService.insert(nick,pro_no,reviewDto);
+			return "redirect:/home";
 		}
-		///22.수정(두산)
-				@RequestMapping("/reviewInsert")
-				public String reviewWrite() {
-					return "home";
+		
+		
+		@RequestMapping("/reviewInsert")//안쓸예정
+			public String reviewWrite() {
+				return "home";
 		}
 				
 				///32.추가(두산)
 				@RequestMapping("/chatEnd")
 				public String chatEnd(HttpServletRequest request, HttpSession session) {
 					int matching_no = Integer.parseInt(request.getParameter("matchingno"));
-					System.out.println(matching_no);
+//					System.out.println(matching_no);
 					String participant = (String) request.getParameter("participant"); //채팅 종료 버튼을 누른 사람을 구별(요청자/고수)
-					System.out.println(participant);
+//					System.out.println(participant);
 					if(participant.equals("requester")) {
 						matchingService.nomal_emailUpdate(matching_no); ///33.추가(두산)
 						
@@ -959,9 +987,11 @@ public class homecontroller {
 						String nomalNickName = nomalUsersDto.getNickname(); //review페이지로 전달할 데이터
 						int gosuPno = gosuUsersDto.getPno(); //review페이지로 전달할 데이터
 						
+						
 						int gosu_end = matchingDto.getGosu_end();
 						int nomal_end = matchingDto.getNomal_end();
 						if(gosu_end == 1 && nomal_end == 1) {
+							chatService.chatDelete(matching_no); //해당 매칭에 해당하는 모든 튜플 삭제
 							estimateService.estimateDelete(estimate_no); //견적서 삭제
 							requestService.requestDelete(request_no); //요청서 삭제
 							matchingService.matchingDelete(matching_no); //매칭 삭제
@@ -969,8 +999,12 @@ public class homecontroller {
 						
 						request.setAttribute("nickname", nomalNickName);
 						request.setAttribute("pno", gosuPno);
+						//System.out.println(request.getAttribute("pno"));
+						request.setAttribute("getNickname", profileService.getNickname(gosuPno));
+						System.out.println(request.getAttribute("getNickname"));
 						
 						return "review";
+						
 					} else if(participant.equals("gosu")) {
 						matchingService.gosu_emailUpdate(matching_no); ///34.추가(두산)
 					}

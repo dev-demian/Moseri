@@ -3,7 +3,6 @@
 <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/template/mypageHeader.jsp"></jsp:include>        
         <div class="container-fluid">
-            
             <div class="row text-center mypage-bg">
                 <div class="inner">
                     <div class="col-sm-1"></div>
@@ -24,6 +23,7 @@
                     </div>
                     <div class="col-sm-1"></div>
                 </div>
+                
             </div>
         </div>
 <jsp:include page="/WEB-INF/view/template/footer.jsp"></jsp:include>

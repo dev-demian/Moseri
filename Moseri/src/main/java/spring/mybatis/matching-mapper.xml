@@ -30,6 +30,14 @@
 		update matching set estimate_no=#{estimate_no} where no=#{matching_no}
 	</update>
 	
+	<update id="nomal_emailUpdate" parameterType="int">
+		update matching set nomal_end=1 where no=#{matching_no}
+	</update>
+	
+	<update id="gosu_emailUpdate" parameterType="int">
+		update matching set gosu_end=1 where no=#{matching_no}
+	</update>
+	
 	<select id="matchingRequestList" resultType="matchingDto" parameterType="String">
 		select * from matching where gosu_email=#{email}
 	</select>

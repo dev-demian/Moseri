@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.ReplyDao">
+
+		<insert id="replyinsert">
+		insert into reply (rno,bno,replytext,replyer) values
+		( reply_seq.nextval, #{bno}, #{replytext}, 'jun' )
+		</insert>
+
+	<select id="replylist" resultType="replyDto">
+		 select rno ,bno , replyer,regdate,updatedate,replytext from reply where bno=#{bno} order by rno
+		</select>  
+
+</mapper>

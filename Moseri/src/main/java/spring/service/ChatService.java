@@ -9,4 +9,5 @@ public interface ChatService {
 	List<ChatDto> getChat(int matchno);
 	List<ChatDto> getChatList(int matchno, int no);
 //	List<ChatDto> getChatListByRecent(String fromID, String toID, int no);
+	public void chatDelete(int matching_no);
 }

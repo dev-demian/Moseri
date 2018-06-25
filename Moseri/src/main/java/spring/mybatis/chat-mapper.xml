@@ -29,6 +29,9 @@
 		and no > (select max(no) - #{no} from chat) order by chatTime
 	</select> -->
 	
+	<delete id="chatDelete" parameterType="int">
+		delete chat where matchno=#{matching_no}
+	</delete>
 
 </mapper>
 

@@ -29,4 +29,8 @@ public class ChatServiceImpl implements ChatService {
 //	public List<ChatDto> getChatListByRecent(String fromID, String toID, int no) {
 //		return chatDao.getChatListByRecent(fromID, toID, no);
 //	}
+	@Override
+	public void chatDelete(int matching_no) {
+		chatDao.chatDelete(matching_no);
+	}
 }

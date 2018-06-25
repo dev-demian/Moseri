@@ -85,7 +85,7 @@ div {
 							</div> -->
 							<div class="col-sm-10">
 								<input type="text" name="addr" id="info-address" class="address"
-									placeholder="기본주소(주소검색을 클릭하세요.)">
+									placeholder="기본주소(주소검색을 클릭하세요.)" readonly>
 							</div>
 							<div class="col-sm-2">
 								<input type="button" onclick="info_execDaumPostcode()"

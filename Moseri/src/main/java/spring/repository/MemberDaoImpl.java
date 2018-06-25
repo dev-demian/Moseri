@@ -45,6 +45,11 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getBno", no);
 	}
+	@Override
+	public MemberDto getn(String nickname) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getn",nickname);
+	}
 	
 	
 	

@@ -24,11 +24,15 @@
     <div id="review" class="container-fluid">
     	<div class="row text-center" style="margin-bottom:80px;"><a href="home"><img src="${pageContext.request.contextPath}/res/img/Icon.png" alt="logo"></a></div>
         <div class="row">
-            <form action="">
+            <form action="review" method="post">
+            	<input type="hidden" name="nickname" value="${nickname}">
+            	<input type="hidden" name="pno" value="${pno}">
+            	
                 <div class="inner">
                     <div class="col-sm-12 text-center">
                         <h2>Review</h2>
-                        <p><span>???</span>님과 매칭이 완료되었습니다. 댓글을 달아주세요.</p>
+                       	<!-- 		/////////////////////////////////20180625추가///////////////////////////////////// -->
+                        <p><span>${getNickname}</span>님과 매칭이 완료되었습니다. 댓글을 달아주세요.</p>
                         <div class="row text-left">
                             <div class="col-sm-3">별점주기 : </div>
                             <div class="col-sm-6">

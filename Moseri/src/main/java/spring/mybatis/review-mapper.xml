@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.repository.ReviewDao">
+	<!-- 	/////////////////////////////////20180625추가///////////////////////////////////// -->
+	<insert id="insert" parameterType="reviewDto">
+		insert into review values(review_seq.nextval,#{nick},#{star},#{pro_no},sysdate,#{text})
+	</insert>
+	<select id="getReview" resultType="reviewDto" parameterType="Integer">
+		select * from review where pro_no = #{no} order by reg desc
+	</select>
+	<select id="getMyReview" resultType="reviewDto" parameterType="String">
+		select r.no,r.nick,r.star,r.pro_no,r.reg,r.text from profile p,review r where p.no = r.pro_no and p.email = #{email} order by reg desc
+	</select>
+</mapper>
+
