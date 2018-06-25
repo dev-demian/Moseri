@@ -24,4 +24,8 @@ public interface ProfileDao {
 	void update_profile(ProfileDto profileDto);
 	void update_profile_pro(ProfileDto profileDto);
 	void update_profile_img(ProfileDto profileDto);
+	
+	/////////////////////////////////20180625추가/////////////////////////////////////
+	List<ProfileDto> getMyProfile(String email);
+	String getNickname(int pro_no);
 }

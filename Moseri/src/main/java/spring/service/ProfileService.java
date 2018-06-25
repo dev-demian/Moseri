@@ -26,4 +26,9 @@ public interface ProfileService {
 	
 	
 	public void update_profile(MultipartHttpServletRequest mRequest , HttpServletResponse response,HttpSession session,Model model, ProfileDto profileDto)throws IllegalStateException, IOException;
+	
+	/////////////////////////////////20180625추가/////////////////////////////////////
+	List<ProfileDto> getMyProfile(String email);
+	String getNickname(int pro_no);
+
 }

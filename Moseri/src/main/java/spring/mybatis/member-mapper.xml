@@ -24,7 +24,7 @@
 	
 	<select id="login" resultType="MemberDto">
 	
-		select email,pwd,salt,loop,granted from users where email=#{email}
+		select email,pwd,salt,loop,granted,addr from users where email=#{email}
 	
 	</select>
 	
@@ -32,7 +32,10 @@
 
 		select * from users where email=#{email}
 	</select>
-	
+	<select id="getn" resultType="MemberDto">
+
+		select * from users where nickname=#{nickname}
+	</select>
 	<!-- 			/////////////////////////////////소분류 번호를 가져온다///////////////////////////////////// -->
 	<select id="getBno" resultType="Integer" parameterType="Integer">
 		select c_bno from users where pno = #{no}

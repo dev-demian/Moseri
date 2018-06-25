@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <footer class="footer" style="background-color: #F2F2F2;">
-                <div class="container">
+ <footer class="footer" style="background-color: #F2F2F2; margin-top: 10px; padding-top: 20px; padding-bottom: 30px;">
+                 <div class="container-fluid">
+                 <div class="container">
                     <div class="row">
                         <div class="row">
                             <div class="col-sm-5 col-md-5 about">
@@ -14,17 +15,17 @@
                                         <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_blog1.png" class="social-ico">
                                     </a>
                                     <span class="wrc1 wrc_icon wrc_injected"></span>
-                                    <a href="http://post.soomgo.com" target="_blank" wrc_done="true">
+                                    <a href="https://post.naver.com" target="_blank" wrc_done="true">
                                         <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_post.png" class="social-ico">
                                     </a>
                                     <span class="wrc1 wrc_icon wrc_injected"></span>
-                                    <a href="http://news.soomgo.com" target="_blank" wrc_done="true">
+                                    <a href="https://www.tistory.com/" target="_blank" wrc_done="true">
                                         <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/ico_footer_tistory.png" class="social-ico">
                                     </a>
                                     <span class="wrc1 wrc_icon wrc_injected"></span>
                                 </div>
                                 <p>(개발1팀)모서리컴퍼니</p>
-                                <p>사업자등록번호: 000-00-00000 홈페이지 UI관리자: 곽재훈, 장준혁</p>
+                                <p>사업자등록번호: 000-00-00000 </p>
                                 <p>서울시 구로구 구일로 8길 79, 영화아파트 1303호</p>
 
                                 <p><a href="/terms/privacy">개인정보 처리방침</a> · <a href="/terms/usage">이용약관</a> · <a href="/terms/membership">멤버십 약관</a> · 고객센터: 0000-0000</p>
@@ -85,13 +86,13 @@
                                 </div>
                             </div>
                             <div class="col-sm-3 col-md-2 footer-list-help">
-                                <h4 class="app-download">도움이 필요하신가요?</h4>
+                                <h4 class="app-download">궁금하신게 있으신가요?</h4>
                                 <ul class="menu">
                                     <li>
-                                        <a href="https://soomgohelp.zendesk.com/hc/ko" target="_blank" wrc_done="true">
+                                        <a href="boardhome" target="_blank" wrc_done="true">
                                             <button class="btn footer-list-help-btn">
                                                 <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_help_ico.png">
-                                                <span>도움요청하기</span>
+                                                <span>질문 게시판</span>
                                             </button>
                                         </a>
                                         <span class="wrc0 wrc_icon wrc_injected"></span>
@@ -100,7 +101,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+               </div>
+               </div>
+               
             </footer>
         </body>
 </html>

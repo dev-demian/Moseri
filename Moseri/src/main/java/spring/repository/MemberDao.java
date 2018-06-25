@@ -15,6 +15,7 @@ public interface MemberDao {
 	MemberDto login(String email);
 
 	MemberDto get(String email);
+	MemberDto getn(String nickname);
 	//소분류 번호를 가져온다
 	int getBno(int no);
 

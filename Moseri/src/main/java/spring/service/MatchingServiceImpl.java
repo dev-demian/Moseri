@@ -51,5 +51,14 @@ public class MatchingServiceImpl implements MatchingService {
 	public void matchingDelete(int matching_no) {
 		matchingDao.matchingDelete(matching_no);
 	}
+	@Override
+	public void nomal_emailUpdate(int matching_no) {
+		matchingDao.nomal_emailUpdate(matching_no);
+	}
+
+	@Override
+	public void gosu_emailUpdate(int matching_no) {
+		matchingDao.gosu_emailUpdate(matching_no);
+	}
 
 }

@@ -6,7 +6,7 @@
         <div class="container-fluid">
         
         
-            <jsp:include page="/WEB-INF/view/template/mypageHeader.jsp"></jsp:include>
+           
             <div class="row text-center mypage-bg">
             <div class="inner">
                 <div class="col-sm-2"></div>

@@ -59,4 +59,14 @@ public class ProfileDaoImpl implements ProfileDao {
 		sqlSession.update("update_profile_img", profileDto);
 	}
 	
+	/////////////////////////////////20180625추가/////////////////////////////////////
+	@Override
+	public List<ProfileDto> getMyProfile(String email) {
+		return sqlSession.selectList("getMyProfile", email);
+	}
+	@Override
+	public String getNickname(int pro_no) {
+		return sqlSession.selectOne("getNickname", pro_no);
+	}
+	
 }

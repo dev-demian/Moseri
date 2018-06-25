@@ -58,4 +58,13 @@ public class MatchingDaoImpl implements MatchingDao {
 		sqlSession.delete("matchingDelete", matching_no);
 	}
 
+	@Override
+	public void nomal_emailUpdate(int matching_no) {
+		sqlSession.update("nomal_emailUpdate", matching_no);
+	}
+
+	@Override
+	public void gosu_emailUpdate(int matching_no) {
+		sqlSession.update("gosu_emailUpdate", matching_no);
+	}
 }

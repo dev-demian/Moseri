@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+    // 세션값 가져오기
+    out.println(session.getAttribute("email"));
+    out.println(session.getAttribute("granted"));
+    out.println(session.getAttribute("login"));
+ 	// 세션 전체 무효화(로그아웃시 주로 사용)
+    //session.invalidate();
+ %> 
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -70,22 +77,22 @@ div {
 								<div class="profile">
 								email - ${profileDto.nickname}<br>
 								star - ${profileDto.star}<br>
-								pro_img - ${profileDto.proImg}<br>
+								pro_img - ${profileDto.pro_img}<br>
 								self - ${profileDto.self}<br>
 								resume - ${profileDto.resume}<br>
 								img - ${profileDto.img}<br>
-								m_cnt - ${profileDto.mcnt}
+								m_cnt - ${profileDto.m_cnt}
 								</div>
 								<h4>견적서 내용</h4>
 								<div class="right-box">
 									<div>
-										<textarea style="height: 30px; resize: none" readonly>${estimateDto.time_pay}</textarea> <span>시급</span>
+										<span>시급</span> <textarea style="height: 30px; resize: none" readonly>${estimateDto.time_pay}</textarea>
 									</div>
 									<div>
-										<textarea style="height: 30px; resize: none" readonly>${estimateDto.total_pay}</textarea> <span>총액</span>
+										<span>총액</span> <textarea style="height: 30px; resize: none" readonly>${estimateDto.total_pay}</textarea> 
 									</div>
 									<div>
-										<textarea style="resize: none; height: 100px; width: 600px" readonly>${estimateDto.anser1}</textarea>
+										<span>설명글</span> <textarea style="resize: none; height: 100px; width: 600px" readonly>${estimateDto.anser1}</textarea>
 									</div>
 									<c:set var="e" value="${matchingDto.m_result}"/>
 									<c:if test="${e eq 1}"><input type="button" 

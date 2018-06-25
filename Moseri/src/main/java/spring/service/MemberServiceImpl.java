@@ -163,6 +163,16 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getBno(no);
 		
 	}
+
+
+	@Override
+	public int nickcheck(String usernick) {
+		// TODO Auto-generated method stub
+		MemberDto nick_exist=memberDao.getn(usernick);
+		if(!(nick_exist == null)) {
+			return 1;	
+		}else {return 0;}
+	}
 	
 	
 	

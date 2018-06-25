@@ -39,6 +39,7 @@
 
 .mypage-bg {
     background-color: #f9f9f9;
+    padding: 100px 0px
 }
 
 #req .req-btn {
@@ -192,19 +193,22 @@
 
 /* pro - review */
 
-#pro .pro-wrap .review {
+#pro .pro-wrap .review,
+#pro .review{
     background-color: #fff;
     border: 1px solid #d3d3d3;
     margin: 40px 0px;
     padding: 20px;
     overflow:hidden;
 }
-#pro .pro-wrap .review>h5{
+#pro .pro-wrap .review>h5,
+#pro .review>h5{
 	font-size:25px;
 	font-weight:bolder;
 }
 
-#pro .pro-wrap .review .review-write {
+#pro .pro-wrap .review .review-write,
+#pro .review .review-write{
     padding: 20px 0px;
     border-bottom: 1px dotted #d3d3d3;
     overflow:hidden;

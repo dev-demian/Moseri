@@ -32,62 +32,7 @@ div {
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/res/js/select.js"></script>
-<script type="text/javascript">
-//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
-var idck = 0;
-$(function() {
-    //idck 버튼을 클릭했을 때 
-    $("#email_check").click(function() {
-        
-        //userid 를 param.
-        var useremail =  $("#useremail").val(); 
-        
-        $.ajax({
-            async: true,
-            type : 'POST',
-            data : useremail,
-            url : "register_check",
-            dataType : "json",
-            contentType: "application/json; charset=UTF-8",
-            success : function(data) {
-                if (data.cnt > 0) {
-                    
-                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                   /*  $("#divInputId").addClass("has-error")
-                    $("#divInputId").removeClass("has-success") */
-                    $("#useremail").focus();
-                    
-                
-                } else {
-                    alert("사용가능한 아이디입니다.");
-                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                    /* $("#divInputId").addClass("has-success")
-                    $("#divInputId").removeClass("has-error") */
-                    $("#useremail").focus();
-                    //아이디가 중복하지 않으면  idck = 1 
-                    idck = 1;
-                    
-                }
-            },
-            error : function(error) {
-                
-                alert("아이디 값을 입력하세요");
-                idck = 0;
-            }
-        });
-    });
-    
-});
-function check() {
-	if(idck==0){
-		alert("올바르지 않은 아이디를 입력하셨습니다");
-		return false;
-	}else
-		return true;
-}
- 
-</script>
+<script src="${pageContext.request.contextPath}/res/js/register.js"></script>
 
 </head>
 
@@ -100,15 +45,18 @@ function check() {
 			<div class="inner">
 				<div class="col-md-3 col-sm-2"></div>
 				<div class="col-md-6 col-sm-8">
-					<form action="register_gosu" method="post" onsubmit="return check()">
+					<form  class="commonForm" action="register_gosu" method="post" onsubmit="return check()">
 						<div id="register-wrap">
 							<h2 class="text-center">회원가입</h2>
 							<div class="row text-left">
 								<div class="col-md-4">
 									<span>Email</span>
 								</div>
-								<div class="col-md-8">
-									<input type="text" name="email">
+								<div id= "divInputId" class="col-md-8" >
+									<input id="useremail" type="text" name="email" 
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+									title="이메일 형식을 갖추어 입력하세요." placeholder="이메일 형식을 갖추어 입력하세요." >
+									
 								</div>
 							</div>
 							<div class="row text-left">
@@ -116,7 +64,9 @@ function check() {
 									<span>Password</span>
 								</div>
 								<div class="col-md-8">
-									<input type="password" name="pwd">
+										<input id="pwd" type="password" name="pwd" placeholder="하나 이상의 숫자와 8 자 이상의 대소 문자입력"
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+									title="최소한 하나 이상의 숫자와 8 자 이상의 대소 문자가 있어야합니다." >
 								</div>
 							</div>
 							<div class="row text-left">
@@ -124,7 +74,8 @@ function check() {
 									<span>Nick</span>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="nickname">
+									<input id="nick" type="text" name="nickname" placeholder="4글자 이상 8글자 이하 ,닉네임은 중복 될 수 없습니다."
+									pattern=".{4,8}" >
 								</div>
 							</div>
 							<div class="row text-left">
@@ -132,7 +83,9 @@ function check() {
 									<span>Phone</span>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="phone" placeholder="-없이 입력해 주세요">
+									<input id="phone" type="text" name="phone" placeholder="-없이 입력해 주세요" 
+									pattern="01{1}[016789]{1}[0-9]{7,8}"
+									title="-없이 입력해 주세요.">
 								</div>
 							</div>
 							<div class="row text-left">
