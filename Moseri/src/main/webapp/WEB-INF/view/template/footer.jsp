@@ -36,13 +36,13 @@
                                 <ul class="menu">
                                     <div class="app-download-wrap">
                                         <div class="app-download-btn">
-                                            <a href="https://soomgo.app.link/SZeaREjJcE" target="_blank" wrc_done="true">
+                                            <a href="https://github.com/guak908/Moseri" target="_blank" wrc_done="true">
                                                 <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_googleplay_btn.png" class="footer-app-btn">
                                             </a>
                                             <span class="wrc0 wrc_icon wrc_injected"></span>
                                         </div>
                                         <div class="app-download-btn">
-                                            <a href="https://soomgo.app.link/SZeaREjJcE" wrc_done="true">
+                                            <a href="https://github.com/guak908/Moseri" wrc_done="true">
                                                 <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_appstore_btn.png" class="footer-app-btn">
                                             </a>
                                             <span class="wrc0 wrc_icon wrc_injected"></span>
@@ -50,40 +50,13 @@
                                     </div>
                                     <li>
                                         <a href="/" target="_blank">
-                                            <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_mobile_ico.png">모바일 앱 안내
+                                           <!--  <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_mobile_ico.png"> -->
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-sm-4 col-md-3">
-                                <div class="col-sm-4 col-md-4 footer-list">
-                                    <h4>모서리<div class="switch"></div></h4>
-                                    <ul class="menu hide">
-                                        <li>
-                                            <a href="/about">프로젝트 소개</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-sm-4 col-md-4 footer-list">
-                                    <h4>요청자<div class="switch"></div></h4>
-                                    <ul class="menu hide">
-                                        <li><a href="/how-it-works">1.</a></li>
-                                        <li><a href="/safety">2.</a></li>
-                                        <li><a href="/prices">3.</a></li>
-                                        <li><a href="/search/pro">4.</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-4 col-md-4 footer-list">
-                                    <h4>고수<div class="switch"></div></h4>
-                                    <ul class="menu hide">
-                                        <li>
-                                            <a href="/how-soomgo-works">1.</a></li>
-                                        <li><a href="/subscriptions/info">2.</a></li>
-                                        <li><a href="/pro">3.</a></li>
-                                        <li><a href="/pro-center">4.</a></li>
-                                    </ul>
-                                </div>
+                                 
                             </div>
                             <div class="col-sm-3 col-md-2 footer-list-help">
                                 <h4 class="app-download">궁금하신게 있으신가요?</h4>
@@ -92,7 +65,8 @@
                                         <a href="boardhome" target="_blank" wrc_done="true">
                                             <button class="btn footer-list-help-btn">
                                                 <img src="https://soomgo.s3.ap-northeast-2.amazonaws.com/static/img/home/footer_help_ico.png">
-                                                <span>질문 게시판</span>
+                                                
+                                                <span>고객 게시판</span>
                                             </button>
                                         </a>
                                         <span class="wrc0 wrc_icon wrc_injected"></span>

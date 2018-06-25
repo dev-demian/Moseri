@@ -19,7 +19,7 @@
        <div class="container">
        <div class="row">
        <div class="col-sm-4"></div>
-       <div class="col-sm-4 title-font">게시판</div>
+       <div class="col-sm-4 title-font">고객 게시판</div>
        <div class="col-sm-4"></div>
 		</div>
 			<div class="empty-row"></div>
