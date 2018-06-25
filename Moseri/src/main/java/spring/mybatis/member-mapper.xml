@@ -40,6 +40,10 @@
 	<select id="getBno" resultType="Integer" parameterType="Integer">
 		select c_bno from users where pno = #{no}
 	</select>
+	
+	<update id="pwdupdate" parameterType="memberDto">
+		update users set pwd=#{pwd} where email=#{email}
+	</update>
 		
 		
 </mapper>

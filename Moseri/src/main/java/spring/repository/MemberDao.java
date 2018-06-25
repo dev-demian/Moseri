@@ -18,6 +18,10 @@ public interface MemberDao {
 	MemberDto getn(String nickname);
 	//소분류 번호를 가져온다
 	int getBno(int no);
+	
+	
+
+	void member_update(MemberDto memberDto);
 
 
 

@@ -1019,5 +1019,14 @@ public class homecontroller {
 				}
 				///36.추가(두산)
 		
-		
+				//비밀번호 변경
+				@RequestMapping(value = "/member_update" , method = RequestMethod.POST)
+				public String member_update(HttpServletRequest request , HttpServletResponse response,HttpSession session,Model model, @ModelAttribute MemberDto memberDto) throws Exception{
+					
+					
+					memberservice.member_update(request,  response, session, memberDto);
+					
+					
+					return "redirect:information";
+				}
 }

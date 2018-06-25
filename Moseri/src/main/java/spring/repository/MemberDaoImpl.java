@@ -50,6 +50,12 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getn",nickname);
 	}
+	@Override
+	public void member_update(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		sqlSession.update("pwdupdate", memberDto);
+	}
+	
 	
 	
 	

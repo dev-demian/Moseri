@@ -109,7 +109,7 @@ div {
 									<span>Address</span>
 								</div>
 								<div class="col-md-8">
-									<input  id="addr" type="text" id="sample5_address" placeholder="주소" name="addr" readonly>
+									<input  type="text" id="sample5_address" placeholder="주소" name="addr" >
 
 								</div>
 							</div>
@@ -130,7 +130,7 @@ div {
 							<div class="row">
 								<div class="col-md-4"></div>
 								<div class="col-md-4">
-									<input id="submit_btn" type="submit" value="가입하기">
+									<input  type="submit" value="Sign-up">
 								</div>
 								<div class="col-md-4"></div>
 							</div>

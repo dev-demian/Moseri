@@ -170,7 +170,7 @@
                     
                 		<div class="signupnow">
                 		<h4>고수로 가입하면 무료로 고객들의 요청서를 받아볼 수 있습니다</h4> 
-                		<a href="/register_gosu"><button class="btn btn-primary btn-lg">고수로 가입하기</button></a>
+                		<a href="register_gosu"><button class="btn btn-primary btn-lg">고수로 가입하기</button></a>
                 		</div>
                     </div>
                     

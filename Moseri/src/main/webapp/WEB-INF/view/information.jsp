@@ -4,9 +4,11 @@
     <jsp:include page="/WEB-INF/view/template/mypageHeader.jsp"></jsp:include>    
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e52ea54ccfc578d2022fba92956f687e&libraries=services"></script>
-        
+    <script src="${pageContext.request.contextPath}/res/js/info.js"></script>
+	   
         
         <div class="container-fluid">
+            <form class="commonForm" action="member_update" method="post" onsubmit="return check()">
             
             <div class="row text-center mypage-bg">
             <div class="inner">
@@ -22,9 +24,15 @@
                                 </div>
                             </div>
                             <div>
-                                <span>Password</span>
+                                <span>기존 Password</span>
                                 <div>
-                                    <input  type="password" name="pwd">
+                                    <input  type="password" name="pwd" title="기존 pwd를 입력하세요">
+                                </div>
+                            </div>
+                            <div>
+                                <span>변경할 Password</span>
+                                <div>
+                                    <input  type="password" name="new_pwd" title="변경할 pwd를 입력하세요">
                                 </div>
                             </div>
                             
@@ -55,6 +63,8 @@
                 <div class="col-sm-2"></div>
             </div>
         </div>
+            
+            </form>
         </div>
         <script>
    var lat; //위도

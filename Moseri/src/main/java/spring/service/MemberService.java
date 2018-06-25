@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ public interface MemberService {
 	int nickcheck(String usernick);
 	//소분류의 번호를 가져온다
 	int getBno(int no);
+	
+	void member_update(HttpServletRequest request,HttpServletResponse response,HttpSession session, MemberDto memberDto)throws Exception;
 
 		
 }

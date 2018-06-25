@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.metal.MetalMenuBarUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -172,6 +173,34 @@ public class MemberServiceImpl implements MemberService {
 		if(!(nick_exist == null)) {
 			return 1;	
 		}else {return 0;}
+	}
+
+
+	@Override
+	public void member_update(HttpServletRequest request, HttpServletResponse response,HttpSession session, MemberDto memberDto) throws Exception {
+		// TODO Auto-generated method stub
+		//해당 아이디에 해당 비밀번호가 맞다면 
+		memberDto.setEmail((String)session.getAttribute("email"));
+		memberDto.setPwd(request.getParameter("pwd"));
+		
+		MemberDto db_mdto = new MemberDto();
+		db_mdto = memberDao.login(memberDto.getEmail());
+		
+		String db_pwd = db_mdto.getPwd();
+		//내파라메터를 암호화시킴 
+		String encpw = sha256.encrypt(memberDto.getPwd(), db_mdto.getSalt(), db_mdto.getLoop());
+		memberDto.setPwd(encpw);
+		String pram_pw = memberDto.getPwd();
+		if (db_pwd.equals(pram_pw)) {
+			String new_pwd = request.getParameter("new_pwd");
+			memberDto.setPwd(new_pwd);
+			String encpw2 = sha256.encrypt(memberDto.getPwd(), db_mdto.getSalt(), db_mdto.getLoop());
+			memberDto.setPwd(encpw2);
+			memberDao.member_update(memberDto);
+		}
+		
+		//새로 넣은 비밀번호로 업데이트해라 
+		
 	}
 	
 	

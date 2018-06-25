@@ -47,7 +47,7 @@ div {
 				<div class="col-md-6 col-sm-8">
 					<form  class="commonForm" action="register_gosu" method="post" onsubmit="return check()">
 						<div id="register-wrap">
-							<h2 class="text-center">회원가입</h2>
+							<h2 class="text-center">고수 회원가입</h2>
 							<div class="row text-left">
 								<div class="col-md-4">
 									<span>Email</span>
@@ -93,7 +93,7 @@ div {
 									<span>Gender</span>
 								</div>
 								<div class="col-md-8">
-									<span>남 : </span><input type="radio" name="sex" value="남자">
+									<span>남 : </span><input type="radio" name="sex" value="남자" checked="checked">
 									/ <span>여 : </span><input type="radio" name="sex" value="여자">
 								</div>
 							</div>
