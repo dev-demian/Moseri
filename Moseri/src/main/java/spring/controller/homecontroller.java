@@ -85,7 +85,8 @@ public class homecontroller {
 
 	// home
 	@RequestMapping("/home")
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("getProfileList", profileService.getProfileList());
 		return "home";
 	}
 	
@@ -271,7 +272,12 @@ public class homecontroller {
 	//마이페이지 - 개인정보
 
 	@RequestMapping("/information")
-	public String information(HttpSession session) {
+	public String information(HttpServletRequest request , HttpServletResponse response ,HttpSession session) {
+		String result = request.getParameter("pwd_result");
+		//String result = (String)request.getAttribute("pwd_result");
+		
+		System.out.println(result);
+		
 		return "information";
 	}
 	
@@ -1024,8 +1030,11 @@ public class homecontroller {
 				public String member_update(HttpServletRequest request , HttpServletResponse response,HttpSession session,Model model, @ModelAttribute MemberDto memberDto) throws Exception{
 					
 					
-					memberservice.member_update(request,  response, session, memberDto);
+					int result = memberservice.member_update(request,  response, session, memberDto);
 					
+					if(result == 0) {
+						model.addAttribute("update_result", "잘못된 기존 비밀번호를 입력하셨습니다");
+					}
 					
 					return "redirect:information";
 				}

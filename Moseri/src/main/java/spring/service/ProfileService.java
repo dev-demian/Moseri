@@ -30,5 +30,7 @@ public interface ProfileService {
 	/////////////////////////////////20180625추가/////////////////////////////////////
 	List<ProfileDto> getMyProfile(String email);
 	String getNickname(int pro_no);
+	
+	List<ProfileDto> getProfileList();
 
 }

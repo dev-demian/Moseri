@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
     
-<jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/template/pheader.jsp"></jsp:include>
 <jsp:include page="template/mypageHeader.jsp"></jsp:include> <!-- 7.수정(두산) -->
         <div class="container-fluid">
         

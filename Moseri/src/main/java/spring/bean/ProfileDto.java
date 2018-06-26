@@ -13,4 +13,6 @@ public class ProfileDto {
 	private String resume;
 	private String img;
 	private int m_cnt;
+	
+	private String cname;
 }

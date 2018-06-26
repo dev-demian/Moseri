@@ -42,9 +42,12 @@
 	</select>
 	
 	<update id="pwdupdate" parameterType="memberDto">
-		update users set pwd=#{pwd} where email=#{email}
+		update users set pwd=#{pwd},addr=#{addr} where email=#{email}
 	</update>
 		
-		
+	<select id="getCname" resultType="String" parameterType="Integer">
+	
+		select name from CATEGORY_BOT where no = (select c_bno from users where pno = #{pindex})
+	</select>
 </mapper>
 

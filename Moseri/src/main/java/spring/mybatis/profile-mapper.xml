@@ -5,7 +5,7 @@
 <mapper namespace="spring.repository.ProfileDao">
 	<select id="profileList" resultType="profileDto" parameterType="map">
 		select p.no,p.nickname,p.star,p.pro_img,p.self,p.resume,p.img,p.m_cnt,p.email from users u,profile p
-		where u.pno = p.no and u.granted = 3 and u.c_bno = #{bot} and u.addr like '%'||#{addr}||'%'
+		where u.pno = p.no and u.granted = 3 and u.c_bno = #{bot} and u.addr like '%'||#{addr}||'%' order by m_cnt desc
 	</select>
 	<select id="getProfile" resultType="profileDto" parameterType="Integer">
 		select * from profile where no = #{no}
@@ -34,7 +34,7 @@
 		update profile set self=#{self},resume=#{resume} where email=#{email}
 	</update>
 	<update id="update_profile_pro" parameterType="profileDto">
-		update profile set self=#{self},resume=#{resume},pro_img=#{proimg} where email=#{email}
+		update profile set self=#{self},resume=#{resume},pro_img=#{pro_img} where email=#{email}
 	</update>
 	<update id="update_profile_img" parameterType="profileDto">
 		update profile set self=#{self},resume=#{resume},img=#{img} where email=#{email}
@@ -48,6 +48,11 @@
 	<select id="getNickname" resultType="String" parameterType="Integer">
 		select nickname from profile where no = #{pro_no}
 	</select>
+	
+	
+	<select id="getProfileList" resultType="profileDto">
+      select p.no,p.nickname,p.star,p.pro_img from profile p,users u where p.no = u.pno and u.granted = 3
+   	</select>
 	
 	
 </mapper>

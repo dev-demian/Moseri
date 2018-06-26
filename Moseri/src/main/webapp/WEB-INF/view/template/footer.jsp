@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <footer class="footer" style="background-color: #F2F2F2; margin-top: 10px; padding-top: 20px; padding-bottom: 30px;">
+ <footer class="footer" style="background-color: #F2F2F2;  padding-top: 20px; padding-bottom: 30px;">
                  <div class="container-fluid">
                  <div class="container">
                     <div class="row">

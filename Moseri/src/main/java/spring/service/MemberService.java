@@ -21,7 +21,7 @@ public interface MemberService {
 	//소분류의 번호를 가져온다
 	int getBno(int no);
 	
-	void member_update(HttpServletRequest request,HttpServletResponse response,HttpSession session, MemberDto memberDto)throws Exception;
+	int member_update(HttpServletRequest request,HttpServletResponse response,HttpSession session, MemberDto memberDto)throws Exception;
 
 		
 }

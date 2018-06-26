@@ -23,6 +23,7 @@ public interface MemberDao {
 
 	void member_update(MemberDto memberDto);
 
+	String getCname(int pindex);
 
 
 	

@@ -69,4 +69,9 @@ public class ProfileDaoImpl implements ProfileDao {
 		return sqlSession.selectOne("getNickname", pro_no);
 	}
 	
+	@Override
+	public List<ProfileDto> getProfileList() {
+		return sqlSession.selectList("getProfileList");
+	}
+	
 }

@@ -68,9 +68,62 @@
         
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script>
-            
-        </script>
+       <script type="text/javascript">
+           $(document).ready(function(){
+              //저장된 쿠키값을  ID칸에 넣어준다. 없으면 공백
+                 var userInput = getCookie("userInput");
+                 $("#inputID").val(userInput);
+                 
+                 if($("#inputID").val() != " "){
+                    $("#emailsave").attr("checked",true);
+                 }
+                 
+                 $("#emailsave").change(function(){
+                    if($("#emailsave").is(":checked")){
+                       var userInput =    $("#inputID").val();
+                       setCookie("userInput",userInput, 7);
+                    }else{
+                       deleteCookie("userInput");
+                    }
+                 });
+                 
+                 $("#inputID").keyup(function(){
+                    if($("#emailsave").is("checked")){
+                       var userInput = $("#inputID").val();
+                       setCookie("userInput",userInput, 7);
+                    }
+                 });
+           });
+              
+              
+              function setCookie(cookieName, value, exdays){
+                   var exdate = new Date();
+                   exdate.setDate(exdate.getDate() + exdays);
+                   var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+                   document.cookie = cookieName + "=" + cookieValue;
+               }
+                
+               function deleteCookie(cookieName){
+                   var expireDate = new Date();
+                   expireDate.setDate(expireDate.getDate() - 1);
+                   document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+               }
+                
+               function getCookie(cookieName) {
+                   cookieName = cookieName + '=';
+                   var cookieData = document.cookie;
+                   var start = cookieData.indexOf(cookieName);
+                   var cookieValue = '';
+                   if(start != -1){
+                       start += cookieName.length;
+                       var end = cookieData.indexOf(';', start);
+                       if(end == -1)end = cookieData.length;
+                       cookieValue = cookieData.substring(start, end);
+                   }
+                   return unescape(cookieValue);
+               }
+           </script>
+        
     </head>
     <body>
     <script type="text/javascript">
@@ -88,7 +141,7 @@
                 <h2 class="form-signin-heading text-center">로그인</h2>
                 <div class="inputid">
                     <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="text" name="email" class="form-controll" placeholder="아이디(이메일)">
+                    <input id="inputID" type="text" name="email" class="form-controll" placeholder="아이디(이메일)">
                 </div>
                 <div class="inputpw">
                 <label for="inputPassword" class="sr-only">Password</label>
@@ -96,10 +149,10 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="remeber-me">
+                        <input id="emailsave" type="checkbox" value="remeber-me">
                         아이디 기억하기
                     </label>
-                    <a href="#" class="pull-right">비밀번호 찾기</a>
+                    <a  href="#" class="pull-right">비밀번호 찾기</a>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
            </form>

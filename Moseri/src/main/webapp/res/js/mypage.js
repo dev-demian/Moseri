@@ -79,7 +79,7 @@ $(document).ready(function(){
 		},
 	});
 	/////////////////////////////////20180625추가/////////////////////////////////////
-	$(".review .star").each(function(){
+	$(".review .star,.star").each(function(){
 		if($(this).text() === "1"){
 			$(this).text("★☆☆☆☆");
 		}

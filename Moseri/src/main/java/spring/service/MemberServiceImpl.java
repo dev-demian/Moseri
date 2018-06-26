@@ -177,11 +177,13 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public void member_update(HttpServletRequest request, HttpServletResponse response,HttpSession session, MemberDto memberDto) throws Exception {
+	public int member_update(HttpServletRequest request, HttpServletResponse response,HttpSession session, MemberDto memberDto) throws Exception {
 		// TODO Auto-generated method stub
 		//해당 아이디에 해당 비밀번호가 맞다면 
 		memberDto.setEmail((String)session.getAttribute("email"));
 		memberDto.setPwd(request.getParameter("pwd"));
+		memberDto.setAddr(request.getParameter("addr"));
+		
 		
 		MemberDto db_mdto = new MemberDto();
 		db_mdto = memberDao.login(memberDto.getEmail());
@@ -197,6 +199,12 @@ public class MemberServiceImpl implements MemberService {
 			String encpw2 = sha256.encrypt(memberDto.getPwd(), db_mdto.getSalt(), db_mdto.getLoop());
 			memberDto.setPwd(encpw2);
 			memberDao.member_update(memberDto);
+			System.out.println("비밀번호 변경 성공");
+			return 1;
+		}else {
+			System.out.println("비밀번호 변경 실패");
+			return 0;
+
 		}
 		
 		//새로 넣은 비밀번호로 업데이트해라 

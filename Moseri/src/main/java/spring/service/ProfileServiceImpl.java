@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import spring.bean.MemberDto;
 import spring.bean.ProfileDto;
+import spring.repository.MemberDao;
 import spring.repository.ProfileDao;
 
 @Service("profileService")
@@ -30,6 +31,8 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Autowired
 	private ProfileDao profileDao;
+	@Autowired
+	private MemberDao memberDao;
 	
 	@Override
 	public List<ProfileDto> profileList(int bot, String addr) {
@@ -167,4 +170,20 @@ public class ProfileServiceImpl implements ProfileService {
 	return profileDao.getNickname(pro_no);
 	}
 	
+	
+	@Override
+	public List<ProfileDto> getProfileList() {
+		
+		List<ProfileDto> slist = profileDao.getProfileList();
+		
+
+		for(ProfileDto profileDto : slist){
+			int pindex = profileDto.getNo();
+			profileDto.setCname(memberDao.getCname(pindex));  
+						
+		} 
+		
+		return slist;
+		//return profileDao.getProfileList();
+	}
 }

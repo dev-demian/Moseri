@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/template/pheader.jsp"></jsp:include>
     <jsp:include page="/WEB-INF/view/template/mypageHeader.jsp"></jsp:include>    
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e52ea54ccfc578d2022fba92956f687e&libraries=services"></script>
     <script src="${pageContext.request.contextPath}/res/js/info.js"></script>
-	   
+	 
+        
+      
         
         <div class="container-fluid">
+        	
             <form class="commonForm" action="member_update" method="post" onsubmit="return check()">
             
             <div class="row text-center mypage-bg">
@@ -15,7 +18,13 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
                     <div id="info">
-                        <h3>비밀번호 변경</h3>
+                        <h3>개인 정보 변경</h3>
+                        <%
+        				String result = (String)request.getParameter("update_result");
+        				if(result!=null){
+        				out.println(result);
+        				}
+        				%>
                         <div class="info-wrap">
                             <div>
                                 <span>E-mail</span>
@@ -26,13 +35,15 @@
                             <div>
                                 <span>기존 Password</span>
                                 <div>
-                                    <input  type="password" name="pwd" title="기존 pwd를 입력하세요">
+                                    <input  type="password" name="pwd" title="기존 pwd를 입력하세요" >
                                 </div>
                             </div>
                             <div>
                                 <span>변경할 Password</span>
                                 <div>
-                                    <input  type="password" name="new_pwd" title="변경할 pwd를 입력하세요">
+                                    <input  type="password" name="new_pwd" title="변경할 pwd를 입력하세요" placeholder="하나 이상의 숫자와 8 자 이상의 대소 문자입력"
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+									title="최소한 하나 이상의 숫자와 8 자 이상의 대소 문자가 있어야합니다.">
                                 </div>
                             </div>
                             
@@ -43,12 +54,12 @@
 									<input type="text" value="${sessionScope.addr}" id="sample5_address" placeholder="주소"  name="addr" readonly>
 									
 								</div>
-								<div>
 								
-									<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-								
-								</div>
 							</div>
+							<div style=>
+								<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="float : right;"><br>
+							</div>
+							
 							<div>
 								<div id="map" style="width:100%;height:300px;margin-top:70px;display:none"></div>
 							</div>

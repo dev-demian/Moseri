@@ -178,16 +178,5 @@
 			<div class="col-md-3"></div>
 		</div>
 	</header>
-	<div id="top-category-wrap" class="container-fluid">
-      <div class="row text-center">
-         <div class="inner">
-            <div class="col-md-2 col-sm-4"><a href="lesson">레슨</a></div>
-            <div class="col-md-2 col-sm-4"><a href="living">생활서비스</a></div>
-            <div class="col-md-2 col-sm-4"><a href="construction">시공/수리</a></div>
-            <div class="col-md-2 col-sm-4"><a href="it">IT/디자인</a></div>
-            <div class="col-md-2 col-sm-4"><a href="health">건강/미용</a></div>
-            <div class="col-md-2 col-sm-4"><a href="event">행사</a></div>
-         </div>
-      </div>
-   </div>
+
 	

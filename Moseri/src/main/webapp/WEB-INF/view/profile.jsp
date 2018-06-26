@@ -30,19 +30,19 @@
 							<div>
 								<h4>${getBotName}</h4>
 							</div>
+							<c:forEach var="pro" items="${pro}">
 							<div class="pro-img">
 								
 								<div class="profileImage">
 									
 									<img
 										
-										src="${pageContext.request.contextPath}/res/pro_img/"
+										src="${pageContext.request.contextPath}/res/pro_img/${pro.pro_img}"
 										alt="test이미지">
 								</div>
 							</div>
-							<c:forEach var="pro" items="${pro}">
 							<div>
-								<span>별점 : ${pro.star}</span>
+								<span class="star">별점 : ${pro.star}</span>
 							</div>
 							<div>
 								<span>닉네임 : ${pro.nickname}</span>
@@ -83,6 +83,8 @@
 								<div class="swiper-pagination"></div>
 							</div>
 							</c:forEach>
+							
+							<c:if test="${granted eq 3}">
 							<div class="review">
                                 <h5>리뷰</h5>
                                 <c:forEach var="getReview" items="${getReview}">
@@ -115,6 +117,8 @@
                                 <!-- E : 반복 -->
                                 </c:forEach>
                             </div>
+                            </c:if> 
+                            
 						</div>
 					</div>
 				</div>

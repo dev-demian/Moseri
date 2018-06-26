@@ -57,6 +57,13 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	
+	@Override
+	public String getCname(int pindex) {
+			
+		return sqlSession.selectOne("getCname",pindex);
+	}
+	
+	
 	
 	
 

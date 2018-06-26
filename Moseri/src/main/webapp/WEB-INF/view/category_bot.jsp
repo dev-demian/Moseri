@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin-top: 100px; margin-bottom: 100px;">
 			<c:forEach items="${categoryBotDto}" var="categoryBotDto">
 				<div class="col-md-3">
 					<h3>
