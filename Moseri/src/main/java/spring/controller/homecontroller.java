@@ -485,7 +485,13 @@ public class homecontroller {
 		}
 		
 		@RequestMapping("/writeRequest")
-		public String writeEstimate(HttpSession session, HttpServletRequest request) throws IOException {
+		public String writeEstimate1(HttpSession session, HttpServletRequest request) throws IOException {
+			///마지막 추가(두산)
+			String login = (String) session.getAttribute("login");
+			if(login == null) {
+				return "login";
+			}
+			///마지막 추가(두산)
 			int categoryno = Integer.parseInt(request.getParameter("categoryno"));
 			session.setAttribute("categoryno", categoryno);
 			String fileName = request.getParameter("categoryno");
@@ -907,7 +913,7 @@ public class homecontroller {
 			
 			//아무것도  null이 없다면
 			if(fromID == null || fromID.equals(" ") || toID == null || toID.equals(" ") || listType == null || listType.equals(" ")
-					|| matchingno == 0 || time == null || time.equals(" "))
+					|| matchingno == 0 || time == null || time.equals(" ") || cdto.size() == 0|| cdto == null)
 			{
 				return null;
 			}
@@ -1038,4 +1044,10 @@ public class homecontroller {
 					
 					return "redirect:information";
 				}
+		
+				
+				
+				
+				
+				
 }

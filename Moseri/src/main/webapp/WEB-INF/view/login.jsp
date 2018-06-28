@@ -88,7 +88,7 @@
                  });
                  
                  $("#inputID").keyup(function(){
-                    if($("#emailsave").is("checked")){
+                    if($("#emailsave").is(":checked")){
                        var userInput = $("#inputID").val();
                        setCookie("userInput",userInput, 7);
                     }

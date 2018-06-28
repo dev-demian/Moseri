@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="css/mypage.css">
 <style>
 div {
- 	border: 1px dotted #000;
+/*  	border: 1px dotted #000; */
 }
 </style>
 <!-- bootstrap js -->
@@ -51,40 +51,58 @@ div {
 					<div id="est-write">
 						<h3>요청서/견적서 보기</h3>
 						<div class="write-wrap">
-							<div class="col-lg-6">
-								<h4>지도/세부요청서</h4>
+							<div class="col-lg-6" style="border: 1px solid">
+								<h3>지도/세부요청서</h3>
 								<div class="left-box">
-									<div class="map">지도</div>
-									<div class="content">
-										<!-- 4.수정(두산) -->
-										<h4>${q[0]}</h4><br>
-										<h5>${q[1]}</h5><br>
-										${requestDto.anser1}<br><br>
-										<h5>${q[2]}</h5><br>
-										${requestDto.anser2}<br><br>
-										<h5>${q[3]}</h5><br>
-										${requestDto.anser3}<br><br>
-										<h5>${q[4]}</h5><br>
-										${requestDto.anser4}<br><br>
-										<h5>${q[5]}</h5><br>
-										${requestDto.anser5}<br><br>
-									<!-- 4.수정(두산) -->
+									<div class="map" style="background-color: #3EC03A">지도
+										<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+									</div>
+									<div class="content" style="background-color: #B2C7D9">
+										<div style="font-size: 40px">${q[0]}</div>
+										<br>
+										<div style="font-size: 25px">${q[1]}</div>
+										<div style="font-size: 20px">${requestDto.anser1}</div>
+										<br>
+										<div style="font-size: 25px">${q[2]}</div>
+										<div style="font-size: 20px">${requestDto.anser2}</div>
+										<br>
+										<div style="font-size: 25px">${q[3]}</div>
+										<div style="font-size: 20px">${requestDto.anser3}</div>
+										<br>
+										<div style="font-size: 25px">${q[4]}</div>
+										<div style="font-size: 20px">${requestDto.anser4}</div>
+										<br>
+										<div style="font-size: 25px">${q[5]}</div>
+										<div style="font-size: 20px">${requestDto.anser5}</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-6">
-								<h4>내 프로필</h4>
-								<div class="profile">
-								email - ${profileDto.nickname}<br>
-								star - ${profileDto.star}<br>
-								pro_img - ${profileDto.pro_img}<br>
-								self - ${profileDto.self}<br>
-								resume - ${profileDto.resume}<br>
-								img - ${profileDto.img}<br>
-								m_cnt - ${profileDto.m_cnt}
+							<div class="col-lg-6" style="border: 1px solid">
+								<h3>내 프로필</h3>
+								<div class="profile" style="background-color: #FFEB33">
+								<div style="font-size: 25px">닉네임</div>
+									<div style="font-size: 20px">${profileDto.nickname}</div>
+									<br>
+									<div style="font-size: 25px">별점</div>
+									<div style="font-size: 20px">${profileDto.star}</div>
+									<br>
+									<div style="font-size: 25px">고수 사진</div>
+									<div style="font-size: 20px">${profileDto.pro_img}</div>
+									<br>
+									<div style="font-size: 25px">자기소개</div>
+									<div style="font-size: 20px">${profileDto.self}</div>
+									<br>
+									<div style="font-size: 25px">이력서</div>
+									<div style="font-size: 20px">${profileDto.resume}</div>
+									<br>
+									<div style="font-size: 25px">고수 활동 관련 사진</div>
+									<div style="font-size: 20px">${profileDto.img}</div>
+									<br>
+									<div style="font-size: 25px">고수 매칭 횟수</div>
+									<div style="font-size: 20px">${profileDto.m_cnt}</div>
 								</div>
-								<h4>견적서 내용</h4>
-								<div class="right-box">
+								<h3>견적서 내용</h3>
+								<div class="right-box" style="border: 1px solid">
 									<div>
 										<span>시급</span> <textarea style="height: 30px; resize: none" readonly>${estimateDto.time_pay}</textarea>
 									</div>
@@ -95,9 +113,9 @@ div {
 										<span>설명글</span> <textarea style="resize: none; height: 100px; width: 600px" readonly>${estimateDto.anser1}</textarea>
 									</div>
 									<c:set var="e" value="${matchingDto.m_result}"/>
-									<c:if test="${e eq 1}"><input type="button" 
+									<c:if test="${e eq 1}"><input type="button" style="height: 35px; width: 600px"
 									onclick="location.href='chat?matchingno=${matchingDto.no}&m_result=${matchingDto.m_result}'" value="채팅내용보기"></c:if>
-									<c:if test="${e eq 0}"><input type="button" 
+									<c:if test="${e eq 0}"><input type="button" style="height: 35px; width: 600px"
 									onclick="location.href='chat?matchingno=${matchingDto.no}&m_result=${matchingDto.m_result}'" value="수락/채팅하기"></c:if>
 								</div>
 							</div>
