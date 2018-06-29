@@ -23,7 +23,7 @@
                     <div class="col-sm-10">
                         <div id="req">
                   			<h3>고수 요청</h3>
-                  			<form name ="fr" class="form-horizontal commonForm" method="post" action="approval" enctype="multipart/form-data"  onsubmit="return check()">
+                  			<form name ="fr" class="form-horizontal commonForm" method="post" action="approval" enctype="multipart/form-data">
                   			
 <%--                   			<input type = "hidden" id ="gosu_email" name ="email"value= "${sessionScpoe.email}" >
  --%>        					<!-- input type="file" 이라고 꼭 저어줘야 함 -->
@@ -39,16 +39,6 @@
             </div>
         </div>
         
-		<script>
-		function check() {
- 		 if(${sessionScpoe.granted} == "3") {
-		    alert("이미 인증이 완료된 고수입니다.");
-		    
-		    return false;
-		  }
-		  
-		  return true;
-		}
-		</script>
+		
         
        <jsp:include page="/WEB-INF/view/template/footer.jsp"></jsp:include>

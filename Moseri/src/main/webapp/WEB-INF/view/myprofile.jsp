@@ -17,18 +17,22 @@
 						<div class="pro-wrap">
 
 
+							<c:forEach var="mypro" items="${getMyProfile}">
 							<div class="pro-img">
 								<%-- <div class="cameraImage" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><img src="${pageContext.request.contextPath}/res/img/camera.png" alt="cameraImage"></div> --%>
 
 								<div class="profileImage">
-									<img src="${pageContext.request.contextPath}/res/img/test.jpg"
-										alt="test이미지">
+									<c:if test="${mypro.pro_img != null}" var="result">
+                                    <img src="${pageContext.request.contextPath}/res/pro_img/${mypro.pro_img}" alt="profile">
+                                    </c:if> 
+                                    <c:if test="${mypro.pro_img == null}" var="result">
+                                    <img src="${pageContext.request.contextPath}/res/img/test.jpg" alt="profile">
+                                    </c:if>
 								</div>
 								<input type="file" id="pro_img" name="profileimg"
 									accept=".jpg,.jpeg,.png,.gif,.bmp"
 									style="border: 0px solid black;" />
 							</div>
-							<c:forEach var="mypro" items="${getMyProfile}">
 							<div>
 								<div>""</div>
 								<span>${mypro.email} /</span> <span>${mypro.nickname}</span>

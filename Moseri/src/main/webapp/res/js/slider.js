@@ -6,7 +6,7 @@
                 adaptiveHeight: true,
                 autoplay: true,
                 autoplayspeed: 800,
-                dots: true,
+                dots: false,
                 arrows:true,
 
             })

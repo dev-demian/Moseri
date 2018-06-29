@@ -11,7 +11,7 @@
         
         <div class="container-fluid">
         	
-            <form class="commonForm" action="member_update" method="post" onsubmit="return check()">
+            <form class="commonForm" action="member_update" method="post">
             
             <div class="row text-center mypage-bg">
             <div class="inner">

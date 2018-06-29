@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <jsp:include page="/WEB-INF/view/template/header.jsp"></jsp:include>
 <body>
-	<h2>profile</h2>
+	<%-- <h2>profile</h2>
 	<c:forEach var="pro" items="${pro}">
 		<div>번호 : ${pro.no}</div>
 		<div>닉네임 : ${pro.nickname}</div>
@@ -16,15 +16,16 @@
 		<div>m_cnt : ${pro.m_cnt}</div>
 	</c:forEach>
 	<div>소분류번호 : ${getBno}</div>
-	<div>소분류이름 : ${getBotName}</div>
-	<button onclick="location.href='writeRequest?categoryno=${getBno}'">견적
-		받아보기</button>
+	<div>소분류이름 : ${getBotName}</div> --%>
+	<%-- <button onclick="location.href='writeRequest?categoryno=${getBno}'">견적
+		받아보기</button> --%>
 	<div class="container-fluid">
 		<div class="row text-center mypage-bg">
 			<div class="inner">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-8">
 					<div id="pro">
+						<div class="text-right"><button class="profile-reqeust-btn" style="padding:5px 10px;" onclick="location.href='writeRequest?categoryno=${getBno}'">견적받아보기</button></div>
 						<h3>프로필</h3>
 						<div class="pro-wrap">
 							<div>
@@ -34,11 +35,12 @@
 							<div class="pro-img">
 								
 								<div class="profileImage">
-									
-									<img
-										
-										src="${pageContext.request.contextPath}/res/pro_img/${pro.pro_img}"
-										alt="test이미지">
+									<c:if test="${pro.pro_img != null}" var="result">
+                                    <img src="${pageContext.request.contextPath}/res/pro_img/${pro.pro_img}" alt="profile">
+                                    </c:if> 
+                                    <c:if test="${pro.pro_img == null}" var="result">
+                                    <img src="${pageContext.request.contextPath}/res/img/test.jpg" alt="profile">
+                                    </c:if>
 								</div>
 							</div>
 							<div>

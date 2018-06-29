@@ -135,7 +135,7 @@
     
        <div class="container">
            <div class="row">
-            <img class="img-circle center-block" src="http://www.cinema4d.co.kr/files/attach/images/119/040/894/001/fb466ee7c233a3fc00eedbe4df84cc6a.jpg" width="150" height="150">
+            <a href="home"><img class="img-circle center-block" src="http://www.cinema4d.co.kr/files/attach/images/119/040/894/001/fb466ee7c233a3fc00eedbe4df84cc6a.jpg" width="150" height="150"></a>
            </div>
             <form action="login" method="post" class="form-signin">
                 <h2 class="form-signin-heading text-center">로그인</h2>

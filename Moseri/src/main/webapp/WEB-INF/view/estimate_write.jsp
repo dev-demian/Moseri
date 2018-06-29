@@ -13,7 +13,7 @@
 							<div class="col-lg-6">
 								<h4>지도/세부요청서</h4>
 								<div class="left-box">
-									<div class="map">지도</div>
+									<div class="map"></div>
 									<div class="content">
 										<div style="font-size: 40px">${q[0]}</div>
 										<br>

@@ -7,9 +7,9 @@
 
 <%
 	// 세션값 가져오기
-	out.println(session.getAttribute("email"));
-	out.println(session.getAttribute("granted"));
-	out.println(session.getAttribute("login"));
+	//out.println(session.getAttribute("email"));
+	//out.println(session.getAttribute("granted"));
+	//out.println(session.getAttribute("login"));
 	// 세션 전체 무효화(로그아웃시 주로 사용)
 	//session.invalidate();
 %>
@@ -47,6 +47,8 @@
 	href="${pageContext.request.contextPath}/res/css/slick-theme.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/res/css/search.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/res/css/register.css">
  <style>
     	.title-font{
         		font-size: 35px;
@@ -91,6 +93,8 @@
 <!-- ///////////////////////////E : 추가 했습니답///////////////////////////////// -->
 <script src="${pageContext.request.contextPath}/res/js/search.js"></script>
 <!-- /////////////////////////////////20180625추가///////////////////////////////////// -->
+<script src="${pageContext.request.contextPath}/res/js/select.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/register.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#key-search button").on("click", function() {
@@ -104,7 +108,7 @@
 </head>
 
 <body>
-	<header id="top" class="container-fluid"
+	<header id="headertop" class="container-fluid"
 		style="background:url(${pageContext.request.contextPath}/res/img/header_bg.jpg) center center no-repeat;background-size:cover;">
 		<!-- <div class="row"> -->
 		<div class="menu-wrap">

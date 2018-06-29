@@ -166,10 +166,14 @@
     width: 65%;
     vertical-align: middle;
 }
-
+#pro .pro-wrap > .pro-img > .profileImage{
+	width:100%;
+	height:100%;
+	border-radius:50%;
+	overflow:hidden;
+}
 #pro .pro-wrap > .pro-img > .profileImage > img {
     width: 100%;
-    border-radius: 50%;
 }
 
 #pro .pro-wrap > .text1 {

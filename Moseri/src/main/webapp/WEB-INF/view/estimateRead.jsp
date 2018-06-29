@@ -54,7 +54,7 @@ div {
 							<div class="col-lg-6" style="border: 1px solid">
 								<h3>지도/세부요청서</h3>
 								<div class="left-box">
-									<div class="map" style="background-color: #3EC03A">지도
+									<div class="map" style="background-color: #3EC03A">
 										<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 									</div>
 									<div class="content" style="background-color: #B2C7D9">

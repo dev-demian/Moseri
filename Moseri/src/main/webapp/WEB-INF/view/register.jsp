@@ -1,33 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<html lang="ko">
-
-<head>
-<title>register</title>
-<meta charset="UTF-8">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<!-- css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/common.css" Content-type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/register.css" Content-type="text/css" />
-<style>
-div {
-	/*            border: 1px dotted #000;*/
-	
-}
-</style>
-<!-- js -->
-<!--    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>-->
-<script src="${pageContext.request.contextPath}/res/js/jquery-1.12.1.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/res/js/register.js"></script>
-
-</head>
-
-<body>
+<jsp:include page="/WEB-INF/view/template/pheader.jsp"></jsp:include>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e52ea54ccfc578d2022fba92956f687e&libraries=services"></script>
 
@@ -256,18 +229,4 @@ $( window ).resize(function() {
 });
 
 </script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-</body>
-
-</html>
+<jsp:include page="/WEB-INF/view/template/footer.jsp"></jsp:include>

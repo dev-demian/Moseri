@@ -328,7 +328,7 @@ public class homecontroller {
 		
 		fileService.registe_file(email, rname, text, fileDto);
 		
-		return "home";
+		return "redirect:home";
 	}
 	
 	//////////////////////////////////////기태가 한거///////////////////////////////////////////
@@ -1020,7 +1020,7 @@ public class homecontroller {
 					} else if(participant.equals("gosu")) {
 						matchingService.gosu_emailUpdate(matching_no); ///34.추가(두산)
 					}
-					return "home";
+					return "redirect:home";
 				}
 				///32.추가(두산)
 				//36.추가(두산)
